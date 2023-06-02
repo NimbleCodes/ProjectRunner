@@ -7,6 +7,7 @@ TagManager:
   - HealPack
   - Enemy
   - Weapon
+  - Wall
   layers:
   - Default
   - TransparentFX

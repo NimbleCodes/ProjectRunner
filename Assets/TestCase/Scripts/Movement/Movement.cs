@@ -19,5 +19,4 @@ public class Movement : MonoBehaviour
         z = Input.GetAxisRaw("Vertical") * _speed;
         _rig.velocity = new Vector3(x, _rig.velocity.y,z);
     }
-
 }

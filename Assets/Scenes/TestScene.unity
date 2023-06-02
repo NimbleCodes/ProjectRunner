@@ -314,7 +314,7 @@ GameObject:
   - component: {fileID: 353538509}
   m_Layer: 0
   m_Name: Wall 1 (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -787,7 +787,7 @@ GameObject:
   - component: {fileID: 810768266}
   m_Layer: 0
   m_Name: Wall 1 (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1424,9 +1424,9 @@ MonoBehaviour:
   _cam: {fileID: 972447574}
   _getItemPanel: {fileID: 1957853230}
   _itemSlot:
-  - {fileID: 945651979}
-  - {fileID: 527805549}
-  - {fileID: 819093460}
+  - {fileID: 945651977}
+  - {fileID: 527805547}
+  - {fileID: 819093458}
   _playerActionDistance: 10
   active: 0
 --- !u!1 &986282068
@@ -1443,7 +1443,7 @@ GameObject:
   - component: {fileID: 986282070}
   m_Layer: 0
   m_Name: Wall 1 (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1557,7 +1557,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1041835713
@@ -1879,7 +1879,7 @@ GameObject:
   - component: {fileID: 1648976138}
   m_Layer: 0
   m_Name: Wall 1
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
