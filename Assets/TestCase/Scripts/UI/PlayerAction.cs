@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerAction : MonoBehaviour
 {
-    [SerializeField] Transform _cam;
+    [SerializeField] Transform _player;
     [SerializeField] GameObject _getItemPanel;
     [SerializeField] GameObject[] _itemSlot;
     Sprite _sprite;
@@ -15,7 +15,7 @@ public class PlayerAction : MonoBehaviour
     string _itemName;
     RaycastHit hit;
     void Update(){
-        active = Physics.Raycast(_cam.position,_cam.TransformDirection(Vector3.forward), out hit, _playerActionDistance);
+        active = Physics.Raycast(_player.position,_player.TransformDirection(Vector3.forward.normalized), out hit, _playerActionDistance);
         if (active == true && hit.collider.CompareTag("Weapon"))
         {
             _getItemPanel.SetActive(true);
