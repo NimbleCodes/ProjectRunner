@@ -11,8 +11,7 @@ public class PlayerJump : MonoBehaviour
     private void FixedUpdate()
     {
 
-        float y = Input.GetAxisRaw("Vertical");
-        _rigPlayer.velocity = new Vector3(0, _rigPlayer.velocity.y, 0);
+  
 
     }
 
