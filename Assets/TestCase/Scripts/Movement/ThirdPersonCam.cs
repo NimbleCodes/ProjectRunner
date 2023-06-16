@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class ThirdPersonCam : MonoBehaviour
     [SerializeField] private Rigidbody _rig;
     [SerializeField] private Transform _CamDir;
     [SerializeField] private float _rotationSpeed;
-
+    
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;

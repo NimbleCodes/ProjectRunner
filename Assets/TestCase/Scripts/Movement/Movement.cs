@@ -47,7 +47,7 @@ public class Movement : MonoBehaviour
         if (flatValue.magnitude > _speed)
         {                                               //속도가 speed를 넘어가면
             Vector3 speedLimit = flatValue.normalized * _speed;                         //speedLimit 값을 계산하여
-            _rig.velocity = new Vector3(speedLimit.x, _rig.velocity.y, speedLimit.z);   //현재 속도 변경
+            _rig.velocity = new Vector3(speedLimit.x, 0, speedLimit.z);   //현재 속도 변경
         }
     }
 }
