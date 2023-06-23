@@ -7,10 +7,10 @@ using UnityEngine;
 public class CameraMove : MonoBehaviour
 {
     [Header("Refernces")]
-    public Transform orientation;
     public Transform player;
-    public Transform playerObj;
     public Rigidbody rb;
+    public Transform orientation;
+    public Transform playerObj; 
 
     public float rotationSpeed;
 
@@ -20,7 +20,8 @@ public class CameraMove : MonoBehaviour
     public enum CameraStyle
     {
         Basic,
-        Combat
+        Combat,
+        Topdown
     }
     
 
@@ -36,7 +37,7 @@ public class CameraMove : MonoBehaviour
         Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
         orientation.forward = viewDir.normalized;
 
-        if (currentstyle == CameraStyle.Basic)
+        if (currentstyle == CameraStyle.Basic || currentstyle == CameraStyle.Topdown)
         {
             float horizontalInput = Input.GetAxis("Horizontal");
             Vector3 inputDir = orientation.forward * horizontalInput;

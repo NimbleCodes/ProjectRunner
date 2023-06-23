@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -14,10 +15,20 @@ public class Movement : MonoBehaviour
         _rig = this.GetComponent<Rigidbody>();
     }
 
-    void FixedUpdate(){
-        x = Input.GetAxisRaw("Horizontal") * _speed;
-        z = Input.GetAxisRaw("Vertical") * _speed;
-        _rig.velocity = new Vector3(x, _rig.velocity.y,z);
+    void FixedUpdate()
+    {
+        MoveLocalTransform(); 
     }
+
+    void MoveLocalTransform()
+    {
+        float x = Input.GetAxis("Horizontal");
+        float y = Input.GetAxis("Vertical");
+        Vector3 vPos = transform.position;
+        vPos += transform.right * x * Time.deltaTime * _speed;
+        vPos += transform.forward * y * Time.deltaTime * _speed;
+        transform.position = vPos;
+    }
+
 
 }
