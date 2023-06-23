@@ -2834,9 +2834,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 10
-  Ground:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!1 &1827890221
 GameObject:
   m_ObjectHideFlags: 0

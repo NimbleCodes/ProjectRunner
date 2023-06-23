@@ -6,57 +6,30 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    [Header("Refernces")]
-    public Transform player;
-    public Rigidbody rb;
-    public Transform orientation;
-    public Transform playerObj; 
 
-    public float rotationSpeed;
-
-    public Transform playerlookAt;
-
-    public CameraStyle currentstyle; 
-    public enum CameraStyle
-    {
-        Basic,
-        Combat,
-        Topdown
-    }
-    
-
+    [SerializeField] Transform _player;
+    float x, y;
+    float _rotY, _rotX;
+    float _senseY, _senseX;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-
-    // Update is called once per frame
     void Update()
     {
-        Vector3 viewDir = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
-        orientation.forward = viewDir.normalized;
+        x = Input.GetAxisRaw("Mouse X") + Time.deltaTime * _senseX;
+        y = Input.GetAxisRaw("Mouse Y") + Time.deltaTime * _senseY;
 
-        if (currentstyle == CameraStyle.Basic || currentstyle == CameraStyle.Topdown)
-        {
-            float horizontalInput = Input.GetAxis("Horizontal");
-            Vector3 inputDir = orientation.forward * horizontalInput;
+        _rotY += x;
 
-            if (inputDir != Vector3.zero)
-                playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
+        _rotX -= y;
+        _rotX = Mathf.Clamp(_rotX, -30f, 30f); //fix Y Pos to 90 degrees // 
 
-        }
-        else if(currentstyle == CameraStyle.Combat)
-        {
-            Vector3 dirToCombatLookAt = playerlookAt.position - new Vector3(transform.position.x, playerlookAt.position.y, transform.position.z); 
-            orientation.forward = dirToCombatLookAt.normalized;
-
-            playerObj.forward = dirToCombatLookAt.normalized;
-        }
-       
+        // rotation of cam and player
+        //Euler : returns rotation
+        transform.rotation = Quaternion.Euler(_rotX, _rotY, 0);
+        _player.rotation = Quaternion.Euler(0, _rotY, 0);
     }
 
-
-
-    
 }
