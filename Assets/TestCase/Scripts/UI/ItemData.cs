@@ -6,9 +6,10 @@ public class ItemData : MonoBehaviour
 {
     protected ItemPool _itemPool;
     System.Random _rand;
-
+    //public static ItemData _items;
     void Awake(){
         LoadDataFromJson();
+        
     }
 
     //Json파일에서 아이템 데이터목록 읽어오기
@@ -23,19 +24,16 @@ public class ItemData : MonoBehaviour
 
         return rNumber;
     }
-
-    
-    
 }
 
-[System.Serializable]
+
 public class ItemObjects{ //Item Data 정보를 저장할 클래스 생성
     string ItemName;
     string Description;
     string UseCount;
 }
 
-[System.Serializable]
+
 public class ItemPool{
     public ItemObjects[] itemPool;
 }
