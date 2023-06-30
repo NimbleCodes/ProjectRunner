@@ -9,6 +9,11 @@
         "ItemName": "DoubleA",
         "Description": "없으면 불안한 직장인의 필수템",
         "UseCount": "7"
+      },
+      {
+        "ItemName": "KeyBoard",
+        "Description": "손목터널 증후군의 이유",
+        "UseCount": "5"
       }
     ]
   }
