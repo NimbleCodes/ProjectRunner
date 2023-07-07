@@ -4,12 +4,29 @@ using UnityEngine;
 
 public class ItemData : MonoBehaviour
 {
-    protected ItemPool _itemPool;
+    private static ItemData instance = null;
+    ItemPool _itemPool;
     System.Random _rand;
-    //public static ItemData _items;
+    
     void Awake(){
         LoadDataFromJson();
+        if(instance == null){
+            instance = this;
+
+            DontDestroyOnLoad(this.gameObject);
+        }else{
+            Destroy(this.gameObject);
+        }
         
+    }
+
+    public static ItemData Instance{ //인스턴스 접근 property
+        get{
+            if(instance == null){
+                return null;
+            }
+            return instance;
+        }
     }
 
     //Json파일에서 아이템 데이터목록 읽어오기
