@@ -5,53 +5,83 @@ using UnityEngine.UI;
 
 public class PickUpItem : MonoBehaviour
 {
-    RaycastHit hit;
-    public Rigidbody rig;
-    public Collider coll; 
-    public Transform Player, FpsCam;
+    Rigidbody _rig;
+    BoxCollider _coll;
+    [SerializeField] Transform _player, _camPoint, _itemContainer;
+    [SerializeField] float pickUpRange;
+    [SerializeField] float dropFowardForce, dropUpWardForce;
 
-    public float pickUpRange;
     public bool equipped;
-    public static bool slotfull;
+    public static bool _slotFull;
 
-    [SerializeField] GameObject[] _itemSlot;
-    [SerializeField] Transform _Weapons;
-    GameObject _holding; 
-
+    void Start()
+    {
+        _rig = GetComponent<Rigidbody>();
+        _coll = GetComponent<BoxCollider>();
+        if (!equipped)
+        {
+            _rig.isKinematic = false;
+            _coll.isTrigger = false;
+        }
+        if (equipped)
+        {
+            _rig.isKinematic = true;
+            _coll.isTrigger = true;
+            _slotFull = true;
+        }
+    }
     void Update()
     {
-        //Vector3 distanceToPlayer = hit.collider.transform.position - transform.position;
-        //if (!equipped && distanceToPlayer.magnitude <= pickUpRange && !slotfull)
-        //{
-            //PickItem();
-        //}
-
-        PickItem(); 
+        Vector3 distance2Player = _player.position - transform.position;
+        if (!equipped && distance2Player.magnitude <= pickUpRange && Input.GetKeyDown(KeyCode.F) && !_slotFull)
+        {
+            PickUp();
+        }
+        if (equipped && Input.GetKeyDown(KeyCode.Q))
+        {
+            Drop();
+        }
     }
 
-    private void PickItem()
+
+    public void PickUp()
     {
         equipped = true;
-        slotfull = true;
-        rig.isKinematic = true;
-        coll.isTrigger = true;
+        _slotFull = true;
+        //아이템을 플레이어의 자식 오브젝트로 변경
+        transform.SetParent(_itemContainer);
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.Euler(Vector3.zero);
+        //transform.localRotation = Quaternion.Euler(new Vector3(0,180,0));
+        transform.localScale = Vector3.one;
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            GameObject obj = Resources.Load<GameObject>("Prefabs/" + _itemSlot[0].GetComponent<Image>().sprite.name);
-            obj.transform.SetParent(_Weapons.transform); 
-            //_holding = Instantiate(obj, _Weapons);
-            obj.transform.localPosition = _Weapons.transform.localPosition;
-            obj.transform.localRotation = _Weapons.transform.localRotation;
+        _rig.isKinematic = true;
+        _coll.isTrigger = true;
 
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
+        //enable item Script
 
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
+    }
 
-        }
+    public void Drop()
+    {
+        equipped = false;
+        _slotFull = false;
+        //아이템의 부모 오브젝트를 "없음"으로 변경
+        transform.SetParent(null);
+        //부모 오브젝트에 자석으로 붙어있던 오브젝트를 자력없음으로 변경하고
+        //콜라이더 트리거 상태 해제
+        _rig.isKinematic = false;
+        _coll.isTrigger = false;
+        _rig.useGravity = true;
+        //아이템에 플레이어의 모멘텀을 적용 //아이템을 버릴때 자연스러움을 추구
+        _rig.velocity = _player.GetComponent<Rigidbody>().velocity;
+        _rig.AddForce(_camPoint.forward * dropFowardForce, ForceMode.Impulse);
+        _rig.AddForce(_camPoint.up * dropUpWardForce, ForceMode.Impulse);
+        //아이템을 버릴때 랜덤하게 회전하도록 하는 코드
+        float random = Random.Range(-1f, 1f);
+        _rig.AddTorque(new Vector3(random, random, random) * 10f);
+        //아이템 스크립트 끄기
+        //GetComponent<itemScript>().enalble = false;
+
     }
 }

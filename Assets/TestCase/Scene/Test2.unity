@@ -2100,15 +2100,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fe5d1303ba243934e861367f16e574c4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fe5d1303ba243934e861367f16e574c4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fe5d1303ba243934e861367f16e574c4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fe5d1303ba243934e861367f16e574c4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2174,8 +2174,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb8bbfb690aafee4585509bc47a52cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rig: {fileID: 1246449281}
-  _coll: {fileID: 1246449280}
   _player: {fileID: 1815743423}
   _camPoint: {fileID: 610961041}
   _itemContainer: {fileID: 2053655952}
