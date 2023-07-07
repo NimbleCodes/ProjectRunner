@@ -15,9 +15,7 @@ public class TrackPlayer : MonoBehaviour
     private void Start()
     {
         _Enemy = transform;
-        _Renderer = _player.gameObject.GetComponent<SpriteRenderer>();
-        _Renderer = GetComponent<SpriteRenderer>();
-        _Renderer = gameObject.GetComponent<SpriteRenderer>();
+     
     }
 
     // Update is called once per frame
@@ -32,10 +30,8 @@ public class TrackPlayer : MonoBehaviour
     void followplayer()
     {
         {
-            Vector3 moveVector = (_player.position - _AI.position);
-            Vector3 dirVector = moveVector.normalized;
-            Vector3 lastVector = dirVector * _AIspeed; 
-            _AI.position = _AI.position + lastVector * Time.deltaTime;
+            _Enemy.LookAt(_player);
+            _Enemy.position = Vector3.MoveTowards(_Enemy.position, _player.position, _AIspeed * Time.deltaTime);
         }
     }
 }
