@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PickUpController : MonoBehaviour
 {
-    [SerializeField] Rigidbody _rig;
-    [SerializeField] BoxCollider _coll;
+    Rigidbody _rig;
+    BoxCollider _coll;
     [SerializeField] Transform _player, _camPoint, _itemContainer;
     [SerializeField] float pickUpRange;
     [SerializeField] float dropFowardForce, dropUpWardForce;
@@ -15,6 +15,8 @@ public class PickUpController : MonoBehaviour
 
     void Start()
     {
+        _rig = GetComponent<Rigidbody>();
+        _coll = GetComponent<BoxCollider>();
         if(!equipped){
             _rig.isKinematic = false;
             _coll.isTrigger = false;
@@ -72,6 +74,7 @@ public class PickUpController : MonoBehaviour
         float random = Random.Range(-1f,1f);
         _rig.AddTorque(new Vector3(random,random,random) * 10f);
         //아이템 스크립트 끄기
+        //GetComponent<itemScript>().enalble = false;
 
     }
 }
