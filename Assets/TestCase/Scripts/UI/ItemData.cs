@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,14 +44,14 @@ public class ItemData : MonoBehaviour
     }
 }
 
-
+[Serializable]
 public class ItemObjects{ //Item Data 정보를 저장할 클래스 생성
     string ItemName;
     string Description;
     string UseCount;
 }
 
-
+[Serializable]
 public class ItemPool{
     public ItemObjects[] itemPool;
 }
