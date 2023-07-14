@@ -25,11 +25,15 @@ public class CameraMove : MonoBehaviour
 
         _rotX -= y;
         _rotX = Mathf.Clamp(_rotX, -30f, 30f); //fix Y Pos to 90 degrees // 
-
+        if(Input.GetKey(KeyCode.Tab)){
+            transform.rotation = Quaternion.Euler(_rotX,_rotY,0);
+        }else{
         // rotation of cam and player
-        //Euler : returns rotation
+        // Euler : returns rotation
         transform.rotation = Quaternion.Euler(_rotX, _rotY, 0);
         _player.rotation = Quaternion.Euler(0, _rotY, 0);
+        }
+        
     }
 
 }
