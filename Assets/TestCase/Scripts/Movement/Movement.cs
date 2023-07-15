@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] private float _speed; 
     Rigidbody _rig;
+    public bool _isRotated = false;
     void Start()
     {
         _rig = this.GetComponent<Rigidbody>();
@@ -36,7 +37,7 @@ public class Movement : MonoBehaviour
         // GetComponent<Animator>().SetFloat("Y",y);
     }
 
-    void MovementAnimation(){ // 선생님께 질문할 부분...... 대각선입력시 애니메이션 재생오류
+    void MovementAnimation(){ 
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         //아무 입력도 없을시 idle 실행
@@ -70,18 +71,19 @@ public class Movement : MonoBehaviour
         if((Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D)) || (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))){
             GetComponent<Animator>().Play("FastRun");
         }else if((Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A)) || (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))){
-            transform.rotation = Quaternion.Euler(0,180,0);
+            transform.rotation = transform.rotation * Quaternion.Euler(0,180,0);
             GetComponent<Animator>().Play("FastRun");
         }else if(Input.GetKey(KeyCode.W)){ //전후좌우 애니메이션
             GetComponent<Animator>().Play("FastRun");
         }else if(Input.GetKey(KeyCode.A)){
-            transform.rotation = Quaternion.Euler(0,-90,0);
+            transform.rotation = transform.rotation * Quaternion.Euler(0,-90,0);
             GetComponent<Animator>().Play("FastRun");
         }else if(Input.GetKey(KeyCode.D)){
-            transform.rotation = Quaternion.Euler(0,90,0);
+                transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
+            //transform.rotation = Quaternion.Euler(0,90,0);
             GetComponent<Animator>().Play("FastRun");
         }else if(Input.GetKey(KeyCode.S)){
-            transform.rotation = Quaternion.Euler(0,180,0);
+            transform.rotation = transform.rotation * Quaternion.Euler(0,180,0);
             GetComponent<Animator>().Play("FastRun");
         }
     }
