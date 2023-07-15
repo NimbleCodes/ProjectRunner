@@ -5,8 +5,11 @@ using UnityEngine.UIElements;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private float _speed; 
+    
     Rigidbody _rig;
+    [SerializeField] float _speed;
+
+
     void Start()
     {
         _rig = this.GetComponent<Rigidbody>();
@@ -25,9 +28,11 @@ public class Movement : MonoBehaviour
         float y = Input.GetAxis("Vertical");
 
         Vector3 vPos = transform.position;
+
         vPos += transform.right * x * Time.deltaTime * _speed;
         vPos += transform.forward * y * Time.deltaTime * _speed;
         transform.position = vPos;
+
   
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -65,14 +70,16 @@ public class Movement : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.D))
         {
+            this.transform.rotation = Quaternion.Euler(0, 90, 0);
             GetComponent<Animator>().SetBool("IsRun", false);
-            GetComponent<Animator>().Play("Idle");
+            GetComponent<Animator>().Play("IdleR");
         }
 
         if (Input.GetKeyUp(KeyCode.A))
         {
+            this.transform.rotation = Quaternion.Euler(0, -90, 0);
             GetComponent<Animator>().SetBool("IsRun", false);
-            GetComponent<Animator>().Play("Idle");
+            GetComponent<Animator>().Play("IdleL");
         }
     }
         
