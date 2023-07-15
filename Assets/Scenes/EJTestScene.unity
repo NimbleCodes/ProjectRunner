@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028359, g: 0.22571385, b: 0.30692258, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -639,8 +639,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 288077047}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.10800004, y: 1.4120001, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.108, y: 1.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -660,6 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4426c756a76d834397e2a09a5e52c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 1174561223}
 --- !u!1 &346600884
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,7 +738,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 346600884}
   m_LocalRotation: {x: 0.08080702, y: -0, z: -0, w: 0.9967298}
-  m_LocalPosition: {x: 0, y: 1.4400002, z: -4.38}
+  m_LocalPosition: {x: -0, y: 1.44, z: -4.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2271,6 +2272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4426c756a76d834397e2a09a5e52c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 642118382}
 --- !u!1 &1720468135
 GameObject:
   m_ObjectHideFlags: 0
@@ -2385,10 +2387,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 100048, guid: 2c6fcb3004ba0e344908982afcefad9c, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 400046, guid: 2c6fcb3004ba0e344908982afcefad9c, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2441,6 +2439,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 67d49fa36ef243e4bb53dd12cd38b5c7, type: 2}
+    - target: {fileID: 9500000, guid: 2c6fcb3004ba0e344908982afcefad9c, type: 3}
+      propertyPath: m_CullingMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: 2c6fcb3004ba0e344908982afcefad9c, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0

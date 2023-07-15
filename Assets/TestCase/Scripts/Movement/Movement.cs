@@ -5,11 +5,9 @@ using UnityEngine.UIElements;
 
 public class Movement : MonoBehaviour
 {
-    
+    [SerializeField] private float _speed; 
     Rigidbody _rig;
-    [SerializeField] float _speed;
-
-
+    public bool _isRotated = false;
     void Start()
     {
         _rig = this.GetComponent<Rigidbody>();
@@ -20,6 +18,8 @@ public class Movement : MonoBehaviour
     void Update()
     {
         MoveLocalTransform();
+        //MovementAnimation();
+        MovementWithRotation();
     }
 
     void MoveLocalTransform()
@@ -28,58 +28,63 @@ public class Movement : MonoBehaviour
         float y = Input.GetAxis("Vertical");
 
         Vector3 vPos = transform.position;
-
         vPos += transform.right * x * Time.deltaTime * _speed;
         vPos += transform.forward * y * Time.deltaTime * _speed;
         transform.position = vPos;
+        
+        //blenderTree 전용
+        // GetComponent<Animator>().SetFloat("X",x);
+        // GetComponent<Animator>().SetFloat("Y",y);
+    }
 
-  
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            this.transform.rotation = Quaternion.Euler(0, 0, 0);
-            GetComponent<Animator>().SetBool("IsRun", true);
-            GetComponent<Animator>().Play("FastRun");
+    void MovementAnimation(){ 
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
+        //아무 입력도 없을시 idle 실행
+        if(!Input.anyKey || (x ==0 && y ==0)){
+            GetComponent<Animator>().Play("Idle");
         }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            this.transform.rotation = Quaternion.Euler(0, 0, 0);
-            GetComponent<Animator>().SetBool("IsBack", true);
+        //대각선 입력시 앞 혹은 뒤로가기 애니메이션
+        if((Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D)) || (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))){
+            GetComponent<Animator>().Play("FastRun");
+        }else if((Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A)) || (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))){
+            GetComponent<Animator>().Play("RunningBack");
+        }else if(Input.GetKey(KeyCode.W)){ //전후좌우 애니메이션
+            GetComponent<Animator>().Play("FastRun");
+        }else if(Input.GetKey(KeyCode.A)){
+            GetComponent<Animator>().Play("LeftRun");
+        }else if(Input.GetKey(KeyCode.D)){
+            GetComponent<Animator>().Play("RightRun");
+        }else if(Input.GetKey(KeyCode.S)){
             GetComponent<Animator>().Play("RunningBack");
         }
-        if (Input.GetKeyUp(KeyCode.W))
-        {
-            GetComponent<Animator>().SetBool("IsRun", false);
-            GetComponent<Animator>().Play("Idle");
-        }
-        if (Input.GetKeyUp(KeyCode.S))
-        {
-            GetComponent<Animator>().SetBool("IsRun", false);
-            GetComponent<Animator>().Play("Idle");
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            this.transform.rotation = Quaternion.Euler(0, 90, 0);
-            GetComponent<Animator>().SetBool("IsRun", true); 
-            GetComponent<Animator>().Play("FastRun");
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            this.transform.rotation = Quaternion.Euler(0, -90, 0);
-            GetComponent<Animator>().SetBool("IsRun", true);
-            GetComponent<Animator>().Play("FastRun");
-        }
-        if (Input.GetKeyUp(KeyCode.D))
-        {
-            this.transform.rotation = Quaternion.Euler(0, 90, 0);
-            GetComponent<Animator>().SetBool("IsRun", false);
-            GetComponent<Animator>().Play("IdleR");
-        }
+    }
 
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            this.transform.rotation = Quaternion.Euler(0, -90, 0);
-            GetComponent<Animator>().SetBool("IsRun", false);
-            GetComponent<Animator>().Play("IdleL");
+    void MovementWithRotation(){
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
+        //아무 입력도 없을시 idle 실행
+        if(!Input.anyKey || (x ==0 && y ==0)){
+            GetComponent<Animator>().Play("Idle");
+        }
+        //대각선 입력시 앞 혹은 뒤로가기 애니메이션
+        if((Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D)) || (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))){
+            GetComponent<Animator>().Play("FastRun");
+        }else if((Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A)) || (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))){
+            transform.rotation = transform.rotation * Quaternion.Euler(0,180,0);
+            GetComponent<Animator>().Play("FastRun");
+        }else if(Input.GetKey(KeyCode.W)){ //전후좌우 애니메이션
+            GetComponent<Animator>().Play("FastRun");
+        }else if(Input.GetKey(KeyCode.A)){
+            transform.rotation = transform.rotation * Quaternion.Euler(0,-90,0);
+            GetComponent<Animator>().Play("FastRun");
+        }else if(Input.GetKey(KeyCode.D)){
+                transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
+            //transform.rotation = Quaternion.Euler(0,90,0);
+            GetComponent<Animator>().Play("FastRun");
+        }else if(Input.GetKey(KeyCode.S)){
+            transform.rotation = transform.rotation * Quaternion.Euler(0,180,0);
+            GetComponent<Animator>().Play("FastRun");
         }
     }
         
