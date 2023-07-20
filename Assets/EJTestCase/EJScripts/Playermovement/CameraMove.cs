@@ -22,7 +22,6 @@ public class CameraMove : MonoBehaviour
         y = Input.GetAxisRaw("Mouse Y") + Time.deltaTime * _senseY;
 
         _rotY += x;
-
         _rotX -= y;
         _rotX = Mathf.Clamp(_rotX, -30f, 30f); //fix Y Pos to 90 degrees // 
         if(Input.GetKey(KeyCode.Tab)){
