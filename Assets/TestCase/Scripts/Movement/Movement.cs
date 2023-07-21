@@ -17,9 +17,14 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        MoveLocalTransform();
-        //MovementAnimation();
-        MovementWithRotation();
+        if(Input.GetKey(KeyCode.Tab)){
+            FreeCamMovement();
+        }else{
+            MoveLocalTransform();
+            MovementWithRotation();
+        }
+        
+        
     }
 
     void MoveLocalTransform()
@@ -86,6 +91,23 @@ public class Movement : MonoBehaviour
             transform.rotation = transform.rotation * Quaternion.Euler(0,180,0);
             GetComponent<Animator>().Play("FastRun");
         }
+    }
+
+    void FreeCamMovement(){
+        float x = Input.GetAxis("Horizontal");
+        float y = Input.GetAxis("Vertical");
+
+        Vector3 vPos = transform.position;
+        vPos += transform.forward * x * Time.deltaTime * _speed;
+        vPos += transform.forward * y * Time.deltaTime * _speed;
+        transform.position = vPos;
+        if(Input.GetKey(KeyCode.D)){
+            if(!_isRotated){
+                transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
+                _isRotated = true;
+            }
+        }
+        if(Input.GetKeyUp(KeyCode.D)){_isRotated = false;}
     }
         
 }
