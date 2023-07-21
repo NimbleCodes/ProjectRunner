@@ -10,23 +10,24 @@ public class MobSpawner : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(_mobs == null) _mobs = GameObject.FindGameObjectsWithTag("Mob");
+        if(_mobs == null) _mobs = GameObject.FindGameObjectsWithTag("Enemy");
     }
 
-    public void SetSpawnPoints(Transform[] Points){
+    void Start()
+    {
+        SpawnOnce();
+    }
+
+    void SetSpawnPoints(Transform[] Points){
         _spawnPoints = Points;
 
     }
 
-    public void SetMobs(GameObject[] mobs){
-        _mobs = mobs;
-    }
-
     void SpawnOnce(){
-        for(int i =0; i < _spawnPoints.Length; i++){
-            int randNum = Random.Range(0,_mobs.Length-1);
-            GameObject mob = Instantiate(_mobs[randNum],_patrolPoints[i]);
-            mob.SetActive(true);        
+        for(int i =0; i <_spawnPoints.Length; i++){
+            int randNum = Random.Range(0,1);
+            GameObject mob = Instantiate(_mobs[0],_spawnPoints[0]);
+            mob.transform.position = _spawnPoints[i].transform.position;
         }
     }
 }

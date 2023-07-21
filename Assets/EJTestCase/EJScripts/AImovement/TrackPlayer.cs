@@ -17,6 +17,10 @@ public class TrackPlayer : MonoBehaviour
         _Enemy = transform;
      
     }
+    void FixedUpdate()
+    {
+        if(_player == null)_player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
 
     // Update is called once per frame
     void Update()

@@ -21,7 +21,7 @@ public class Movement : MonoBehaviour
             FreeCamMovement();
         }else{
             MoveLocalTransform();
-            MovementWithRotation();
+            //MovementWithRotation();
         }
         
         
