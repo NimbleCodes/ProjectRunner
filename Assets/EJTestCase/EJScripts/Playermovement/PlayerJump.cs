@@ -8,22 +8,15 @@ public class PlayerJump : MonoBehaviour
     int _jumpCount = 0;
     bool _isGround = false;
 
-    private void FixedUpdate()
-    {
-
-  
-
-    }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && (_jumpCount < 1 || _isGround == true))
 
         {
-            _jumpCount++;
+            GetComponent<Animator>().Play("Jumping");
+            _jumpCount++; 
             _rigPlayer.AddForce(Vector2.up * 5, ForceMode.Impulse);
             _isGround = false;
-
         }
     }
 

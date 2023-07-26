@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TrackPlayer : MonoBehaviour
@@ -14,8 +12,8 @@ public class TrackPlayer : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        GetComponent<Animator>().Play("Idle"); 
         _Enemy = transform;
-     
     }
     void FixedUpdate()
     {
@@ -25,9 +23,19 @@ public class TrackPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(_player.position, _AI.position) < 5f)
+        if (Vector3.Distance(_player.position, _AI.position) < 7f && (Vector3.Distance(_player.position, _AI.position) > 4f))
         {
+            GetComponent<Animator>().Play("Patroll");
             followplayer();
+        }
+        else if(Vector3.Distance(_player.position, _AI.position) < 4f)
+        {
+            GetComponent<Animator>().Play("AIAttack");
+            followplayer(); 
+        }
+        else
+        {
+            GetComponent<Animator>().Play("Idle");
         }
     }
 
