@@ -6,20 +6,66 @@ public class CheckGround : MonoBehaviour
 {
     [SerializeField] GameObject Player;
     public bool onGround = false;
+    Rigidbody _rig;
+    int _jumpCount; 
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Jumping"))
         {
-            Player.GetComponent<Movement>()._isGround = true;
-            //_jumpCount = 0;
             onGround = true;
+        }
+        else
+        {
+            onGround = false;
         }
     }
 
-    
-
-    private void OnCollisionExit(Collision collision)
+    private void Update()
     {
-        Player.GetComponent<Movement>()._isGround = false;
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (onGround && _jumpCount > 0)
+            {
+                onGround = false;
+                GetComponent<Animator>().Play("Jumping");
+                _rig.AddForce(Vector2.up * 5, ForceMode.Impulse);
+                _jumpCount--; 
+            }
+        }
     }
+
+       
 }
+
+
+
+
+
+    //void Start()
+    //{
+    //    RaycastHit hit;
+    //}
+
+    //void Update()
+    //{
+    //    Ray ray = new Ray(transform.position, Vector3.down);
+    //    int layerMask = (1 << LayerMask.NameToLayer("Ground"));
+    //    bool result = Physics.Raycast(ray, out hit, layerMask);
+
+    //    if (result)
+    //    {
+    //        if (hit.distance < 0.01f)
+    //        {
+    //            GetComponent<Animator>().SetBool("_isGround", true);
+    //            onGround = true;
+    //        }
+    //        else if (hit.distance > 0.01f)
+    //        {
+    //    
+    //            onGround = false;
+    //        }
+    //    }
+    //}
+
+

@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Movement : MonoBehaviour
 {
     [SerializeField] private float _speed; 
     Rigidbody _rig;
     public bool _isRotated = false;
-    public bool _isGround = false; 
-    public bool IsGround { set { IsGround = value; } }
+    public bool _isGround = false;
+    int _jumpCount = 1; 
+
+
     void Start()
     {
         _rig = this.GetComponent<Rigidbody>();
@@ -28,6 +31,18 @@ public class Movement : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Jumping"))
+        {
+            _isGround = true;
+        }
+        else
+        {
+            _isGround = false;
+        }
+    }
+
     void MoveLocalTransform()
     {
         float x = Input.GetAxis("Horizontal");
@@ -39,7 +54,9 @@ public class Movement : MonoBehaviour
         transform.position = vPos;
     }
 
-    void MovementWithRotation(){
+    void MovementWithRotation()
+    {
+
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         if (_isGround)
@@ -78,14 +95,31 @@ public class Movement : MonoBehaviour
             {
                 transform.rotation = transform.rotation * Quaternion.Euler(0, 180, 0);
                 GetComponent<Animator>().Play("FastRun");
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    GetComponent<Animator>().Play("Jumping");
+                } // 뒤로 보고 달리다가 점프를 하면 다시 정면을 보고 점프를 함 
             }
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _rig.AddForce(Vector2.up * 5, ForceMode.Impulse);
-            GetComponent<Animator>().Play("Jumping");
-            _isGround = false; 
+            if (_isGround && _jumpCount > 0)
+            {
+                _isGround = false;
+                StartCoroutine(Jump()); 
+                _jumpCount--;
+            }
+            _jumpCount = 1; 
+            //GetComponent<Animator>().Play("Jumping");
+            //_rig.AddForce(Vector2.up * 5, ForceMode.Impulse);
         }
+    }
+
+    IEnumerator Jump()
+    {
+        GetComponent<Animator>().Play("Jumping");
+        yield return new WaitForSeconds(0.6135f);
+        _rig.AddForce(Vector2.up * 5, ForceMode.Impulse);
     }
 
     void FreeCamMovement(){
