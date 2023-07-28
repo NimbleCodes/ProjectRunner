@@ -10,7 +10,8 @@ public class Movement : MonoBehaviour
     Rigidbody _rig;
     public bool _isRotated = false;
     public bool _isGround = false;
-    int _jumpCount = 1; 
+    int _jumpCount = 1;
+    float _speedLimit = 10; 
 
 
     void Start()
@@ -22,13 +23,8 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKey(KeyCode.Tab)){
-            FreeCamMovement();
-        }else{
-            MoveLocalTransform();
-            MovementWithRotation();
-            _isRotated = false;
-        }
+        PlayerMovement();
+        CheckSpeedLimit();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -54,135 +50,48 @@ public class Movement : MonoBehaviour
         transform.position = vPos;
     }
 
-    void MovementWithRotation()
-    {
-
+    void PlayerMovement(){
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
-        if (_isGround)
-        {
-            //아무 입력도 없을시 idle 실행
-            if ((x == 0 && y == 0))
-            {
-                GetComponent<Animator>().Play("Idle");
-            }
-            //대각선 입력시 앞 혹은 뒤로가기 애니메이션
-            if ((Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D)) || (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A)))
-            {
-                GetComponent<Animator>().Play("FastRun");
-            }
-            else if ((Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A)) || (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D)))
-            {
-                transform.rotation = transform.rotation * Quaternion.Euler(0, 180, 0);
-                GetComponent<Animator>().Play("FastRun");
-            }
-            else if (Input.GetKey(KeyCode.W))
-            { //전후좌우 애니메이션
-                GetComponent<Animator>().Play("FastRun");
-            }
-            else if (Input.GetKey(KeyCode.A))
-            {
-                transform.rotation = transform.rotation * Quaternion.Euler(0, -90, 0);
-                GetComponent<Animator>().Play("FastRun");
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                transform.rotation = transform.rotation * Quaternion.Euler(0, 90, 0);
-                //transform.rotation = Quaternion.Euler(0,90,0);
-                GetComponent<Animator>().Play("FastRun");
-            }
-            else if (Input.GetKey(KeyCode.S))
-            {
-                transform.rotation = transform.rotation * Quaternion.Euler(0, 180, 0);
-                GetComponent<Animator>().Play("FastRun");
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    GetComponent<Animator>().Play("Jumping");
-                } // 뒤로 보고 달리다가 점프를 하면 다시 정면을 보고 점프를 함 
-            }
+        Vector3 velocity = transform.forward * y + transform.right * x;
+        
+
+        Debug.Log(y);
+        if(y > 0){
+            _rig.AddForce(velocity.normalized * _speed, ForceMode.Force);
         }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (_isGround && _jumpCount > 0)
-            {
-                _isGround = false;
-                StartCoroutine(Jump()); 
-                _jumpCount--;
-            }
-            _jumpCount = 1; 
-            //GetComponent<Animator>().Play("Jumping");
-            //_rig.AddForce(Vector2.up * 5, ForceMode.Impulse);
+        else if(y < 0){
+            velocity = transform.forward * -y + transform.right * x;
+            _rig.AddForce(velocity.normalized * _speed, ForceMode.Force);
+        }
+        if(_isGround && velocity.magnitude == 0){
+            GetComponent<Animator>().Play("Idle");
+        }
+        else if(_isGround && velocity.magnitude > 0){
+            GetComponent<Animator>().Play("FastRun");
+        }
+
+        if(Input.GetKeyDown(KeyCode.Space)){
+            _isGround = false;
+            StartCoroutine(jumpControll());
+            _rig.AddForce(transform.up * 6, ForceMode.Impulse);
         }
     }
 
-    IEnumerator Jump()
-    {
+    void CheckSpeedLimit(){
+        Vector3 flatVal = new Vector3(_rig.velocity.x,0,_rig.velocity.z);
+
+        if(flatVal.magnitude > _speedLimit){
+            Vector3 limitedVal = flatVal.normalized * _speedLimit;
+            _rig.velocity = new Vector3(limitedVal.x,_rig.velocity.y,limitedVal.z);
+        }
+    }
+
+    IEnumerator jumpControll(){
         GetComponent<Animator>().Play("Jumping");
+
         yield return new WaitForSeconds(0.6135f);
-        _rig.AddForce(Vector2.up * 5, ForceMode.Impulse);
     }
-
-    void FreeCamMovement(){
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
-
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            Vector3 vPos = transform.position;
-            vPos += transform.forward * x * Time.deltaTime * _speed;
-            vPos += transform.forward * y * Time.deltaTime * _speed;
-            transform.position = vPos;
-            GetComponent<Animator>().Play("FastRun");
-        }
-        if (Input.GetKeyUp(KeyCode.W)) {GetComponent<Animator>().Play("Idle");}
-
-        if (Input.GetKey(KeyCode.D)){
-            if(!_isRotated){
-                transform.rotation = transform.rotation * Quaternion.Euler(0,90,0);
-                _isRotated = true;
-            }
-            Vector3 vPos = transform.position;
-            vPos += transform.forward * x * Time.deltaTime * _speed;
-            vPos += transform.forward * y * Time.deltaTime * _speed;
-            transform.position = vPos;
-            GetComponent<Animator>().Play("FastRun");
-        }
-        if(Input.GetKeyUp(KeyCode.D)){_isRotated = false; GetComponent<Animator>().Play("Idle"); }
-
-        if(Input.GetKey(KeyCode.A))
-        {
-            if (!_isRotated)
-            {
-                transform.rotation = transform.rotation * Quaternion.Euler(0, -90, 0);
-                _isRotated = true;
-            }
-            Vector3 vPos = transform.position;
-            vPos += transform.forward * -x * Time.deltaTime * _speed;
-            vPos += transform.forward * y * Time.deltaTime * _speed;
-            transform.position = vPos;
-            GetComponent<Animator>().Play("FastRun");
-        }
-        if (Input.GetKeyUp(KeyCode.A)) { _isRotated = false; GetComponent<Animator>().Play("Idle"); }
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            if (!_isRotated)
-            {
-                transform.rotation = transform.rotation * Quaternion.Euler(0, 180, 0);
-                _isRotated = true;
-            }
-            Vector3 vPos = transform.position;
-            vPos += transform.forward * x * Time.deltaTime * _speed;
-            vPos += transform.forward * -y * Time.deltaTime * _speed;
-            transform.position = vPos;
-            GetComponent<Animator>().Play("FastRun");
-        }
-        if (Input.GetKeyUp(KeyCode.S)) { _isRotated = false; GetComponent<Animator>().Play("Idle"); }
-    }
-
-    
-
 }
 
 

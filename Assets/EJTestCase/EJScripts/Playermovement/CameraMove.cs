@@ -35,8 +35,10 @@ public class CameraMove : MonoBehaviour
         // Euler : returns rotation
         transform.rotation = Quaternion.Euler(_rotX, _rotY, 0);
             //_player.rotation = Quaternion.Euler(0, _rotY, 0);
-            Vector3 DirChange = Vector3.forward * inputY + Vector3.right * inputX;
-            _player.forward = DirChange * rotationSpeed;
+            if(inputY != 0 || inputX != 0){
+                Vector3 DirChange = Vector3.forward * inputY + Vector3.right * inputX;
+                _player.forward = DirChange * rotationSpeed;
+            }
         }
         
     }
