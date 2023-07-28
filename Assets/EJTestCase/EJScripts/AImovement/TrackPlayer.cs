@@ -19,19 +19,15 @@ public class TrackPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(_player.position, _AI.position) < 7f && (Vector3.Distance(_player.position, _AI.position) > 4f))
+        if (Vector3.Distance(_player.position, _AI.position) < 7f)
         {
-            GetComponent<Animator>().Play("Patroll");
+            GetComponent<Animator>().Play("AIRunning");
             followplayer();
-        }
-        else if(Vector3.Distance(_player.position, _AI.position) < 4f)
-        {
-            GetComponent<Animator>().Play("AIAttack");
-            followplayer(); 
         }
         else
         {
             GetComponent<Animator>().Play("Idle");
+            followplayer();
         }
     }
 
