@@ -14,7 +14,7 @@ public class playermove : MonoBehaviour
         _rig = this.GetComponent<Rigidbody>();
     }
 
-    void FixedUpdate(){
+    void Update(){
         x = Input.GetAxisRaw("Horizontal") * _speed;
         z = Input.GetAxisRaw("Vertical") * _speed;
         _rig.velocity = new Vector3(x, _rig.velocity.y,z);
