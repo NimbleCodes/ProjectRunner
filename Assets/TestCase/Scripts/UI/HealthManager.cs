@@ -6,7 +6,10 @@ using UnityEngine.UI;
 public class HealthManager : MonoBehaviour
 {
     [SerializeField] private Image _health;
+    [SerializeField] GameObject playerRes;
+    [SerializeField] Transform _respwanPoint;
     float _damageNheal = 0.25f;
+    
 
     void SetHealth(){
         _health.fillAmount = 1.0f;
@@ -31,6 +34,26 @@ public class HealthManager : MonoBehaviour
         if(other.collider.tag == "HealPack"){
             AddHealth();
         }
+    }
+
+    private void Update()
+    {
+        if (_health.fillAmount <= 0)
+        {
+            GetComponent<Animator>().Play("Die");
+            playerRes.GetComponent<PlayerRes>()._isDead = true;
+            playerRes.GetComponent<PlayerRes>()._dead = true;
+            StartCoroutine(waitSecond());
+            //playerRes.GetComponent<PlayerRes>().setDeath(true);
+            
+        }
+    }
+
+    IEnumerator waitSecond()
+    {
+        yield return new WaitForSeconds(2);
+        gameObject.SetActive(false);
+        SetHealth();
     }
 
 }

@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
 
     [SerializeField] Transform _player;
+
     float x, y;
     float inputX, inputY;
     float _rotY, _rotX;
@@ -31,9 +28,9 @@ public class CameraMove : MonoBehaviour
         if(Input.GetKey(KeyCode.Tab)){
             transform.rotation = Quaternion.Euler(_rotX,_rotY,0);
         }else{
-        // rotation of cam and player
-        // Euler : returns rotation
-        transform.rotation = Quaternion.Euler(_rotX, _rotY, 0);
+            // rotation of cam and player
+            // Euler : returns rotation
+            transform.rotation = Quaternion.Euler(_rotX, _rotY, 0);
             //_player.rotation = Quaternion.Euler(0, _rotY, 0);
             Vector3 DirChange = Vector3.forward * inputY + Vector3.right * inputX;
             _player.forward = DirChange * rotationSpeed;
