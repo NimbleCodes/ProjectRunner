@@ -9,6 +9,7 @@ TagManager:
   - Weapon
   - Jumping
   - Wall
+  - ResPoint
   layers:
   - Default
   - TransparentFX
