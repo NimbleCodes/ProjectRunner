@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float _speed; 
     Rigidbody _rig;
     public bool _isRotated = false;
-    public bool _isGround = false;
+    public bool _is2Ground = false;
     int _jumpCount = 1;
     float _speedLimit = 10; 
 
@@ -31,11 +31,11 @@ public class Movement : MonoBehaviour
     {
         if (collision.collider.CompareTag("Jumping"))
         {
-            _isGround = true;
+            _is2Ground = true;
         }
         else
         {
-            _isGround = false;
+            _is2Ground = false;
         }
     }
 
@@ -64,15 +64,15 @@ public class Movement : MonoBehaviour
             velocity = transform.forward * -y + transform.right * x;
             _rig.AddForce(velocity.normalized * _speed, ForceMode.Force);
         }
-        if(_isGround && velocity.magnitude == 0){
+        if(_is2Ground && velocity.magnitude == 0){
             GetComponent<Animator>().Play("Idle");
         }
-        else if(_isGround && velocity.magnitude > 0){
+        else if(_is2Ground && velocity.magnitude > 0){
             GetComponent<Animator>().Play("FastRun");
         }
 
         if(Input.GetKeyDown(KeyCode.Space)){
-            _isGround = false;
+            _is2Ground = false;
             StartCoroutine(jumpControll());
             _rig.AddForce(transform.up * 6, ForceMode.Impulse);
         }
