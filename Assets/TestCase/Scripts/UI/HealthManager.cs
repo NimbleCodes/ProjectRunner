@@ -8,6 +8,7 @@ public class HealthManager : MonoBehaviour
     [SerializeField] private Image _health;
     [SerializeField] GameObject playerRes;
     [SerializeField] Transform _respwanPoint;
+    [SerializeField] Animator _playeranim; 
     float _damageNheal = 0.25f;
     
 
@@ -40,7 +41,7 @@ public class HealthManager : MonoBehaviour
     {
         if (_health.fillAmount <= 0)
         {
-            GetComponent<Animator>().Play("Die");
+            _playeranim.Play("Die");
             playerRes.GetComponent<PlayerRes>()._isDead = true;
             playerRes.GetComponent<PlayerRes>()._dead = true;
             StartCoroutine(waitSecond());
