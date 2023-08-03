@@ -292,7 +292,7 @@ GameObject:
   - component: {fileID: 181829576}
   - component: {fileID: 181829575}
   - component: {fileID: 181829574}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall 1 (2)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1212,6 +1212,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigPlayer: {fileID: 642118378}
+  _jumpCount: 0
+  _isGround: 0
 --- !u!114 &642118384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1224,6 +1226,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbfd5f3a7d265664098a8761a0a2cc8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 0
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  wallRunForce: 0
+  wallClimbSpeed: 0
+  maxWallRunTime: 0
+  wallCheckDistance: 0
+  minJumpHeight: 0
+  orientation: {fileID: 0}
 --- !u!114 &642118385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1708,7 +1722,7 @@ GameObject:
   - component: {fileID: 985562997}
   - component: {fileID: 985562996}
   - component: {fileID: 985562995}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall 1
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1806,7 +1820,7 @@ GameObject:
   - component: {fileID: 1097028759}
   - component: {fileID: 1097028758}
   - component: {fileID: 1097028757}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2140,7 +2154,7 @@ GameObject:
   - component: {fileID: 1174323049}
   - component: {fileID: 1174323048}
   - component: {fileID: 1174323047}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall 1 (3)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -2249,39 +2263,6 @@ CapsuleCollider:
   m_Height: 2.2579272
   m_Direction: 1
   m_Center: {x: 0, y: 1.1318625, z: 0.053216934}
---- !u!114 &1174561227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1174561222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbfd5f3a7d265664098a8761a0a2cc8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1174561229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1174561222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6a9e91b78d03194d8b109ec4b27e503, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cam: {fileID: 346600887}
-  _getItemPanel: {fileID: 95381753}
-  _itemSlot:
-  - {fileID: 2032169344}
-  - {fileID: 2032169344}
-  - {fileID: 654090596}
-  _Weapons: {fileID: 259574898}
-  _playerActionDistance: 3
-  active: 0
 --- !u!95 &1174561230 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 9500000, guid: 2c6fcb3004ba0e344908982afcefad9c, type: 3}
@@ -2438,6 +2419,7 @@ GameObject:
   - component: {fileID: 1245114541}
   - component: {fileID: 1245114539}
   - component: {fileID: 1245114540}
+  - component: {fileID: 1245114542}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2479,6 +2461,8 @@ MonoBehaviour:
   _orientation: {fileID: 1554935207}
   groundDrag: 4
   _isOnGround: 0
+  wallRunning: 0
+  state: 0
 --- !u!114 &1245114540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2511,6 +2495,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1245114542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1245114536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbfd5f3a7d265664098a8761a0a2cc8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 128
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  wallRunForce: 200
+  wallClimbSpeed: 2
+  maxWallRunTime: 1.5
+  wallCheckDistance: 0.5
+  minJumpHeight: 2
+  orientation: {fileID: 1174561223}
 --- !u!1 &1299057471 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: a3f3f21035a7fec4d8d213a85df99633, type: 3}
@@ -2659,9 +2667,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fullcheck: 
   slots:
-  - {fileID: 1127475104}
-  - {fileID: 1188241679}
-  - {fileID: 824076377}
+  - {fileID: 1933353475}
+  - {fileID: 2032169344}
+  - {fileID: 654090596}
 --- !u!1 &1410855178
 GameObject:
   m_ObjectHideFlags: 0
@@ -2835,7 +2843,7 @@ GameObject:
   - component: {fileID: 1629638713}
   - component: {fileID: 1629638712}
   - component: {fileID: 1629638711}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall 1 (1)
   m_TagString: Wall
   m_Icon: {fileID: 0}

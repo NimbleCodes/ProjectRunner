@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PickUpItem1 : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PickUpItem1 : MonoBehaviour
     [SerializeField] Transform _player, _camPoint, _itemContainer;
     [SerializeField] float pickUpRange;
     [SerializeField] float dropFowardForce, dropUpWardForce;
+
 
     public bool equipped;
     public static bool _slotFull;
@@ -58,7 +60,6 @@ public class PickUpItem1 : MonoBehaviour
         _meshcoll.isTrigger = true;
 
         //enable item Script
-
     }
 
     public void Drop()
