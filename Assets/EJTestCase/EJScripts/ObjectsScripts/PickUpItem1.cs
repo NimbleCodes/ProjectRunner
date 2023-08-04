@@ -10,7 +10,7 @@ public class PickUpItem1 : MonoBehaviour
     [SerializeField] Transform _player, _camPoint, _itemContainer;
     [SerializeField] float pickUpRange;
     [SerializeField] float dropFowardForce, dropUpWardForce;
-
+    [SerializeField] GameObject[] _itemSlot;
 
     public bool equipped;
     public static bool _slotFull;
@@ -60,6 +60,14 @@ public class PickUpItem1 : MonoBehaviour
         _meshcoll.isTrigger = true;
 
         //enable item Script
+
+        ShowItemImg();
+    }
+
+    public void ShowItemImg()
+    {
+        _itemSlot[0].SetActive(true);
+        _itemSlot[0].GetComponent<Image>().sprite = Resources.Load<Sprite>("Texture/ItemIcons/" + gameObject.name);
     }
 
     public void Drop()
@@ -82,6 +90,7 @@ public class PickUpItem1 : MonoBehaviour
         _rig.AddTorque(new Vector3(random, random, random) * 10f);
         //아이템 스크립트 끄기
         //GetComponent<itemScript>().enalble = false;
+       
 
     }
 }

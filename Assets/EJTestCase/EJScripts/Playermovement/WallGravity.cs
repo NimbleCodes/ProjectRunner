@@ -10,8 +10,6 @@ public class WallGravity : MonoBehaviour
     public float wallClimbSpeed; // 벽 타는 speed
     public float maxWallRunTime; // 벽 타는 최대 실행 시간 
 
-    private bool upwardsRunning;
-    private bool downwardsRunning;
     private float horizontalInput; // 수평 축
     private float verticalInput; // 수직 축 
 
@@ -24,7 +22,8 @@ public class WallGravity : MonoBehaviour
 
     private Rigidbody rig;
     public Transform orientation;
-    private MoveNRotate ms; 
+    private MoveNRotate ms;
+    [SerializeField] Animator animator; 
 
 
     private void Start()
@@ -36,14 +35,14 @@ public class WallGravity : MonoBehaviour
     private void Update()
     {
         CheckForWall();
-        StateMachine();
+        WallRunInput(); 
     }
 
     private void FixedUpdate()
     {
         if (ms.wallRunning == true)
         {
-            WallRunningMovement();
+            StartWallRun();
         }
     }
 
@@ -52,6 +51,20 @@ public class WallGravity : MonoBehaviour
         wallRight = Physics.Raycast(transform.position, orientation.right, out rightWallhit, wallCheckDistance, whatIsWall);
         // 스타트 포인트, 방향, hit 인포, 거리 
         wallLeft = Physics.Raycast(transform.position, -orientation.right, out leftWallhit, wallCheckDistance, whatIsWall);
+        if (!wallLeft && !wallRight) StopWallRun();
+    }
+
+    private void WallRunInput() //make sure to call in void Update
+    {
+        //Wallrun
+        if (wallRight && AboveGround())
+        {
+            StartWallRun(); 
+        }
+        if (wallLeft && AboveGround())
+        {
+            StartWallRun(); 
+        }
     }
 
     private bool AboveGround() // 플레이어가 벽 달리기를 할 수 있게끔 충분한 높이에 떠 있는지 확인 
@@ -59,64 +72,35 @@ public class WallGravity : MonoBehaviour
         return !Physics.Raycast(transform.position, Vector3.down, minJumpHeight, whatIsGround);
     }
 
-    private void StateMachine()
-    {
-        horizontalInput = Input.GetAxisRaw("Horizontal"); 
-        verticalInput = Input.GetAxisRaw("Vertical");
-
-
-        if ((wallLeft || wallRight) && verticalInput > 0 && AboveGround()) // 벽에 붙어있는가? 벽 달리기를 할 만큼의 높이에 있는가? // 수직 축이 0보다 큰가?
-        {
-            if (!ms.wallRunning)
-            {
-                StartWallRun(); // 달리기 코드 시작 
-            }
-        }
-
-        // State 3 - None
-        else
-        {
-            if (ms.wallRunning)
-            {
-                StopWallRun();
-            }
-        }
-    }
 
     private void StartWallRun()
     {
+        rig.useGravity = false; 
         ms.wallRunning = true;
-    }
+        
 
-    private void WallRunningMovement()
-    {
-        rig.useGravity = false;
-        rig.velocity = new Vector3(rig.velocity.x, 0f, rig.velocity.z);
+        if(rig.velocity.magnitude <= ms.moveSpeed && AboveGround())
+        {
+            rig.AddForce(orientation.forward * wallRunForce * Time.deltaTime);
 
-        Vector3 wallNormal = wallRight ? rightWallhit.normal : leftWallhit.normal;
-
-        Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
-
-        if ((orientation.forward - wallForward).magnitude > (orientation.forward - -wallForward).magnitude)
-            wallForward = -wallForward;
-
-        // forward force
-        rig.AddForce(wallForward * wallRunForce, ForceMode.Force);
-
-        // upwards/downwards force
-        if (upwardsRunning)
-            rig.velocity = new Vector3(rig.velocity.x, wallClimbSpeed, rig.velocity.z);
-        if (downwardsRunning)
-            rig.velocity = new Vector3(rig.velocity.x, -wallClimbSpeed, rig.velocity.z);
-
-        // push to wall force
-        if (!(wallLeft && horizontalInput > 0) && !(wallRight && horizontalInput < 0))
-            rig.AddForce(-wallNormal * 100, ForceMode.Force);
+            if (wallRight)
+            {
+                rig.AddForce(orientation.forward * wallRunForce / 5 * Time.deltaTime);
+                //animator.GetComponent<Transform>().localRotation = Quaternion.Euler(0,0,30);
+                animator.Play("FastRun");
+            }
+            else
+            {
+                rig.AddForce(-orientation.forward * wallRunForce / 5 * Time.deltaTime);
+                animator.Play("FastRun");
+            }
+        }
     }
 
     private void StopWallRun()
     {
         ms.wallRunning = false;
+        rig.useGravity = true;
     }
 
 }
