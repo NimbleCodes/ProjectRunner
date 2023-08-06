@@ -30,7 +30,6 @@ public class WallGravity : MonoBehaviour
     {
         rig = GetComponent<Rigidbody>();
         ms = GetComponent<MoveNRotate>();
-
     }
     private void Update()
     {
@@ -86,13 +85,14 @@ public class WallGravity : MonoBehaviour
             if (wallRight)
             {
                 rig.AddForce(orientation.forward * wallRunForce / 5 * Time.deltaTime);
-                //animator.GetComponent<Transform>().localRotation = Quaternion.Euler(0,0,30);
-                animator.Play("FastRun");
+                animator.GetComponent<Transform>().localRotation = Quaternion.Euler(0,0,30);
+                animator.SetBool("OnWall", true); 
             }
-            else
+            else if (wallLeft)
             {
                 rig.AddForce(-orientation.forward * wallRunForce / 5 * Time.deltaTime);
-                animator.Play("FastRun");
+                animator.GetComponent<Transform>().localRotation = Quaternion.Euler(0, 0, -30);
+                animator.SetBool("OnWall", true);
             }
         }
     }
@@ -101,6 +101,7 @@ public class WallGravity : MonoBehaviour
     {
         ms.wallRunning = false;
         rig.useGravity = true;
+        animator.SetBool("OnWall", false);
     }
 
 }

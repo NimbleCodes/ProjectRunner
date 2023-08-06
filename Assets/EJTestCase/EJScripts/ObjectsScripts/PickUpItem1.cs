@@ -13,7 +13,7 @@ public class PickUpItem1 : MonoBehaviour
     [SerializeField] GameObject[] _itemSlot;
 
     public bool equipped;
-    public static bool _slotFull;
+    public static bool _slotFull = false;
 
     void Start()
     {
@@ -66,8 +66,16 @@ public class PickUpItem1 : MonoBehaviour
 
     public void ShowItemImg()
     {
-        _itemSlot[0].SetActive(true);
-        _itemSlot[0].GetComponent<Image>().sprite = Resources.Load<Sprite>("Texture/ItemIcons/" + gameObject.name);
+        if (equipped == true)
+        {
+            for (int i = 0; i < _itemSlot.Length; i++)
+            {
+                _itemSlot[i].SetActive(true);
+                _itemSlot[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("Texture/ItemIcons/" + gameObject.name);
+                return; 
+            }
+        }
+     
     }
 
     public void Drop()
@@ -90,7 +98,8 @@ public class PickUpItem1 : MonoBehaviour
         _rig.AddTorque(new Vector3(random, random, random) * 10f);
         //아이템 스크립트 끄기
         //GetComponent<itemScript>().enalble = false;
-       
+
 
     }
+
 }
