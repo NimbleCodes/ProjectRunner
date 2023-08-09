@@ -84,15 +84,15 @@ public class WallGravity : MonoBehaviour
 
             if (wallRight)
             {
-                rig.AddForce(orientation.forward * wallRunForce / 5 * Time.deltaTime);
                 animator.GetComponent<Transform>().localRotation = Quaternion.Euler(0,0,30);
-                animator.SetBool("OnWall", true); 
+                animator.SetBool("OnWall", true);
+                rig.AddForce(orientation.forward * wallRunForce / 5 * Time.deltaTime);
             }
             else if (wallLeft)
             {
-                rig.AddForce(-orientation.forward * wallRunForce / 5 * Time.deltaTime);
                 animator.GetComponent<Transform>().localRotation = Quaternion.Euler(0, 0, -30);
                 animator.SetBool("OnWall", true);
+                rig.AddForce(-orientation.forward * wallRunForce / 5 * Time.deltaTime);
             }
         }
     }
