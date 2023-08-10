@@ -76,20 +76,20 @@ public class PickUpItem1 : MonoBehaviour
         }
     }
 
-    public void ShowItemImg()
-    {
-        if (equipped == true)
-        {
-            for (int i = 0; i < _itemSlot.Length; i++)
-            {
-                Color color = _itemSlot[i].color;
-                color.a = 1f;
-                _itemSlot[i].color = color; 
-                _itemSlot[i].sprite = Item.itemImage; 
-                return; 
-            }
-        }
-    }
+    //public void ShowItemImg()
+    //{
+    //    if (equipped == true)
+    //    {
+    //        for (int i = 0; i < _itemSlot.Length; i++)
+    //        {
+    //            Color color = _itemSlot[i].color;
+    //            color.a = 1f;
+    //            _itemSlot[i].color = color; 
+    //            _itemSlot[i] = Item.itemImage; 
+    //            return; 
+    //        }
+    //    }
+    //}
 
     public void Drop()
     {

@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory Instance;  
     public List<ItemList> Items = new List<ItemList>();
-    [SerializeField] Image[] _itemSlot;
+    [SerializeField] SpriteRenderer[] _itemSlot;
     float alpha = 0;
 
     private void Awake()
