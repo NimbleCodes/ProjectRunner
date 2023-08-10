@@ -140,8 +140,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _itemImg: []
   Item: {fileID: 11400000, guid: 7af3a4d116e7c5a43a298c1e09150a13, type: 2}
-  equipped: 0
+  _slotFull: 0
 --- !u!114 &8784751362156459937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,3 +156,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 7af3a4d116e7c5a43a298c1e09150a13, type: 2}
+  itemImg: {fileID: 21300000, guid: 4e5dc0d390af817438565100c714574a, type: 3}

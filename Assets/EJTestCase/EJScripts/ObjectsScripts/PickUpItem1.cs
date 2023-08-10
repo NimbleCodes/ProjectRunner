@@ -8,33 +8,32 @@ public class PickUpItem1 : MonoBehaviour
     [SerializeField] Transform _player, _camPoint, _itemContainer;
     [SerializeField] float pickUpRange;
     [SerializeField] float dropFowardForce, dropUpWardForce;
-    [SerializeField] Image[] _itemSlot;
+    [SerializeField] GameObject[] _itemSlot;
 
     public ItemList Item; 
-    public bool equipped = false;
-    public static bool _slotFull = false;
-    
+    private bool equipped = false;
+    public bool _AllslotFull = false; 
 
     void Start()
     {
         _rig = GetComponent<Rigidbody>();
         coll = GetComponent<BoxCollider>();
-        if (!equipped)
-        {
-            _rig.isKinematic = false;
-            coll.isTrigger = false;
-        }
-        if (equipped)
-        {
-            _rig.isKinematic = true;
-            coll.isTrigger = true;
-            _slotFull = true;
-        }
+        //if (!equipped)
+        //{
+        //    _rig.isKinematic = false;
+        //    coll.isTrigger = false;
+        //}
+        //if (equipped)
+        //{
+        //    _rig.isKinematic = true;
+        //    coll.isTrigger = true;
+        //    _slotFull = true;
+        //}
     }
     void Update()
     {
         Vector3 distance2Player = _player.position - transform.position;
-        if (!equipped && distance2Player.magnitude <= pickUpRange && Input.GetKeyDown(KeyCode.F))
+        if (distance2Player.magnitude <= pickUpRange && Input.GetKeyDown(KeyCode.F))
         {
             PickUp();
         }
@@ -42,7 +41,7 @@ public class PickUpItem1 : MonoBehaviour
         //{
         //    PickUp();
         //}
-        if (equipped && Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             Drop();
         }
@@ -50,51 +49,54 @@ public class PickUpItem1 : MonoBehaviour
 
     public void PickUp()
     {
-        Inventory.Instance.Add(Item);
-        Destroy(gameObject);
-        equipped = true;
+       if(_AllslotFull == false)
+       {
+            Inventory.Instance.Add(Item);
+            ShowItemImg();
+            Destroy(gameObject);
+       }
     }
 
-
-    public void Grab()
+    public void ShowItemImg()
     {
-        if(_slotFull == false)
-        {
-            equipped = true;
-            _slotFull = true;
-            //아이템을 플레이어의 자식 오브젝트로 변경
-            transform.SetParent(_itemContainer);
-            transform.localPosition = Vector3.zero;
-            transform.localRotation = Quaternion.Euler(Vector3.zero);
-            //transform.localRotation = Quaternion.Euler(new Vector3(0,180,0));
-            transform.localScale = Vector3.one;
-
-            _rig.isKinematic = true;
-            coll.isTrigger = true;
-
-            //enable item Script
-        }
+       for (int i = 0; i < 3; i++)
+       {
+            if (_itemSlot[i] == null)
+            {
+                _itemSlot[i].SetActive(true);
+                _itemSlot[i].GetComponent<Image>().sprite = Instantiate(Item.itemImage);
+                _AllslotFull = true;
+            }
+       }
+        
     }
 
-    //public void ShowItemImg()
+
+    //public void Grab()
     //{
-    //    if (equipped == true)
+    //    if(_slotFull == false)
     //    {
-    //        for (int i = 0; i < _itemSlot.Length; i++)
-    //        {
-    //            Color color = _itemSlot[i].color;
-    //            color.a = 1f;
-    //            _itemSlot[i].color = color; 
-    //            _itemSlot[i] = Item.itemImage; 
-    //            return; 
-    //        }
+    //        equipped = true;
+    //        _slotFull = true;
+    //        //아이템을 플레이어의 자식 오브젝트로 변경
+    //        transform.SetParent(_itemContainer);
+    //        transform.localPosition = Vector3.zero;
+    //        transform.localRotation = Quaternion.Euler(Vector3.zero);
+    //        //transform.localRotation = Quaternion.Euler(new Vector3(0,180,0));
+    //        transform.localScale = Vector3.one;
+
+    //        _rig.isKinematic = true;
+    //        coll.isTrigger = true;
+
+    //        //enable item Script
     //    }
     //}
 
+
     public void Drop()
     {
-        equipped = false;
-        _slotFull = false;
+        //equipped = false;
+        //_slotFull = false;
         //아이템의 부모 오브젝트를 "없음"으로 변경
         transform.SetParent(null);
         //부모 오브젝트에 자석으로 붙어있던 오브젝트를 자력없음으로 변경하고
