@@ -4,7 +4,7 @@ using UnityEngine;
 public class ItemData : MonoBehaviour
 {
     private static ItemData instance = null;
-    ItemPool _itemPool;
+    public ItemPool _itemPool;
     System.Random _rand;
     public ItemPool itemPool{get{return _itemPool;}}
     void Awake(){
