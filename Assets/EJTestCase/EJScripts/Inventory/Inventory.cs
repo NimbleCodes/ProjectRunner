@@ -72,9 +72,8 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < _itemSlot.Length; i++)
         {
-            if (_itemSlot[i].GetComponent<Slot>().isItemIn == true)
+            if (_itemSlot[i].GetComponent<Slot>().isItemIn == true && GetComponent<PickUpItem1>().isItemDestory == true)
             {
-                _itemSlot[i].GetComponent<Slot>().isItemIn = false;
                 _itemSlot[i].SetActive(false);
                 break;
             }

@@ -11,9 +11,13 @@ public class PickUpItem1 : MonoBehaviour
     [SerializeField] float dropFowardForce, dropUpWardForce;
     [SerializeField] GameObject[] _itemSlot;
     ItemController _itemCon;
+ 
     private bool equipped = false;
     public bool _AllslotFull = false;
     public bool _Fullslot = false;
+    public bool _isItmeDestroy = false;
+    public bool isItemDestory { get { return _isItmeDestroy; } set { _isItmeDestroy = value; } }
+
 
     void Start()
     {
@@ -39,10 +43,7 @@ public class PickUpItem1 : MonoBehaviour
         {
             PickUp();
         }
-        //if (!equipped && distance2Player.magnitude <= pickUpRange && Input.GetKeyDown(KeyCode.F) && !_slotFull)
-        //{
-        //    PickUp();
-        //}
+        
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Drop();
@@ -51,17 +52,20 @@ public class PickUpItem1 : MonoBehaviour
 
     public void PickUp()
     {
-      _Fullslot = true;
-      Inventory.Instance.Add(_itemCon);
-      Inventory.Instance.ShowItemImg(_itemCon);
-      Destroy(gameObject);
+       _Fullslot = true;
+       Inventory.Instance.Add(_itemCon);
+       Inventory.Instance.ShowItemImg(_itemCon);
+       Destroy(gameObject);
     }
 
     public void DestroyItem()
     {
-
+       isItemDestory = true;
+       Inventory.Instance.Remove(_itemCon);
+       Inventory.Instance.DeleteItemImg(_itemCon);
     }
 
+   
 
     //public void Grab()
     //{
