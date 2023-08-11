@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,15 +10,16 @@ public class PickUpItem1 : MonoBehaviour
     [SerializeField] float pickUpRange;
     [SerializeField] float dropFowardForce, dropUpWardForce;
     [SerializeField] GameObject[] _itemSlot;
-
-    public ItemList Item; 
+    ItemController _itemCon;
     private bool equipped = false;
-    public bool _AllslotFull = false; 
+    public bool _AllslotFull = false;
+    public bool _Fullslot = false;
 
     void Start()
     {
         _rig = GetComponent<Rigidbody>();
         coll = GetComponent<BoxCollider>();
+        _itemCon = GetComponent<ItemController>();
         //if (!equipped)
         //{
         //    _rig.isKinematic = false;
@@ -49,26 +51,15 @@ public class PickUpItem1 : MonoBehaviour
 
     public void PickUp()
     {
-       if(_AllslotFull == false)
-       {
-            Inventory.Instance.Add(Item);
-            ShowItemImg();
-            Destroy(gameObject);
-       }
+      _Fullslot = true;
+      Inventory.Instance.Add(_itemCon);
+      Inventory.Instance.ShowItemImg(_itemCon);
+      Destroy(gameObject);
     }
 
-    public void ShowItemImg()
+    public void DestroyItem()
     {
-       for (int i = 0; i < 3; i++)
-       {
-            if (_itemSlot[i] == null)
-            {
-                _itemSlot[i].SetActive(true);
-                _itemSlot[i].GetComponent<Image>().sprite = Instantiate(Item.itemImage);
-                _AllslotFull = true;
-            }
-       }
-        
+
     }
 
 
