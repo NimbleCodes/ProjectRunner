@@ -32,7 +32,7 @@ public class GetItem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F) && active == true)
         {
             _itemSlot[0].gameObject.SetActive(true);
-            _itemSlot[0].GetComponent<Image>().sprite = Resources.Load<Sprite>("Texture/ItemIcons/" + hit.collider.name);
+            _itemSlot[0].GetComponent<Image>().sprite = Resources.Load<Sprite>("Texture/ItemImages/" + hit.collider.name);
             _objName = hit.collider.gameObject; 
         }
     }

@@ -1,23 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class MoveNRotate : MonoBehaviour
 {
     [SerializeField] GameObject _playerObj;
-    [SerializeField] float moveSpeed;
+    [SerializeField] public float moveSpeed;
     [SerializeField] Transform _orientation;
     [SerializeField] int groundDrag;
     float x,y;
+    float wallrunSpeed;
+    int _jumpCount = 0;
     Vector3 moveDirection;
     Rigidbody rb;
     public bool _isOnGround = true;
+    public bool wallRunning;
     Animation anim;
+    public MovementState state; 
+
+    public enum MovementState
+    {
+        groundrunning,
+        wallrunning, 
+        jumping, 
+    }
     
     private void Start() {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         anim = _playerObj.GetComponent<Animation>();
+        state = MovementState.groundrunning; 
     }
 
     private void FixedUpdate() {
@@ -47,10 +61,13 @@ public class MoveNRotate : MonoBehaviour
     }
 
     void PlayerAnimation(){
-        if(Input.GetKeyDown(KeyCode.Space)){
-            rb.AddForce(transform.up * 10, ForceMode.Impulse);
+        if(Input.GetKeyDown(KeyCode.Space) && (_jumpCount < 1 || _isOnGround == true))
+        {
+            rb.AddForce(transform.up * 7, ForceMode.Impulse);
             _isOnGround = false;
             _playerObj.GetComponent<Animator>().SetBool("OnTheGround", false);
+            _jumpCount++;
+            state = MovementState.jumping; 
         }
     }
 
@@ -68,7 +85,30 @@ public class MoveNRotate : MonoBehaviour
         if(other.collider.CompareTag("Ground")){
             _playerObj.GetComponent<Animator>().SetBool("OnTheGround", true);
             _isOnGround = true;
+            _jumpCount = 0;
+            state = MovementState.groundrunning; 
+        }
+        if (other.collider.CompareTag("Wall"))
+        {
+            state = MovementState.wallrunning; 
+        }
+       
+    }
+
+    private void StateHandler()
+    {
+        if (wallRunning == true)
+        {
+            state = MovementState.wallrunning;
+            moveSpeed = wallrunSpeed;
+        }
+        else if((wallRunning == false) && (_isOnGround == false))
+        {
+            state = MovementState.jumping; 
+        }
+        else
+        {
+            state = MovementState.groundrunning; 
         }
     }
-    
 }
