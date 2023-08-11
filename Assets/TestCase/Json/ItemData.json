@@ -11,9 +11,29 @@
         "UseCount": "7"
       },
       {
-        "ItemName": "KeyBoard",
+        "ItemName": "Calculator",
         "Description": "손목터널 증후군의 이유",
         "UseCount": "5"
+      },
+      {
+        "ItemName": "Chair",
+        "Description": "똑바로 앉아야 허리가 안아파요",
+        "UseCount": "6"
+      },
+      {
+        "ItemName": "HolePunch",
+        "Description": "서류정리 필수 아이템",
+        "UseCount": "4"
+      },
+      {
+        "ItemName": "Plant",
+        "Description": "무전력 공기청정기",
+        "UseCount": "2"
+      },
+      {
+        "ItemName": "Labtop",
+        "Description": "똑바로 앉아야 허리가 안아파요",
+        "UseCount": "4"
       }
     ]
   }

@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemData : MonoBehaviour
@@ -8,7 +6,7 @@ public class ItemData : MonoBehaviour
     private static ItemData instance = null;
     ItemPool _itemPool;
     System.Random _rand;
-    
+    public ItemPool itemPool{get{return _itemPool;}}
     void Awake(){
         LoadDataFromJson();
         if(instance == null){
@@ -46,12 +44,12 @@ public class ItemData : MonoBehaviour
 
 [Serializable]
 public class ItemObjects{ //Item Data 정보를 저장할 클래스 생성
-    string ItemName;
-    string Description;
-    string UseCount;
+    public string ItemName;
+    public string Description;
+    public string UseCount;
 }
 
 [Serializable]
 public class ItemPool{
-    public ItemObjects[] itemPool;
+    public ItemObjects[] itemObjects;
 }
