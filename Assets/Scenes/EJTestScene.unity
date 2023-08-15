@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028359, g: 0.22571385, b: 0.30692258, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2682,6 +2682,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Holepunch
       objectReference: {fileID: 0}
+    - target: {fileID: 2444658771498658658, guid: b8b89f1545259f34094eef04b135e28d, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 65e1764b02fb52a41a27e2d00b96adca, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8b89f1545259f34094eef04b135e28d, type: 3}
 --- !u!1001 &3004219768327491939
@@ -2705,7 +2709,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8303441060892684857, guid: 7c37f3fc433206444b62164cbd6ff5d0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.136
+      value: 2.489
       objectReference: {fileID: 0}
     - target: {fileID: 8303441060892684857, guid: 7c37f3fc433206444b62164cbd6ff5d0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2747,6 +2751,10 @@ PrefabInstance:
       propertyPath: _camPoint
       value: 
       objectReference: {fileID: 288077048}
+    - target: {fileID: 8781719638856720094, guid: 7c37f3fc433206444b62164cbd6ff5d0, type: 3}
+      propertyPath: _itemContainer
+      value: 
+      objectReference: {fileID: 259574898}
     - target: {fileID: 8781719638856720094, guid: 7c37f3fc433206444b62164cbd6ff5d0, type: 3}
       propertyPath: _itemSlot.Array.data[0]
       value: 
