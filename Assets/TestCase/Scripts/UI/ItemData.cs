@@ -37,7 +37,6 @@ public class ItemData : MonoBehaviour
     //랜덤으로 아이템 생성을 위한 랜덤번호 생성
     public int GetRandomNumb(int arrLength){
         int rNumber = _rand.Next(0,arrLength);
-
         return rNumber;
     }
 }
