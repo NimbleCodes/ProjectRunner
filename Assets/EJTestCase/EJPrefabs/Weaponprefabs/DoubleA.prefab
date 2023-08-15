@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemImg: {fileID: 21300000, guid: 8b62e86fc000c2b49a1015f127731f10, type: 3}
-  itemLife: 0
+  itemLife: 7
 --- !u!65 &4846867037222724866
 BoxCollider:
   m_ObjectHideFlags: 0
