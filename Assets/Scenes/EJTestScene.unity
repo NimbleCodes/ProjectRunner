@@ -2179,11 +2179,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1765523173 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8949205430372176160, guid: 04ac89b5b659ab346b3b8e7e84ae912e, type: 3}
-  m_PrefabInstance: {fileID: 8949205431185557746}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1773369328
 GameObject:
   m_ObjectHideFlags: 0
@@ -2831,11 +2826,15 @@ PrefabInstance:
     - target: {fileID: 4846867037222724870, guid: 7c37f3fc433206444b62164cbd6ff5d0, type: 3}
       propertyPath: _player
       value: 
-      objectReference: {fileID: 1765523173}
+      objectReference: {fileID: 1174561223}
     - target: {fileID: 4846867037222724870, guid: 7c37f3fc433206444b62164cbd6ff5d0, type: 3}
       propertyPath: _camPoint
       value: 
       objectReference: {fileID: 288077048}
+    - target: {fileID: 4846867037222724870, guid: 7c37f3fc433206444b62164cbd6ff5d0, type: 3}
+      propertyPath: _itemContainer
+      value: 
+      objectReference: {fileID: 259574898}
     - target: {fileID: 4846867037222724870, guid: 7c37f3fc433206444b62164cbd6ff5d0, type: 3}
       propertyPath: _itemSlot.Array.data[0]
       value: 
