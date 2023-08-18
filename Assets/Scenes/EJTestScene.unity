@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 61063626}
   - component: {fileID: 61063625}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: ItemData
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -234,6 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemPool:
     itemObjects: []
+  testObj: {fileID: 0}
 --- !u!4 &61063626
 Transform:
   m_ObjectHideFlags: 0
