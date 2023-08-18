@@ -8,9 +8,12 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory Instance;
     [SerializeField] GameObject[] _itemSlot;
-    [SerializeField] GameObject[] _itemLife; 
+    [SerializeField] GameObject[] _itemLife;
+    [SerializeField] Transform _itemContainer; 
     public bool _AllslotFull = false;
-    List<ItemController> Items = new List<ItemController>();
+    public List<ItemController> Items = new List<ItemController>();
+
+
 
     private void Awake()
     {
@@ -19,7 +22,8 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-       // CheckFullSlot();
+        // CheckFullSlot();
+        SwapItem(); 
     }
 
     public void Add(ItemController item)
@@ -33,6 +37,53 @@ public class Inventory : MonoBehaviour
     public void Remove(ItemController item)
     {
         Items.Remove(item);
+    }
+
+    public void SwapItem()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Items[0]._gameObject.SetActive(true); 
+            Items[1]._gameObject.SetActive(false);
+            Items[2]._gameObject.SetActive(false);
+
+            //아이템을 플레이어의 자식 오브젝트로 변경
+            Items[0]._gameObject.transform.SetParent(_itemContainer);
+            Items[0]._gameObject.transform.localPosition = Vector3.zero;
+            Items[0]._gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+            Items[0]._gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
+
+            Items[0].rig.isKinematic = true;
+            Items[0].coll.isTrigger = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Items[0]._gameObject.SetActive(false);
+            Items[1]._gameObject.SetActive(true);
+            Items[2]._gameObject.SetActive(false);
+
+            Items[1]._gameObject.transform.SetParent(_itemContainer);
+            Items[1]._gameObject.transform.localPosition = Vector3.zero;
+            Items[1]._gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+            Items[1]._gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
+
+            Items[1].rig.isKinematic = true;
+            Items[1].coll.isTrigger = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Items[0]._gameObject.SetActive(false);
+            Items[1]._gameObject.SetActive(false);
+            Items[2]._gameObject.SetActive(true);
+
+            Items[2]._gameObject.transform.SetParent(_itemContainer);
+            Items[2]._gameObject.transform.localPosition = Vector3.zero;
+            Items[2]._gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+            Items[2]._gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
+
+            Items[2].rig.isKinematic = true;
+            Items[2].coll.isTrigger = true;
+        }     
     }
 
     public void ShowItemImg(ItemController item)
