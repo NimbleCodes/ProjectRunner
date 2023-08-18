@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5120399725294573588}
   - component: {fileID: 5120399725292666992}
   - component: {fileID: 5120399725292666893}
-  - component: {fileID: 5120399725292666993}
   - component: {fileID: 684867182372230184}
+  - component: {fileID: -963498155649877409}
   m_Layer: 0
   m_Name: Laptop
   m_TagString: Weapon
@@ -44,7 +44,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5120399725292570324}
-  m_Mesh: {fileID: 4300000, guid: d01bed409228d1040b01436565a3dec3, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 6709d6d3db78e3b47ab13a8551d55bfc, type: 3}
 --- !u!23 &5120399725294573588
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -118,31 +118,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.588504, y: 0.4039676, z: 0.4039675}
   m_Center: {x: 0, y: 0.2019838, z: 0}
---- !u!114 &5120399725292666993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5120399725292570324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e01b78f985222b44860f1112645a671, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 0}
-  _camPoint: {fileID: 0}
-  _itemContainer: {fileID: 0}
-  pickUpRange: 4
-  dropFowardForce: 6
-  dropUpWardForce: 3
-  _itemSlot:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _itemImg: []
-  Item: {fileID: 11400000, guid: fa799486537574e4fa2ce58fd62f8e76, type: 2}
-  _slotFull: 0
 --- !u!114 &684867182372230184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,5 +130,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b019272071b65f4aa7f4bcdf71e4ae1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: fa799486537574e4fa2ce58fd62f8e76, type: 2}
+  gameObject: {fileID: 5120399725292570324}
   itemImg: {fileID: 21300000, guid: 59de98ea9dfd3504ab659f4bdb424cdc, type: 3}
+  itemLife: 4
+  coll: {fileID: 5120399725292666893}
+  rig: {fileID: 5120399725292666992}
+--- !u!114 &-963498155649877409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5120399725292570324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98aa1f8b51be1134fb136ca84b51507e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 0}
+  _camPoint: {fileID: 0}
+  _itemContainer: {fileID: 0}
+  pickUpRange: 0
+  dropFowardForce: 0
+  dropUpWardForce: 0
+  _itemSlot: []
+  _AllslotFull: 0
+  _Fullslot: 0
+  _isItmeDestroy: 0

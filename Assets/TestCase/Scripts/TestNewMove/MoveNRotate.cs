@@ -25,6 +25,7 @@ public class MoveNRotate : MonoBehaviour
         groundrunning,
         wallrunning, 
         jumping, 
+        Attack, 
     }
     
     private void Start() {
@@ -39,13 +40,18 @@ public class MoveNRotate : MonoBehaviour
         LimitSpeed();
     }
 
-    private void Update() {
-        if(_isOnGround){
+    private void Update() 
+    {
+        if(_isOnGround)
+        {
             rb.drag = groundDrag;
-        }else{
+        }
+        else
+        {
             rb.drag = 0;
         }
         PlayerAnimation();
+        Attack(); 
     }
 
     void MovePlayer(){
@@ -60,7 +66,8 @@ public class MoveNRotate : MonoBehaviour
         
     }
 
-    void PlayerAnimation(){
+    void PlayerAnimation()
+    {
         if(Input.GetKeyDown(KeyCode.Space) && (_jumpCount < 1 || _isOnGround == true))
         {
             rb.AddForce(transform.up * 7, ForceMode.Impulse);
@@ -68,6 +75,18 @@ public class MoveNRotate : MonoBehaviour
             _playerObj.GetComponent<Animator>().SetBool("OnTheGround", false);
             _jumpCount++;
             state = MovementState.jumping; 
+        }
+    }
+
+    void Attack()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            _playerObj.GetComponent<Animator>().Play("AttackDownward"); 
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            _playerObj.GetComponent<Animator>().SetBool("OnAttack", false); 
         }
     }
 
