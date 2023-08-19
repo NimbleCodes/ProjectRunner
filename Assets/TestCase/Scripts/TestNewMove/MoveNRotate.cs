@@ -82,7 +82,7 @@ public class MoveNRotate : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            _playerObj.GetComponent<Animator>().Play("AttackDownward"); 
+            _playerObj.GetComponent<Animator>().Play("AttackHorizontal"); 
         }
         if (Input.GetMouseButtonUp(0))
         {
