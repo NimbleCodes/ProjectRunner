@@ -1,12 +1,16 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ItemData : MonoBehaviour
 {
     private static ItemData instance = null;
-    public ItemPool _itemPool;
     System.Random _rand;
-    public ItemPool itemPool{get{return _itemPool;}}
+    public ItemPool itemPool{get;set;}
+    public Dictionary<string , GameObject> objPools = new Dictionary<string, GameObject>();
+
+    public GameObject testObj;
     void Awake(){
         LoadDataFromJson();
         if(instance == null){
@@ -31,7 +35,14 @@ public class ItemData : MonoBehaviour
     //Json파일에서 아이템 데이터목록 읽어오기
     void LoadDataFromJson(){
         TextAsset dataJson = Resources.Load("TestCase/Json/ItemData") as TextAsset;
-        _itemPool = JsonUtility.FromJson<ItemPool>(dataJson.ToString());
+        itemPool = JsonUtility.FromJson<ItemPool>(dataJson.ToString());
+
+        foreach(ItemObjects data in itemPool.itemObjects){
+            GameObject temp = Resources.Load("Weaponprefabs/" + data.ItemName) as GameObject;
+            objPools.Add(data.ItemName, temp);
+        }
+
+        testObj = objPools["ClipBoard"];
     }
 
     //랜덤으로 아이템 생성을 위한 랜덤번호 생성

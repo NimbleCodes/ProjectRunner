@@ -15,7 +15,7 @@ public class PickUpItem : MonoBehaviour
         public bool _Fullslot = false;
         public bool _isItmeDestroy = false;
         public bool isItemDestory { get { return _isItmeDestroy; } set { _isItmeDestroy = value; } }
-
+        public Transform player {get{return _player;} set{_player = value;}}
 
         void Start()
         {
@@ -60,7 +60,7 @@ public class PickUpItem : MonoBehaviour
         //    if (_itemSlot[0].GetComponent<Slot>().isItemIn == true && Input.GetKeyDown(KeyCode.Alpha1))
         //    {
         //        this.gameObject.SetActive(true); 
-        //        //¾ÆÀÌÅÛÀ» ÇÃ·¹ÀÌ¾îÀÇ ÀÚ½Ä ¿ÀºêÁ§Æ®·Î º¯°æ
+        //        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         //        transform.SetParent(_itemContainer);
         //        transform.localPosition = Vector3.zero;
         //        transform.localRotation = Quaternion.Euler(Vector3.zero);
@@ -74,7 +74,7 @@ public class PickUpItem : MonoBehaviour
 
         public void DestroyItem()
         {
-            // ¿¡³Ê¹Ì ÅÂ±×¸¦ ´Þ°í ÀÖ´Â ¾ÖÇÑÅ× ÄÝ¶óÀÌ´õ Ãæµ¹ ½Ã ³»±¸µµ 1¾¿ ´â°Ô ¸¸µé±â 
+            // ï¿½ï¿½ï¿½Ê¹ï¿½ ï¿½Â±×¸ï¿½ ï¿½Þ°ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ý¶ï¿½ï¿½Ì´ï¿½ ï¿½æµ¹ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ 
             isItemDestory = true;
             Inventory.Instance.Remove(_itemCon);
             Inventory.Instance.DeleteItemImg(_itemCon);
@@ -85,21 +85,21 @@ public class PickUpItem : MonoBehaviour
 //        {
 //            //equipped = false;
 //            //_slotFull = false;
-//            //¾ÆÀÌÅÛÀÇ ºÎ¸ð ¿ÀºêÁ§Æ®¸¦ "¾øÀ½"À¸·Î º¯°æ
+//            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ "ï¿½ï¿½ï¿½ï¿½"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 //            transform.SetParent(null);
-//            //ºÎ¸ð ¿ÀºêÁ§Æ®¿¡ ÀÚ¼®À¸·Î ºÙ¾îÀÖ´ø ¿ÀºêÁ§Æ®¸¦ ÀÚ·Â¾øÀ½À¸·Î º¯°æÇÏ°í
-//            //ÄÝ¶óÀÌ´õ Æ®¸®°Å »óÅÂ ÇØÁ¦
+//            //ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ú¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¾ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ú·Â¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½
+//            //ï¿½Ý¶ï¿½ï¿½Ì´ï¿½ Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 //            _rig.isKinematic = false;
 //            coll.isTrigger = false;
 //            _rig.useGravity = true;
-//            //¾ÆÀÌÅÛ¿¡ ÇÃ·¹ÀÌ¾îÀÇ ¸ð¸àÅÒÀ» Àû¿ë //¾ÆÀÌÅÛÀ» ¹ö¸±¶§ ÀÚ¿¬½º·¯¿òÀ» Ãß±¸
+//            //ï¿½ï¿½ï¿½ï¿½ï¿½Û¿ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß±ï¿½
 //            _rig.velocity = _player.GetComponent<Rigidbody>().velocity;
 //            _rig.AddForce(_camPoint.forward * dropFowardForce, ForceMode.Impulse);
 //            _rig.AddForce(_camPoint.up * dropUpWardForce, ForceMode.Impulse);
-//            //¾ÆÀÌÅÛÀ» ¹ö¸±¶§ ·£´ýÇÏ°Ô È¸ÀüÇÏµµ·Ï ÇÏ´Â ÄÚµå
+//            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ È¸ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½Úµï¿½
 //            float random = Random.Range(-1f, 1f);
 //            _rig.AddTorque(new Vector3(random, random, random) * 10f);
-//            //¾ÆÀÌÅÛ ½ºÅ©¸³Æ® ²ô±â
+//            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 //            //GetComponent<itemScript>().enalble = false;
 //        }
 }
