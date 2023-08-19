@@ -43,11 +43,12 @@ public class Inventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Items[0]._gameObject.SetActive(true); 
-            Items[1]._gameObject.SetActive(false);
-            Items[2]._gameObject.SetActive(false);
-
-            //¾ÆÀÌÅÛÀ» ÇÃ·¹ÀÌ¾îÀÇ ÀÚ½Ä ¿ÀºêÁ§Æ®·Î º¯°æ
+           if(Items != null){
+            foreach(ItemController item in Items){
+                item._gameObject.SetActive(false);
+            }
+            Items[0]._gameObject.SetActive(true);
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             Items[0]._gameObject.transform.SetParent(_itemContainer);
             Items[0]._gameObject.transform.localPosition = Vector3.zero;
             Items[0]._gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
@@ -55,13 +56,18 @@ public class Inventory : MonoBehaviour
 
             Items[0].rig.isKinematic = true;
             Items[0].coll.isTrigger = true;
+           }else{
+                //Do Nothing
+           }
+            
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Items[0]._gameObject.SetActive(false);
+            if(Items.Count >= 2){
+                foreach(ItemController item in Items){
+                item.GetComponent<GameObject>().SetActive(false);
+            }
             Items[1]._gameObject.SetActive(true);
-            Items[2]._gameObject.SetActive(false);
-
             Items[1]._gameObject.transform.SetParent(_itemContainer);
             Items[1]._gameObject.transform.localPosition = Vector3.zero;
             Items[1]._gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
@@ -69,13 +75,17 @@ public class Inventory : MonoBehaviour
 
             Items[1].rig.isKinematic = true;
             Items[1].coll.isTrigger = true;
+            }else{
+                //Do Nothing
+            }
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            Items[0]._gameObject.SetActive(false);
-            Items[1]._gameObject.SetActive(false);
+            if(Items.Count >= 2){
+                foreach(ItemController item in Items){
+                item.GetComponent<GameObject>().SetActive(false);
+            }
             Items[2]._gameObject.SetActive(true);
-
             Items[2]._gameObject.transform.SetParent(_itemContainer);
             Items[2]._gameObject.transform.localPosition = Vector3.zero;
             Items[2]._gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
@@ -83,6 +93,9 @@ public class Inventory : MonoBehaviour
 
             Items[2].rig.isKinematic = true;
             Items[2].coll.isTrigger = true;
+            }else{
+                //Do Nothing
+            }
         }     
     }
 
