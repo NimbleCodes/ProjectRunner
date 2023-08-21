@@ -130,9 +130,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b019272071b65f4aa7f4bcdf71e4ae1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameObject: {fileID: 8025778752613038460}
+  _gameObject: {fileID: 0}
   itemImg: {fileID: 21300000, guid: 4e5dc0d390af817438565100c714574a, type: 3}
-  itemLife: 2
+  itemHealth: 2
   coll: {fileID: 8025778751668709351}
   rig: {fileID: 8025778751668709356}
 --- !u!114 &4609788307288148546
@@ -148,8 +148,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 0}
-  _camPoint: {fileID: 0}
-  _itemContainer: {fileID: 0}
   pickUpRange: 0
   dropFowardForce: 0
   dropUpWardForce: 0

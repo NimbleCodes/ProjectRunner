@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
@@ -14,7 +12,6 @@ public class Inventory : MonoBehaviour
     public List<ItemController> Items = new List<ItemController>();
 
 
-
     private void Awake()
     {
         Instance = this;
@@ -23,7 +20,7 @@ public class Inventory : MonoBehaviour
     private void Update()
     {
         // CheckFullSlot();
-        SwapItem(); 
+        SwapItem();
     }
 
     public void Add(ItemController item)
@@ -56,7 +53,9 @@ public class Inventory : MonoBehaviour
 
             Items[0].rig.isKinematic = true;
             Items[0].coll.isTrigger = true;
-           }else{
+           }
+           else
+           {
                 //Do Nothing
            }
             
@@ -108,12 +107,14 @@ public class Inventory : MonoBehaviour
                 _itemSlot[i].GetComponent<Slot>().isItemIn = true;
                 _itemSlot[i].SetActive(true);
                 _itemSlot[i].GetComponent<Image>().sprite = item.itemImg;
-                _itemLife[i].SetActive(true);
-                _itemLife[i].GetComponent<Text>().text = item.itemLife.ToString(); 
+                _itemLife[i].SetActive(true); 
+                _itemLife[i].GetComponent<Text>().text = item.itemHealth.ToString();
                 break;
             }
         }
     }
+
+
 
     public void CheckFullSlot()
     {
