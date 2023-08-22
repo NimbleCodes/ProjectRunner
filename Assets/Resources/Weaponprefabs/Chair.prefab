@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7331412896866146876}
   - component: {fileID: 7331412896690361077}
   - component: {fileID: 7331412896690361082}
-  - component: {fileID: 7331412896690361078}
   - component: {fileID: -3841330387491974102}
+  - component: {fileID: -4641548564400055340}
   m_Layer: 0
   m_Name: Chair
   m_TagString: Weapon
@@ -116,31 +116,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.79170287, y: 1.031697, z: 0.9119419}
   m_Center: {x: 0, y: 0.5158485, z: -0.000000029802322}
---- !u!114 &7331412896690361078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7331412896864142588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e01b78f985222b44860f1112645a671, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 0}
-  _camPoint: {fileID: 0}
-  _itemContainer: {fileID: 0}
-  pickUpRange: 4
-  dropFowardForce: 6
-  dropUpWardForce: 3
-  _itemSlot:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _itemImg: []
-  Item: {fileID: 11400000, guid: 32273db427dd39d4fba8c5efde467155, type: 2}
-  _slotFull: 0
 --- !u!114 &-3841330387491974102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,5 +128,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b019272071b65f4aa7f4bcdf71e4ae1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 32273db427dd39d4fba8c5efde467155, type: 2}
+  _gameObject: {fileID: 7331412896864142588}
   itemImg: {fileID: 21300000, guid: 9df49d232a8a7df47b7b20060ddb6752, type: 3}
+  itemHealth: 6
+  coll: {fileID: 7331412896690361082}
+  rig: {fileID: 7331412896690361077}
+--- !u!114 &-4641548564400055340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7331412896864142588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98aa1f8b51be1134fb136ca84b51507e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 0}
+  pickUpRange: 0
+  dropFowardForce: 0
+  dropUpWardForce: 0
+  _itemSlot: []
+  _AllslotFull: 0
+  _Fullslot: 0
+  _isItmeDestroy: 0

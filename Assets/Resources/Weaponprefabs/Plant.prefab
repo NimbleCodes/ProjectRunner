@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 8025778752611035068}
   - component: {fileID: 8025778751668709356}
   - component: {fileID: 8025778751668709351}
-  - component: {fileID: 8025778751668709347}
   - component: {fileID: 8784751362156459937}
+  - component: {fileID: 4609788307288148546}
   m_Layer: 0
   m_Name: Plant
   m_TagString: Weapon
@@ -118,31 +118,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.27712378, y: 0.6824188, z: 0.26356038}
   m_Center: {x: 0, y: 0.3412094, z: 0}
---- !u!114 &8025778751668709347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8025778752613038460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e01b78f985222b44860f1112645a671, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _player: {fileID: 0}
-  _camPoint: {fileID: 0}
-  _itemContainer: {fileID: 0}
-  pickUpRange: 4
-  dropFowardForce: 6
-  dropUpWardForce: 3
-  _itemSlot:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _itemImg: []
-  Item: {fileID: 11400000, guid: 7af3a4d116e7c5a43a298c1e09150a13, type: 2}
-  _slotFull: 0
 --- !u!114 &8784751362156459937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,5 +130,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b019272071b65f4aa7f4bcdf71e4ae1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 7af3a4d116e7c5a43a298c1e09150a13, type: 2}
+  _gameObject: {fileID: 8025778752613038460}
   itemImg: {fileID: 21300000, guid: 4e5dc0d390af817438565100c714574a, type: 3}
+  itemHealth: 2
+  coll: {fileID: 8025778751668709351}
+  rig: {fileID: 8025778751668709356}
+--- !u!114 &4609788307288148546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8025778752613038460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98aa1f8b51be1134fb136ca84b51507e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 0}
+  pickUpRange: 0
+  dropFowardForce: 0
+  dropUpWardForce: 0
+  _itemSlot: []
+  _AllslotFull: 0
+  _Fullslot: 0
+  _isItmeDestroy: 0
