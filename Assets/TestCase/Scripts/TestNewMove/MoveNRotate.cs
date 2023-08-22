@@ -11,7 +11,6 @@ public class MoveNRotate : MonoBehaviour
     [SerializeField] Transform _orientation;
     [SerializeField] int groundDrag;
     float x,y;
-    float wallrunSpeed;
     int _jumpCount = 0;
     Vector3 moveDirection;
     Rigidbody rb;
@@ -119,7 +118,6 @@ public class MoveNRotate : MonoBehaviour
         if (wallRunning == true)
         {
             state = MovementState.wallrunning;
-            moveSpeed = wallrunSpeed;
         }
         else if((wallRunning == false) && (_isOnGround == false))
         {

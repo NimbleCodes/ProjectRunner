@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class WallGravity : MonoBehaviour
 {
     public LayerMask whatIsWall; // 벽 레이어 
     public LayerMask whatIsGround; // 땅 레이어 
     public float wallRunForce; // 벽을 위한 float
-    public float wallClimbSpeed; // 벽 타는 speed
-    public float maxWallRunTime; // 벽 타는 최대 실행 시간 
 
     private float horizontalInput; // 수평 축
     private float verticalInput; // 수직 축 
@@ -17,13 +16,13 @@ public class WallGravity : MonoBehaviour
     public float minJumpHeight; // 최소 점프 높이 float
     private RaycastHit leftWallhit; // 왼쪽 벽 확인 레이 
     private RaycastHit rightWallhit; // 오른쪽 벽 확인 레이 
-    private bool wallLeft; // 왼쪽 벽을 타고 있나 안타고 있나 bool
-    private bool wallRight; // 오른쪽 벽 bool 
+    public bool wallLeft; // 왼쪽 벽을 타고 있나 안타고 있나 bool
+    public bool wallRight; // 오른쪽 벽 bool 
 
     private Rigidbody rig;
     public Transform orientation;
     private MoveNRotate ms;
-    [SerializeField] Animator animator; 
+    [SerializeField] Animator animator;
 
 
     private void Start()
@@ -34,7 +33,11 @@ public class WallGravity : MonoBehaviour
     private void Update()
     {
         CheckForWall();
-        WallRunInput(); 
+        WallRunInput();
+        if (!wallLeft && !wallRight)
+        {
+            rig.constraints &= ~RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+        }
     }
 
     private void FixedUpdate()
@@ -50,7 +53,10 @@ public class WallGravity : MonoBehaviour
         wallRight = Physics.Raycast(transform.position, orientation.right, out rightWallhit, wallCheckDistance, whatIsWall);
         // 스타트 포인트, 방향, hit 인포, 거리 
         wallLeft = Physics.Raycast(transform.position, -orientation.right, out leftWallhit, wallCheckDistance, whatIsWall);
-        if (!wallLeft && !wallRight) StopWallRun();
+        if (!wallLeft && !wallRight)
+        {
+            StopWallRun();
+        }
     }
 
     private void WallRunInput() //make sure to call in void Update
@@ -58,11 +64,13 @@ public class WallGravity : MonoBehaviour
         //Wallrun
         if (wallRight && AboveGround())
         {
-            StartWallRun(); 
+            animator.GetComponent<Transform>().localRotation = Quaternion.Euler(0, 0, 30);
+            StartWallRun();
         }
-        if (wallLeft && AboveGround())
+        else if (wallLeft && AboveGround())
         {
-            StartWallRun(); 
+            animator.GetComponent<Transform>().localRotation = Quaternion.Euler(0, 0, -30);
+            StartWallRun();
         }
     }
 
@@ -76,25 +84,29 @@ public class WallGravity : MonoBehaviour
     {
         rig.useGravity = false; 
         ms.wallRunning = true;
-        
 
-        if(rig.velocity.magnitude <= ms.moveSpeed && AboveGround())
+        if (rig.velocity.magnitude <= ms.moveSpeed && AboveGround())
         {
             rig.AddForce(orientation.forward * wallRunForce * Time.deltaTime);
 
             if (wallRight)
             {
-                animator.GetComponent<Transform>().localRotation = Quaternion.Euler(0,0,30);
+                FreezeRo(); 
                 animator.SetBool("OnWall", true);
                 rig.AddForce(orientation.forward * wallRunForce / 5 * Time.deltaTime);
             }
-            else if (wallLeft)
+            if (wallLeft)
             {
-                animator.GetComponent<Transform>().localRotation = Quaternion.Euler(0, 0, -30);
+                FreezeRo();
                 animator.SetBool("OnWall", true);
                 rig.AddForce(-orientation.forward * wallRunForce / 5 * Time.deltaTime);
             }
         }
+    }
+
+    void FreezeRo()
+    {
+        rig.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
     }
 
     private void StopWallRun()

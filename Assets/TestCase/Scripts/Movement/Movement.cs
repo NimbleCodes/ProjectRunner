@@ -10,7 +10,6 @@ public class Movement : MonoBehaviour
     Rigidbody _rig;
     public bool _isRotated = false;
     public bool _is2Ground = false;
-    int _jumpCount = 1;
     float _speedLimit = 10; 
 
 

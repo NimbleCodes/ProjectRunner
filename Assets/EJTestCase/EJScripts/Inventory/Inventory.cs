@@ -10,7 +10,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] Transform _itemContainer; 
     public bool _AllslotFull = false;
     public List<ItemController> Items = new List<ItemController>();
-
+    int currentHealth;
 
     private void Awake()
     {
@@ -45,7 +45,6 @@ public class Inventory : MonoBehaviour
                 item._gameObject.SetActive(false);
             }
             Items[0]._gameObject.SetActive(true);
-            //�������� �÷��̾��� �ڽ� ������Ʈ�� ����
             Items[0]._gameObject.transform.SetParent(_itemContainer);
             Items[0]._gameObject.transform.localPosition = Vector3.zero;
             Items[0]._gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
@@ -113,7 +112,6 @@ public class Inventory : MonoBehaviour
             }
         }
     }
-
 
 
     public void CheckFullSlot()

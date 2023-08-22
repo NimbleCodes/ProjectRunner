@@ -10,10 +10,7 @@ public class PickUpItem : MonoBehaviour
         [SerializeField] GameObject[] _itemSlot;
         ItemController _itemCon;
 
-        private bool equipped = false;
-        public bool _AllslotFull = false;
-        public bool _Fullslot = false;
-        public bool _isItmeDestroy = false;
+        private bool _isItmeDestroy = false;
         public bool isItemDestory { get { return _isItmeDestroy; } set { _isItmeDestroy = value; } }
         public Transform player {get{return _player;} set{_player = value;}}
 
