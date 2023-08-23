@@ -33,18 +33,10 @@ public class WallGravity : MonoBehaviour
     private void Update()
     {
         CheckForWall();
-        WallRunInput();
+        WallRunInput(); 
         if (!wallLeft && !wallRight)
         {
             rig.constraints &= ~RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        if (ms.wallRunning == true)
-        {
-            StartWallRun();
         }
     }
 
