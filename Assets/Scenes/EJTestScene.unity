@@ -2032,10 +2032,9 @@ MonoBehaviour:
   wallRunForce: 100
   wallCheckDistance: 1
   minJumpHeight: 2
-  wallLeft: 0
-  wallRight: 0
-  orientation: {fileID: 1174561223}
+  orientation: {fileID: 1245114538}
   animator: {fileID: 1174561230}
+  _playerObj: {fileID: 1174561222}
 --- !u!1 &1339035460 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8025778752613038460, guid: ee58ed98cca7273428e5b94f62701946, type: 3}

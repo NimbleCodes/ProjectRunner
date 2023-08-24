@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class MoveNRotate : MonoBehaviour
 {
+    // 기본 이동
     [SerializeField] GameObject _playerObj;
     [SerializeField] public float moveSpeed;
     [SerializeField] Transform _orientation;
@@ -17,7 +18,7 @@ public class MoveNRotate : MonoBehaviour
     public bool _isOnGround = true;
     public bool wallRunning;
     Animation anim;
-    public MovementState state; 
+    public MovementState state;
 
     public enum MovementState
     {
@@ -27,7 +28,8 @@ public class MoveNRotate : MonoBehaviour
         Attack, 
     }
     
-    private void Start() {
+    private void Start() 
+    {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         anim = _playerObj.GetComponent<Animation>();
@@ -50,7 +52,7 @@ public class MoveNRotate : MonoBehaviour
             rb.drag = 0;
         }
         PlayerAnimation();
-        Attack(); 
+        Attack();
     }
 
     void MovePlayer(){
