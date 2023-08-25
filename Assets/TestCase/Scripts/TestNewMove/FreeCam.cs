@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FreeCam : MonoBehaviour
@@ -12,7 +13,10 @@ public class FreeCam : MonoBehaviour
 
     [SerializeField] float rotationSpeed;
     float _rotY,_rotX;
-    private void Start() {
+ 
+
+    private void Start() 
+    {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
