@@ -13,7 +13,6 @@ public class FreeCam : MonoBehaviour
 
     [SerializeField] float rotationSpeed;
     float _rotY,_rotX;
- 
 
     private void Start() 
     {
@@ -35,6 +34,7 @@ public class FreeCam : MonoBehaviour
         }
 
         CamRotation();
+        
     }
 
     void CamRotation(){
