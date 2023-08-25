@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class WallGravity : MonoBehaviour
 {
-    public LayerMask whatIsWall; // �� ���̾� 
-    public LayerMask whatIsGround; // �� ���̾� 
+    [SerializeField] LayerMask whatIsWall; // �� ���̾� 
+    [SerializeField] LayerMask whatIsGround; // �� ���̾� 
     public float wallRunForce; // ���� ���� float
 
     private float horizontalInput; // ���� ��
@@ -34,12 +34,10 @@ public class WallGravity : MonoBehaviour
     {
         CheckForWall();
         WallRunInput(); 
-        if (!wallLeft && !wallRight)
-        {
-            rig.constraints &= ~RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-        }
-
-        
+        // if (!wallLeft && !wallRight)
+        // {
+        //     rig.constraints &= ~RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+        // }
     }
 
     private void CheckForWall()
@@ -85,27 +83,16 @@ public class WallGravity : MonoBehaviour
     {
         rig.useGravity = false; 
         ms.wallRunning = true;
-        moveDirection = orientation.forward;
+        Vector3 wallNormal = wallRight ? rightWallhit.normal : leftWallhit.normal;
+        Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
+
         if (rig.velocity.magnitude <= ms.moveSpeed && AboveGround())
         {
-            rig.AddForce(orientation.forward * wallRunForce * Time.deltaTime);
+            rig.AddForce(wallForward* wallRunForce*Time.deltaTime);
 
-            _playerObj.GetComponent<Animator>().SetFloat("X", x);
-            _playerObj.GetComponent<Animator>().SetFloat("Y", y);
+             _playerObj.GetComponent<Animator>().SetFloat("X", x);
+             _playerObj.GetComponent<Animator>().SetFloat("Y", y);
 
-
-            if (wallRight)
-            {
-                FreezeRo(); 
-                animator.SetBool("OnWall", true);
-                rig.AddForce(moveDirection.normalized * wallRunForce / 5 * Time.deltaTime);
-            }
-            if (wallLeft)
-            {
-                FreezeRo();
-                animator.SetBool("OnWall", true);
-                rig.AddForce(moveDirection.normalized * wallRunForce / 5 * Time.deltaTime);
-            }
         }
     }
 
