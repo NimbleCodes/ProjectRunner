@@ -23,7 +23,6 @@ public class WallGravity : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] GameObject _playerObj;
 
-    Vector3 moveDirection; 
 
     private void Start()
     {
@@ -61,14 +60,12 @@ public class WallGravity : MonoBehaviour
 
     private void WallRunInput() //make sure to call in void Update
     {
-        verticalInput = Input.GetAxisRaw("Vertical"); 
-        //Wallrun
-        if (wallRight && AboveGround() && verticalInput > 0)
+        if (wallRight && AboveGround())
         {
             animator.GetComponent<Transform>().localRotation = Quaternion.Euler(0, orientation.rotation.y, 30);
             StartWallRun();
         }
-        else if (wallLeft && AboveGround() && verticalInput > 0)
+        else if (wallLeft && AboveGround())
         {
             animator.GetComponent<Transform>().localRotation = Quaternion.Euler(0, orientation.rotation.y, -30);
             StartWallRun();
@@ -83,9 +80,10 @@ public class WallGravity : MonoBehaviour
 
     private void StartWallRun()
     {
+        verticalInput = Input.GetAxisRaw("Vertical");
         rig.useGravity = false; 
         ms.wallRunning = true;
-        moveDirection = orientation.forward;
+
         if (rig.velocity.magnitude <= ms.moveSpeed && AboveGround())
         {
             rig.AddForce(orientation.forward * wallRunForce * Time.deltaTime);
@@ -94,17 +92,17 @@ public class WallGravity : MonoBehaviour
             _playerObj.GetComponent<Animator>().SetFloat("Y", y);
 
 
-            if (wallRight)
+            if (wallRight && verticalInput > 0)
             {
                 FreezeRo(); 
                 animator.SetBool("OnWall", true);
-                rig.AddForce(moveDirection.normalized * wallRunForce / 5 * Time.deltaTime);
+                rig.AddForce(orientation.forward.normalized * wallRunForce / 5 * Time.deltaTime);
             }
-            if (wallLeft)
+            if (wallLeft && verticalInput > 0)
             {
                 FreezeRo();
                 animator.SetBool("OnWall", true);
-                rig.AddForce(moveDirection.normalized * wallRunForce / 5 * Time.deltaTime);
+                rig.AddForce(orientation.forward.normalized * wallRunForce / 5 * Time.deltaTime);
             }
         }
     }
