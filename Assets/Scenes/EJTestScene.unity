@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028359, g: 0.22571385, b: 0.30692258, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2030,9 +2030,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   wallRunForce: 100
-  wallCheckDistance: 1
+  wallCheckDistance: 1.5
   minJumpHeight: 2
-  orientation: {fileID: 1245114538}
+  orientation: {fileID: 1174561223}
   animator: {fileID: 1174561230}
   _playerObj: {fileID: 1174561222}
 --- !u!1 &1339035460 stripped

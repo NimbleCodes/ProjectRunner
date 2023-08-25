@@ -2,20 +2,20 @@ using UnityEngine;
 
 public class WallGravity : MonoBehaviour
 {
-    public LayerMask whatIsWall; // º® ·¹ÀÌ¾î 
-    public LayerMask whatIsGround; // ¶¥ ·¹ÀÌ¾î 
-    public float wallRunForce; // º®À» À§ÇÑ float
+    public LayerMask whatIsWall; // ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½ 
+    public LayerMask whatIsGround; // ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¾ï¿½ 
+    public float wallRunForce; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ float
 
-    private float horizontalInput; // ¼öÆò Ãà
-    private float verticalInput; // ¼öÁ÷ Ãà 
+    private float horizontalInput; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+    private float verticalInput; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ 
     private float x, y; 
 
-    public float wallCheckDistance; // º®°úÀÇ °Å¸® Ã¼Å© float
-    public float minJumpHeight; // ÃÖ¼Ò Á¡ÇÁ ³ôÀÌ float
-    private RaycastHit leftWallhit; // ¿ÞÂÊ º® È®ÀÎ ·¹ÀÌ 
-    private RaycastHit rightWallhit; // ¿À¸¥ÂÊ º® È®ÀÎ ·¹ÀÌ 
-    private bool wallLeft; // ¿ÞÂÊ º®À» Å¸°í ÀÖ³ª ¾ÈÅ¸°í ÀÖ³ª bool
-    private bool wallRight; // ¿À¸¥ÂÊ º® bool 
+    public float wallCheckDistance; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ Ã¼Å© float
+    public float minJumpHeight; // ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ float
+    private RaycastHit leftWallhit; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+    private RaycastHit rightWallhit; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+    private bool wallLeft; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½Ö³ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½Ö³ï¿½ bool
+    private bool wallRight; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ bool 
 
     private Rigidbody rig;
     public Transform orientation;
@@ -39,19 +39,24 @@ public class WallGravity : MonoBehaviour
             rig.constraints &= ~RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         }
 
-        Debug.DrawRay(orientation.position, orientation.right * 15, Color.red); 
-        Debug.DrawRay(orientation.position, -orientation.right * 15, Color.red);
+        
     }
 
     private void CheckForWall()
     {
-        wallRight = Physics.Raycast(orientation.position, orientation.right, out rightWallhit, wallCheckDistance, whatIsWall);
-        // ½ºÅ¸Æ® Æ÷ÀÎÆ®, ¹æÇâ, hit ÀÎÆ÷, °Å¸® 
-        wallLeft = Physics.Raycast(orientation.position, -orientation.right, out leftWallhit, wallCheckDistance, whatIsWall);
+        Vector3 rayOrigin = new Vector3(orientation.position.x, orientation.position.y +1, orientation.position.z);
+        wallRight = Physics.Raycast(rayOrigin, orientation.right, out rightWallhit, wallCheckDistance, whatIsWall);
+        // ï¿½ï¿½Å¸Æ® ï¿½ï¿½ï¿½ï¿½Æ®, ï¿½ï¿½ï¿½ï¿½, hit ï¿½ï¿½ï¿½ï¿½, ï¿½Å¸ï¿½ 
+        wallLeft = Physics.Raycast(rayOrigin, -orientation.right, out leftWallhit, wallCheckDistance, whatIsWall);
         if (!wallLeft && !wallRight)
         {
+            Debug.Log("hop");
             StopWallRun();
         }
+        Debug.DrawRay(rayOrigin, orientation.right * 1, Color.red); 
+        Debug.DrawRay(rayOrigin, -orientation.right * 1, Color.red);
+        
+        
     }
 
     private void WallRunInput() //make sure to call in void Update
@@ -60,17 +65,17 @@ public class WallGravity : MonoBehaviour
         //Wallrun
         if (wallRight && AboveGround() && verticalInput > 0)
         {
-            animator.GetComponent<Transform>().localRotation = Quaternion.Euler(0, 0, 30);
+            animator.GetComponent<Transform>().localRotation = Quaternion.Euler(0, orientation.rotation.y, 30);
             StartWallRun();
         }
         else if (wallLeft && AboveGround() && verticalInput > 0)
         {
-            animator.GetComponent<Transform>().localRotation = Quaternion.Euler(0, 0, -30);
+            animator.GetComponent<Transform>().localRotation = Quaternion.Euler(0, orientation.rotation.y, -30);
             StartWallRun();
         }
     }
 
-    private bool AboveGround() // ÇÃ·¹ÀÌ¾î°¡ º® ´Þ¸®±â¸¦ ÇÒ ¼ö ÀÖ°Ô²û ÃæºÐÇÑ ³ôÀÌ¿¡ ¶° ÀÖ´ÂÁö È®ÀÎ 
+    private bool AboveGround() // ï¿½Ã·ï¿½ï¿½Ì¾î°¡ ï¿½ï¿½ ï¿½Þ¸ï¿½ï¿½â¸¦ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö°Ô²ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì¿ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ 
     {
         return !Physics.Raycast(transform.position, Vector3.down, minJumpHeight, whatIsGround);
     }
@@ -80,7 +85,7 @@ public class WallGravity : MonoBehaviour
     {
         rig.useGravity = false; 
         ms.wallRunning = true;
-
+        moveDirection = orientation.forward;
         if (rig.velocity.magnitude <= ms.moveSpeed && AboveGround())
         {
             rig.AddForce(orientation.forward * wallRunForce * Time.deltaTime);
@@ -99,7 +104,7 @@ public class WallGravity : MonoBehaviour
             {
                 FreezeRo();
                 animator.SetBool("OnWall", true);
-                rig.AddForce(-moveDirection.normalized * wallRunForce / 5 * Time.deltaTime);
+                rig.AddForce(moveDirection.normalized * wallRunForce / 5 * Time.deltaTime);
             }
         }
     }
@@ -111,6 +116,8 @@ public class WallGravity : MonoBehaviour
 
     private void StopWallRun()
     {
+        wallLeft = false;
+        wallRight = false;
         ms.wallRunning = false;
         rig.useGravity = true;
         animator.SetBool("OnWall", false);
