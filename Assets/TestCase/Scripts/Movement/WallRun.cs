@@ -17,8 +17,9 @@ public class WallRun : MonoBehaviour
     [SerializeField] float wallCheckDistance;
     [SerializeField] float minJumpHeight;
     RaycastHit leftWallhit, rightWallHit;
-    bool wallLeft = false, wallRight = false;
-    bool wallRunning = false;
+    public bool wallLeft = false, wallRight = false;
+    public bool wallRunning = false;
+    
     //Reference
     [SerializeField] Transform _player;
     [SerializeField] Animator _ani; 
@@ -33,12 +34,13 @@ public class WallRun : MonoBehaviour
     void Update()
     {
         CheckWall();
+        StateMachine();
     }
     void FixedUpdate()
     {
         if(wallRunning) WallRunningMovement();
         
-        StateMachine();
+        
     }
 
 
@@ -59,9 +61,15 @@ public class WallRun : MonoBehaviour
         y = Input.GetAxisRaw("Vertical");
 
         if((wallLeft | wallRight) && y > 0 && AboveGround()){
-            if(!wallRunning) StartWallRun();
+            if(wallRight){
+                _player.localRotation = Quaternion.Euler(0,_player.eulerAngles.y,30);
+                StartWallRun();
+            }else if(wallLeft){
+                _player.localRotation = Quaternion.Euler(0,_player.eulerAngles.y,-30);
+                StartWallRun();
+            }
         }else{
-            if(wallRunning) StopWallRun();
+            StopWallRun();
         }
 
     }
@@ -69,28 +77,24 @@ public class WallRun : MonoBehaviour
     void StartWallRun(){
         wallRunning = true;
         mn.wallRunning = true;
+        _ani.SetBool("OnWall",true);
     }
 
     void WallRunningMovement(){
         rb.useGravity = false;
+        if(wallRight == true){_ani.GetComponent<Transform>().localRotation = Quaternion.Euler(0, _player.localEulerAngles.y, 30);}
+        else if(wallLeft == true){_player.localRotation = Quaternion.Euler(0, _player.localEulerAngles.y, -30);}
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-        Vector3 wallNormal = wallRight ? rightWallHit.normal : leftWallhit.normal;
-
-        Vector3 wallForward = Vector3.Cross(wallNormal,-_player.up);
-        Debug.DrawRay(transform.position, wallForward * 1, Color.red); 
-
         rb.AddForce(_player.forward * wallRunForce, ForceMode.Force);
-        _ani.SetFloat("X", x);
-        _ani.SetFloat("Y", y);
-        if(wallRight)_player.localRotation = Quaternion.Euler(0, _player.localEulerAngles.y, 30);
-        //if(wallLeft)_player.localRotation = Quaternion.Euler(0, 0, 30);
         
+
     }
 
     void StopWallRun(){
         wallRunning = false;
         mn.wallRunning = false;
         rb.useGravity = true;
+        _ani.SetBool("OnWall",false);
     }
 }

@@ -2057,6 +2057,9 @@ MonoBehaviour:
   wallRunForce: 100
   wallCheckDistance: 1.5
   minJumpHeight: 1
+  wallLeft: 0
+  wallRight: 0
+  wallRunning: 0
   _player: {fileID: 1174561223}
   _ani: {fileID: 1174561230}
 --- !u!1 &1339035460 stripped

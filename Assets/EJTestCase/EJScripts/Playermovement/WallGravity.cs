@@ -63,12 +63,12 @@ public class WallGravity : MonoBehaviour
         //Wallrun
         if (wallRight && AboveGround() && verticalInput > 0)
         {
-            animator.GetComponent<Transform>().localRotation = Quaternion.Euler(0, orientation.rotation.y, 30);
+            animator.GetComponent<Transform>().localRotation = Quaternion.Euler(0, orientation.localEulerAngles.y, 30);
             StartWallRun();
         }
         else if (wallLeft && AboveGround() && verticalInput > 0)
         {
-            animator.GetComponent<Transform>().localRotation = Quaternion.Euler(0, orientation.rotation.y, -30);
+            animator.GetComponent<Transform>().localRotation = Quaternion.Euler(0, orientation.localEulerAngles.y, -30);
             StartWallRun();
         }
     }
@@ -92,6 +92,7 @@ public class WallGravity : MonoBehaviour
 
              _playerObj.GetComponent<Animator>().SetFloat("X", x);
              _playerObj.GetComponent<Animator>().SetFloat("Y", y);
+             _playerObj.GetComponent<Animator>().SetBool("OnWall",true);
 
         }
     }
