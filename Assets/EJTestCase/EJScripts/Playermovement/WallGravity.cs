@@ -49,7 +49,7 @@ public class WallGravity : MonoBehaviour
         wallLeft = Physics.Raycast(rayOrigin, -orientation.right, out leftWallhit, wallCheckDistance, whatIsWall);
         if (!wallLeft && !wallRight)
         {
-            Debug.Log("hop");
+            //Debug.Log("hop");
             StopWallRun();
         }
         Debug.DrawRay(rayOrigin, orientation.right * 1, Color.red); 

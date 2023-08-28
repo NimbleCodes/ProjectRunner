@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TreeEditor;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class FreeCam : MonoBehaviour
@@ -22,7 +24,8 @@ public class FreeCam : MonoBehaviour
     private void Update() {
         transform.position = new Vector3(_player.position.x, _player.position.y + 1, _player.position.z);
         //바라볼 방향 계산
-        Vector3 viewDir = _player.position - new Vector3(_Cam.transform.position.x,_player.position.y, _Cam.transform.position.z);
+
+        Vector3 viewDir = _player.position - new Vector3(_Cam.transform.position.x, _player.position.y, _Cam.transform.position.z);
         _orientation.forward = viewDir.normalized;
 
         float x = Input.GetAxisRaw("Horizontal");
@@ -34,13 +37,13 @@ public class FreeCam : MonoBehaviour
         }
 
         CamRotation();
-        
     }
 
-    void CamRotation(){
+    void CamRotation()
+    {
         float x = Input.GetAxisRaw("Mouse X");
         float y = Input.GetAxisRaw("Mouse Y");
-        
+
         _rotY += x;
 
         _rotX -= y;
@@ -49,4 +52,5 @@ public class FreeCam : MonoBehaviour
         //카메라 로테이션
         transform.rotation = Quaternion.Euler(_rotX, _rotY, 0);
     }
+
 }
