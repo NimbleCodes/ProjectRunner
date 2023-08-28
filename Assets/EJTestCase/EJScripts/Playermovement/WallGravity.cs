@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class WallGravity : MonoBehaviour
 {
-    public LayerMask whatIsWall; // �� ���̾� 
-    public LayerMask whatIsGround; // �� ���̾� 
+    [SerializeField] LayerMask whatIsWall; // �� ���̾� 
+    [SerializeField] LayerMask whatIsGround; // �� ���̾� 
     public float wallRunForce; // ���� ���� float
 
     private float horizontalInput; // ���� ��
@@ -23,6 +23,7 @@ public class WallGravity : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] GameObject _playerObj;
 
+    Vector3 moveDirection; 
 
     private void Start()
     {
@@ -33,12 +34,10 @@ public class WallGravity : MonoBehaviour
     {
         CheckForWall();
         WallRunInput(); 
-        if (!wallLeft && !wallRight)
-        {
-            rig.constraints &= ~RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-        }
-
-        
+        // if (!wallLeft && !wallRight)
+        // {
+        //     rig.constraints &= ~RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+        // }
     }
 
     private void CheckForWall()
@@ -49,7 +48,7 @@ public class WallGravity : MonoBehaviour
         wallLeft = Physics.Raycast(rayOrigin, -orientation.right, out leftWallhit, wallCheckDistance, whatIsWall);
         if (!wallLeft && !wallRight)
         {
-            //Debug.Log("hop");
+            Debug.Log("hop");
             StopWallRun();
         }
         Debug.DrawRay(rayOrigin, orientation.right * 1, Color.red); 
@@ -60,14 +59,16 @@ public class WallGravity : MonoBehaviour
 
     private void WallRunInput() //make sure to call in void Update
     {
-        if (wallRight && AboveGround())
+        verticalInput = Input.GetAxisRaw("Vertical"); 
+        //Wallrun
+        if (wallRight && AboveGround() && verticalInput > 0)
         {
-            animator.GetComponent<Transform>().localRotation = Quaternion.Euler(0, orientation.rotation.y, 30);
+            animator.GetComponent<Transform>().localRotation = Quaternion.Euler(0, orientation.localEulerAngles.y, 30);
             StartWallRun();
         }
-        else if (wallLeft && AboveGround())
+        else if (wallLeft && AboveGround() && verticalInput > 0)
         {
-            animator.GetComponent<Transform>().localRotation = Quaternion.Euler(0, orientation.rotation.y, -30);
+            animator.GetComponent<Transform>().localRotation = Quaternion.Euler(0, orientation.localEulerAngles.y, -30);
             StartWallRun();
         }
     }
@@ -80,30 +81,19 @@ public class WallGravity : MonoBehaviour
 
     private void StartWallRun()
     {
-        verticalInput = Input.GetAxisRaw("Vertical");
         rig.useGravity = false; 
         ms.wallRunning = true;
+        Vector3 wallNormal = wallRight ? rightWallhit.normal : leftWallhit.normal;
+        Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
 
         if (rig.velocity.magnitude <= ms.moveSpeed && AboveGround())
         {
-            rig.AddForce(orientation.forward * wallRunForce * Time.deltaTime);
+            rig.AddForce(wallForward* wallRunForce*Time.deltaTime);
 
-            _playerObj.GetComponent<Animator>().SetFloat("X", x);
-            _playerObj.GetComponent<Animator>().SetFloat("Y", y);
+             _playerObj.GetComponent<Animator>().SetFloat("X", x);
+             _playerObj.GetComponent<Animator>().SetFloat("Y", y);
+             _playerObj.GetComponent<Animator>().SetBool("OnWall",true);
 
-
-            if (wallRight && verticalInput > 0)
-            {
-                FreezeRo(); 
-                animator.SetBool("OnWall", true);
-                rig.AddForce(orientation.forward.normalized * wallRunForce / 5 * Time.deltaTime);
-            }
-            if (wallLeft && verticalInput > 0)
-            {
-                FreezeRo();
-                animator.SetBool("OnWall", true);
-                rig.AddForce(orientation.forward.normalized * wallRunForce / 5 * Time.deltaTime);
-            }
         }
     }
 
