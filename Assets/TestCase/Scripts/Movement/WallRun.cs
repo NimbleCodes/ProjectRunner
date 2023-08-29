@@ -39,8 +39,6 @@ public class WallRun : MonoBehaviour
     void FixedUpdate()
     {
         if(wallRunning) WallRunningMovement();
-        
-        
     }
 
 
@@ -82,13 +80,8 @@ public class WallRun : MonoBehaviour
 
     void WallRunningMovement(){
         rb.useGravity = false;
-        if(wallRight == true){_ani.GetComponent<Transform>().localRotation = Quaternion.Euler(0, _player.localEulerAngles.y, 30);}
-        else if(wallLeft == true){_player.localRotation = Quaternion.Euler(0, _player.localEulerAngles.y, -30);}
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
         rb.AddForce(_player.forward * wallRunForce, ForceMode.Force);
-        
-
     }
 
     void StopWallRun(){
