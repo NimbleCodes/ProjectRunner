@@ -1,5 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TreeEditor;
+using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class FreeCam : MonoBehaviour
@@ -11,32 +14,49 @@ public class FreeCam : MonoBehaviour
     [SerializeField] Rigidbody rb;
 
     [SerializeField] float rotationSpeed;
-    float _rotY,_rotX;
-    private void Start() {
+    float _rotY, _rotX;
+ 
+    private void Start()
+    {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-    private void Update() {
+    private void Update() 
+    {
         transform.position = new Vector3(_player.position.x, _player.position.y + 1, _player.position.z);
         //바라볼 방향 계산
-        Vector3 viewDir = _player.position - new Vector3(_Cam.transform.position.x,_player.position.y, _Cam.transform.position.z);
+
+        Vector3 viewDir = _player.position - new Vector3(_Cam.transform.position.x, _player.position.y, _Cam.transform.position.z);
         _orientation.forward = viewDir.normalized;
 
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         Vector3 inputDir = _orientation.forward * y + _orientation.right * x;
         //바라보는 방향 = 캐릭터 Z방향
-        if(inputDir != Vector3.zero){
+        if (inputDir != Vector3.zero) 
+        {
             _playerObj.forward = Vector3.Slerp(_playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
         }
 
         CamRotation();
+
+        RaycastHit wallhit = new RaycastHit();
+        Ray wallRay = new Ray(transform.position, _Cam.transform.position - transform.position);
+        if (Physics.Raycast(wallRay, out wallhit, 3f))
+        {
+            if (wallhit.collider.tag == "Wall")
+            {
+                transform.position = new Vector3(wallhit.point.x - (_Cam.transform.position.x - transform.position.x), wallhit.point.y - (_Cam.transform.position.y - transform.position.y), wallhit.point.z - ((_Cam.transform.position.z - transform.position.z)));  
+            }
+        }
+       
     }
 
-    void CamRotation(){
+    void CamRotation()
+    {
         float x = Input.GetAxisRaw("Mouse X");
         float y = Input.GetAxisRaw("Mouse Y");
-        
+
         _rotY += x;
 
         _rotX -= y;
@@ -45,4 +65,7 @@ public class FreeCam : MonoBehaviour
         //카메라 로테이션
         transform.rotation = Quaternion.Euler(_rotX, _rotY, 0);
     }
+
+
+
 }

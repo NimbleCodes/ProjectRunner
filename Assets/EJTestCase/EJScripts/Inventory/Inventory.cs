@@ -2,13 +2,15 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
     public static Inventory Instance;
     [SerializeField] GameObject[] _itemSlot;
     [SerializeField] GameObject[] _itemLife;
-    [SerializeField] Transform _itemContainer; 
+    [SerializeField] Transform _itemContainer;
+    [SerializeField] Text[] _itemHealthText; 
     public bool _AllslotFull = false;
     public List<ItemController> Items = new List<ItemController>();
     int currentHealth;
@@ -21,7 +23,6 @@ public class Inventory : MonoBehaviour
     private void Update()
     {
         // CheckFullSlot();
-        SwapItem();
     }
 
     public void Add(ItemController item)
@@ -114,6 +115,13 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void CheckItemHealth(ItemController item)
+    {
+        for (int i = 0; i < _itemSlot.Length; i++)
+        {
+            _itemLife[i].GetComponent<Text>().text = item.itemHealth.ToString();
+        }
+    }
 
     public void CheckFullSlot()
     {
