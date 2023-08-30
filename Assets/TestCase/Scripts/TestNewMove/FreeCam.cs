@@ -46,7 +46,7 @@ public class FreeCam : MonoBehaviour
         {
             if (wallhit.collider.tag == "Wall")
             {
-                transform.position = new Vector3(wallhit.point.x - (_Cam.transform.position.x - transform.position.x), wallhit.point.y - (_Cam.transform.position.y - transform.position.y), wallhit.point.z - (_Cam.transform.position.z - transform.position.z));  
+                transform.position = new Vector3(wallhit.point.x - (_Cam.transform.position.x - transform.position.x), wallhit.point.y - (_Cam.transform.position.y - transform.position.y), wallhit.point.z - ((_Cam.transform.position.z - transform.position.z)));  
             }
         }
        
