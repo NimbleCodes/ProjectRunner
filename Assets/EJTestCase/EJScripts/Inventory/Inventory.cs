@@ -22,6 +22,7 @@ public class Inventory : MonoBehaviour
     private void Update()
     {
         // CheckFullSlot();
+        SwapItem();
     }
 
     public void Add(ItemController item)
