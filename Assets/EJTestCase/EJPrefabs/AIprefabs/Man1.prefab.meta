@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/EJTestCase/EJPrefabs/AIprefabs/Man1.prefab.meta
 guid: 04ac89b5b659ab346b3b8e7e84ae912e
+========
+guid: 6505f200cecb26f4ebf197eb657bcbee
+>>>>>>>> origin/seoul:Assets/KSU/prefab/AutoDoor.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
