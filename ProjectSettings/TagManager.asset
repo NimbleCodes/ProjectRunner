@@ -11,8 +11,6 @@ TagManager:
   - Wall
   - ResPoint
   - Ground
-  - CamLeft
-  - CamRight
   layers:
   - Default
   - TransparentFX
@@ -23,7 +21,7 @@ TagManager:
   - Ground
   - Wall
   - Weapon
-  - 
+  - Player
   - 
   - 
   - 
