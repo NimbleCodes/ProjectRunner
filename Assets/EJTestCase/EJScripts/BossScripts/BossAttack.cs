@@ -74,10 +74,8 @@ public class BossAttack : MonoBehaviour
 
                 equipped = false;
             }
-            
-            
-            yield return new WaitForSeconds(2.5f);
 
+            yield return new WaitForSeconds(2.5f);
             Spawn();
 
         }
