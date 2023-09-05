@@ -1,7 +1,4 @@
-using Cinemachine.Utility;
 using System.Collections;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossAttack : MonoBehaviour
@@ -13,17 +10,21 @@ public class BossAttack : MonoBehaviour
     [SerializeField] Animator _ani;
     GameObject _temp;
     [SerializeField] float throwPower;
-    private float time;
     private bool equipped = false;
+
+    // 들고 있지 않으면 스폰 
+    // 애니메이션을 2.5초 마다 실행 
+    // 트리거에 부딪히면 던지기 실행 
+
+    private void Start()
+    {
+        Spawn();
+        StartCoroutine(ThrowObject()); 
+    }
 
     void Update()
     {
         LookAt();
-    }
-    private void Start()
-    {
-        Spawn();
-        StartCoroutine(ThrowObject());
     }
 
     void LookAt()
@@ -34,7 +35,8 @@ public class BossAttack : MonoBehaviour
 
     void Spawn()
     {
-
+        Vector3 target = _player.position - _Boss.position;
+        float distance = Vector3.Distance(_player.position, _Boss.position);
         if (equipped == false)
         {
             int selection = Random.Range(0, _weapon.Length);
@@ -53,12 +55,12 @@ public class BossAttack : MonoBehaviour
 
             equipped = true;
         }
-
     }
+
 
     IEnumerator ThrowObject() //2.5 초마다 생성된 오브젝트 던지기
     {
-        
+
         while (true)
         {
             Vector3 target = _player.position - _Boss.position;
@@ -66,6 +68,7 @@ public class BossAttack : MonoBehaviour
 
             if (distance < 20f && equipped)
             {
+                _ani.SetTrigger("IsThrow");
                 _temp.transform.SetParent(null);
                 _temp.GetComponent<Rigidbody>().isKinematic = false;
                 _temp.GetComponent<BoxCollider>().isTrigger = false;
@@ -74,7 +77,6 @@ public class BossAttack : MonoBehaviour
 
                 equipped = false;
             }
-
             yield return new WaitForSeconds(2.5f);
             Spawn();
 
