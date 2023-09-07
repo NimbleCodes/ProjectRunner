@@ -14,6 +14,7 @@ public class FreeCam : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField] GameObject[] _camCollider;
     [SerializeField] float rotationSpeed;
+    [SerializeField] float viewRange;
     float _rotY, _rotX;
     bool _wallRay;
     private void Start()
@@ -23,7 +24,7 @@ public class FreeCam : MonoBehaviour
     }
     private void Update() 
     {
-        SetColliderPos();
+        //SetColliderPos();
         transform.position = new Vector3(_player.position.x, _player.position.y + 1, _player.position.z);
         //바라볼 방향 계산
 
@@ -43,11 +44,15 @@ public class FreeCam : MonoBehaviour
 
         RaycastHit wallhit = new RaycastHit();
         Ray wallRay = new Ray(transform.position, _Cam.transform.position - transform.position);
+        float distanceRate;
         _wallRay = Physics.Raycast(wallRay, out wallhit, 6f, 1 << LayerMask.NameToLayer("Wall"));
-        Debug.DrawRay(transform.position,_Cam.transform.position,Color.red,1f);
         if (_wallRay)
         {
-            transform.position = new Vector3(wallhit.point.x - (_Cam.transform.position.x - transform.position.x), wallhit.point.y - (_Cam.transform.position.y - transform.position.y), wallhit.point.z - (_Cam.transform.position.z - transform.position.z)-2);
+            transform.position = new Vector3(wallhit.point.x - (_Cam.position.x - transform.position.x), wallhit.point.y - (_Cam.transform.position.y - transform.position.y), wallhit.point.z - (_Cam.transform.position.z - transform.position.z));
+            
+            _Cam.GetComponent<Camera>().fieldOfView = viewRange;
+        }else{
+            _Cam.GetComponent<Camera>().fieldOfView = 76f;
         }
 
         
