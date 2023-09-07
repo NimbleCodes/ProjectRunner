@@ -2493,9 +2493,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 1245114538}
   _Boss: {fileID: 1611210621}
-  weaponPoint:
-  - {fileID: 583322009}
-  - {fileID: 697323054}
+  weaponPoint: {fileID: 697323054}
   _weapon:
   - {fileID: 2459836965247881355, guid: 57b9dd23e5729af4cb455ccca8ebfe51, type: 3}
   - {fileID: 1912286663973524651, guid: a8fb1c14ca47d064f8c5ff89fef70e48, type: 3}
