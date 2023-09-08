@@ -1,7 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: 11aaf0f52900e4f70867a6243986ceee
 timeCreated: 1511457859
 licenseType: Store
+=======
+guid: 4c240164f4041d648bdacfddc4bc7ef0
+>>>>>>> Stashed changes
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
