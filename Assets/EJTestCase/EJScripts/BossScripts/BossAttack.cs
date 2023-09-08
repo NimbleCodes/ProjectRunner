@@ -26,7 +26,6 @@ public class BossAttack : MonoBehaviour
         StartCoroutine(ThrowObject());
     }
 
-
     void LookAt()
     {
         _Boss.LookAt(_player);
