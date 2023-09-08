@@ -39,6 +39,7 @@ public class BossAttack : MonoBehaviour
         }
     }
 
+
     void LookAt()
     {
         _Boss.LookAt(_player);
