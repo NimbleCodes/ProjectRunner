@@ -9,6 +9,7 @@ public class BossAttack : MonoBehaviour
     [SerializeField] Transform _player;
     [SerializeField] Transform _Boss;
     [SerializeField] Transform[] weaponPoint;
+    [SerializeField] Transform finweapon; 
     [SerializeField] GameObject[] _weapon;
     [SerializeField] Animator _ani;
     GameObject _temp;
@@ -16,19 +17,32 @@ public class BossAttack : MonoBehaviour
     private float time;
     private bool equipped = false;
 
-    void Update()
-    {
-        LookAt();
+    }
+
     }
     private void Start()
     {
         Spawn();
         StartCoroutine(ThrowObject());
     }
+        LookAt();
+        if (_bosshealth < 8f && _finalPhase == false)
+        {
+            _finalPhase = true;
+            Destroy(_temp); 
+            StopCoroutine(_coroutine);
+            FinalSpawn();
+            StartCoroutine(FinalThrow());
+        }
+    }
 
     void LookAt()
     {
         _Boss.LookAt(_player);
+
+            int selectedPoint = Random.Range(0, weaponPoint.Length);
+            Transform selectedSpot = weaponPoint[selectedPoint];
+
     }
 
 
@@ -39,39 +53,25 @@ public class BossAttack : MonoBehaviour
         {
             int selection = Random.Range(0, _weapon.Length);
             GameObject selectedWeapon = _weapon[selection];
-
-            int selectedPoint = Random.Range(0, weaponPoint.Length);
-            Transform selectedSpot = weaponPoint[selectedPoint];
-
             _temp = Instantiate(selectedWeapon);
             _temp.transform.SetParent(selectedSpot);
             _temp.transform.localPosition = Vector3.zero;
             _temp.transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
 
-            _temp.GetComponent<Rigidbody>().isKinematic = true;
+        
+        while (true)
             _temp.GetComponent<BoxCollider>().isTrigger = true;
 
             equipped = true;
         }
 
     }
-
-    IEnumerator ThrowObject() //2.5 초마다 생성된 오브젝트 던지기
-    {
-        
-        while (true)
-        {
-            Vector3 target = _player.position - _Boss.position;
-            float distance = Vector3.Distance(_player.position, _Boss.position);
-
-            if (distance < 20f && equipped)
-            {
                 _temp.transform.SetParent(null);
                 _temp.GetComponent<Rigidbody>().isKinematic = false;
                 _temp.GetComponent<BoxCollider>().isTrigger = false;
                 _temp.GetComponent<Rigidbody>().AddForce(target * throwPower, ForceMode.Impulse);
                 _temp.GetComponent<Rigidbody>().AddForce(_temp.transform.up * 6f , ForceMode.Impulse); 
-
+        }
                 equipped = false;
             }
             
@@ -83,4 +83,69 @@ public class BossAttack : MonoBehaviour
         }
     }
 
+        equipped = false;
+    }
+
+    void Objecttrig()
+    {
+        _temp.GetComponent<BoxCollider>().isTrigger = false;
+    }
+
+    void FinalSpawn()
+    {
+        if ((finequipped == false) && (_bosshealth < 8f))
+        {
+            _temp = Instantiate(_figure);
+            _temp.transform.SetParent(finweapon);
+            _temp.transform.localPosition = Vector3.zero;
+
+            _temp.GetComponent<Rigidbody>().isKinematic = true;
+            _temp.GetComponent<BoxCollider>().isTrigger = true;
+            _ani.SetBool("FinalThrow", false);
+
+            finequipped = true;
+        }
+    }
+
+
+    IEnumerator FinalThrow() 
+    {
+        while (_bosshealth < 8f)
+        {
+            Vector3 target = _player.position - _Boss.position;
+            float distance = Vector3.Distance(_player.position, _Boss.position);
+
+            if (finequipped == true)
+            {
+                _ani.SetBool("FinalThrow", true); 
+            }
+            Invoke("FinalSpawn", 1f);
+            yield return new WaitForSeconds(2.5f);
+        }
+    }
+
+    void ChangeScale()
+    {
+        _temp.transform.localScale = _temp.transform.localScale * 2f; 
+    }
+
+    void RealFinThrow()
+    {
+        Vector3 target = _player.position -_temp.transform.position;
+        _temp.transform.SetParent(null);
+        _temp.GetComponent<Rigidbody>().isKinematic = false;
+        Invoke("Objecttrig", 0.2f);
+        _temp.GetComponent<Rigidbody>().AddForce(target * throwPower, ForceMode.Impulse);
+        _temp.GetComponent<Rigidbody>().AddForce(_temp.transform.up * 2f, ForceMode.Impulse);
+
+        finequipped = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Weapon")
+        {
+            _bosshealth = _bosshealth - 1; 
+        }
+    }
 }
