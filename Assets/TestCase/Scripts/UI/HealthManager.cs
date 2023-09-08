@@ -55,4 +55,5 @@ public class HealthManager : MonoBehaviour
         gameObject.SetActive(false);
         SetHealth();
     }
+
 }

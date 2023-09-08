@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6820725135605210364}
   m_Layer: 0
   m_Name: DoubleA
-  m_TagString: Weapon
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,3 +151,6 @@ MonoBehaviour:
   dropFowardForce: 0
   dropUpWardForce: 0
   _itemSlot: []
+  _AllslotFull: 0
+  _Fullslot: 0
+  _isItmeDestroy: 0
