@@ -6,9 +6,9 @@ public class BossAttack : MonoBehaviour
     [SerializeField] Transform _player;
     [SerializeField] Transform _Boss;
     [SerializeField] Transform weaponPoint;
-    [SerializeField] Transform finweapon; 
+    [SerializeField] Transform finweapon;
     [SerializeField] GameObject[] _weapon;
-    [SerializeField] GameObject _figure; 
+    [SerializeField] GameObject _figure;
     [SerializeField] Animator _ani;
     GameObject _temp;
     [SerializeField] float throwPower;
@@ -32,7 +32,7 @@ public class BossAttack : MonoBehaviour
         if (_bosshealth < 8f && _finalPhase == false)
         {
             _finalPhase = true;
-            Destroy(_temp); 
+            Destroy(_temp);
             StopCoroutine(_coroutine);
             FinalSpawn();
             StartCoroutine(FinalThrow());
@@ -61,23 +61,23 @@ public class BossAttack : MonoBehaviour
 
             _temp.GetComponent<Rigidbody>().isKinematic = true;
             _temp.GetComponent<BoxCollider>().isTrigger = true;
-            _ani.SetBool("isThrow", false); 
+            _ani.SetBool("isThrow", false);
 
             equipped = true;
         }
     }
 
 
-    IEnumerator ThrowObject() //2.5 �ʸ��� ������ ������Ʈ ������
+    IEnumerator ThrowObject() //2.5 초마다 생성된 오브젝트 던지기
     {
         while (_bosshealth > 8f)
         {
             Vector3 target = _player.position - _Boss.position;
             float distance = Vector3.Distance(_player.position, _Boss.position);
-            
+
             if (distance < 20f && equipped)
             {
-                _ani.SetBool("isThrow", true); 
+                _ani.SetBool("isThrow", true);
             }
             Invoke("Spawn", 1f);
 
@@ -90,7 +90,7 @@ public class BossAttack : MonoBehaviour
         Vector3 target = _player.position - _Boss.position;
         _temp.transform.SetParent(null);
         _temp.GetComponent<Rigidbody>().isKinematic = false;
-        Invoke("Objecttrig", 0.2f); 
+        Invoke("Objecttrig", 0.2f);
         _temp.GetComponent<Rigidbody>().AddForce(target * throwPower, ForceMode.Impulse);
         _temp.GetComponent<Rigidbody>().AddForce(_temp.transform.up * 2f, ForceMode.Impulse);
 
@@ -119,7 +119,7 @@ public class BossAttack : MonoBehaviour
     }
 
 
-    IEnumerator FinalThrow() 
+    IEnumerator FinalThrow()
     {
         while (_bosshealth < 8f)
         {
@@ -128,7 +128,7 @@ public class BossAttack : MonoBehaviour
 
             if (finequipped == true)
             {
-                _ani.SetBool("FinalThrow", true); 
+                _ani.SetBool("FinalThrow", true);
             }
             Invoke("FinalSpawn", 1f);
             yield return new WaitForSeconds(2.5f);
@@ -137,12 +137,12 @@ public class BossAttack : MonoBehaviour
 
     void ChangeScale()
     {
-        _temp.transform.localScale = _temp.transform.localScale * 2f; 
+        _temp.transform.localScale = _temp.transform.localScale * 2f;
     }
 
     void RealFinThrow()
     {
-        Vector3 target = _player.position -_temp.transform.position;
+        Vector3 target = _player.position - _temp.transform.position;
         _temp.transform.SetParent(null);
         _temp.GetComponent<Rigidbody>().isKinematic = false;
         Invoke("Objecttrig", 0.2f);
@@ -156,7 +156,7 @@ public class BossAttack : MonoBehaviour
     {
         if (other.tag == "Weapon")
         {
-            _bosshealth = _bosshealth - 1; 
+            _bosshealth = _bosshealth - 1;
         }
     }
 }
