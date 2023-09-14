@@ -12,12 +12,13 @@ public class BossAttack : MonoBehaviour
     [SerializeField] Animator _ani;
     GameObject _temp;
     [SerializeField] float throwPower;
-    private bool equipped = false;
+    public bool equipped = false;
     private bool finequipped = false;
     private float _bosshealth;
     Coroutine _coroutine = null;
 
     bool _finalPhase = false;
+
     private void Start()
     {
         Spawn();
