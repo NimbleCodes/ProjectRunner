@@ -1,30 +1,33 @@
-using Cinemachine.Utility;
 using System.Collections;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossAttack : MonoBehaviour
 {
     [SerializeField] Transform _player;
     [SerializeField] Transform _Boss;
-    [SerializeField] Transform[] weaponPoint;
+    [SerializeField] Transform weaponPoint;
     [SerializeField] Transform finweapon; 
     [SerializeField] GameObject[] _weapon;
+    [SerializeField] GameObject _figure; 
     [SerializeField] Animator _ani;
     GameObject _temp;
     [SerializeField] float throwPower;
-    private float time;
     private bool equipped = false;
+    private bool finequipped = false;
+    private float _bosshealth;
+    Coroutine _coroutine = null;
 
-    }
-
-    }
+    bool _finalPhase = false;
     private void Start()
     {
         Spawn();
-        StartCoroutine(ThrowObject());
+        _bosshealth = 10f;
+        _coroutine = StartCoroutine(ThrowObject());
+
     }
+
+    void Update()
+    {
         LookAt();
         if (_bosshealth < 8f && _finalPhase == false)
         {
@@ -36,52 +39,60 @@ public class BossAttack : MonoBehaviour
         }
     }
 
+
     void LookAt()
     {
         _Boss.LookAt(_player);
-
-            int selectedPoint = Random.Range(0, weaponPoint.Length);
-            Transform selectedSpot = weaponPoint[selectedPoint];
-
     }
 
 
     void Spawn()
     {
-
+        Vector3 target = _player.position - _Boss.position;
+        float distance = Vector3.Distance(_player.position, _Boss.position);
         if (equipped == false)
         {
             int selection = Random.Range(0, _weapon.Length);
             GameObject selectedWeapon = _weapon[selection];
             _temp = Instantiate(selectedWeapon);
-            _temp.transform.SetParent(selectedSpot);
+            _temp.transform.SetParent(weaponPoint);
             _temp.transform.localPosition = Vector3.zero;
             _temp.transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
 
-        
-        while (true)
+            _temp.GetComponent<Rigidbody>().isKinematic = true;
             _temp.GetComponent<BoxCollider>().isTrigger = true;
+            _ani.SetBool("isThrow", false); 
 
             equipped = true;
         }
-
     }
-                _temp.transform.SetParent(null);
-                _temp.GetComponent<Rigidbody>().isKinematic = false;
-                _temp.GetComponent<BoxCollider>().isTrigger = false;
-                _temp.GetComponent<Rigidbody>().AddForce(target * throwPower, ForceMode.Impulse);
-                _temp.GetComponent<Rigidbody>().AddForce(_temp.transform.up * 6f , ForceMode.Impulse); 
-        }
-                equipped = false;
+
+
+    IEnumerator ThrowObject() //2.5 �ʸ��� ������ ������Ʈ ������
+    {
+        while (_bosshealth > 8f)
+        {
+            Vector3 target = _player.position - _Boss.position;
+            float distance = Vector3.Distance(_player.position, _Boss.position);
+            
+            if (distance < 20f && equipped)
+            {
+                _ani.SetBool("isThrow", true); 
             }
-            
-            
+            Invoke("Spawn", 1f);
+
             yield return new WaitForSeconds(2.5f);
-
-            Spawn();
-
         }
     }
+
+    void RealThrow()
+    {
+        Vector3 target = _player.position - _Boss.position;
+        _temp.transform.SetParent(null);
+        _temp.GetComponent<Rigidbody>().isKinematic = false;
+        Invoke("Objecttrig", 0.2f); 
+        _temp.GetComponent<Rigidbody>().AddForce(target * throwPower, ForceMode.Impulse);
+        _temp.GetComponent<Rigidbody>().AddForce(_temp.transform.up * 2f, ForceMode.Impulse);
 
         equipped = false;
     }
