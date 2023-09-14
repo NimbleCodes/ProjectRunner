@@ -116,18 +116,18 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: FinalThrow
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Upper Layer
     m_StateMachine: {fileID: 3724812564146093586}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 4eee2d7d999b2df4585595f4c37329de, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -139,7 +139,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: LegLayer
     m_StateMachine: {fileID: 3022121154933797190}
-    m_Mask: {fileID: 31900000, guid: 5c5d2bdfc1c22a5439856112f5a13764, type: 2}
+    m_Mask: {fileID: 31900000, guid: 3da578e2a4252fe43b2d91d7facd1d09, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -187,7 +187,7 @@ AnimatorStateMachine:
     m_Position: {x: 360, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3749583672322788155}
-    m_Position: {x: 240, y: 310, z: 0}
+    m_Position: {x: 230, y: 290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7513715009258354135}
     m_Position: {x: 590, y: 300, z: 0}
