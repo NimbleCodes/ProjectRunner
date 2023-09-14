@@ -150,6 +150,3 @@ MonoBehaviour:
   dropFowardForce: 0
   dropUpWardForce: 0
   _itemSlot: []
-  _AllslotFull: 0
-  _Fullslot: 0
-  _isItmeDestroy: 0
