@@ -127,7 +127,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Upper Layer
     m_StateMachine: {fileID: 3724812564146093586}
-    m_Mask: {fileID: 31900000, guid: 4eee2d7d999b2df4585595f4c37329de, type: 2}
+    m_Mask: {fileID: 31900000, guid: d7b3e3b281aafc648b26989e8cd5067e, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -139,7 +139,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: LegLayer
     m_StateMachine: {fileID: 3022121154933797190}
-    m_Mask: {fileID: 31900000, guid: 3da578e2a4252fe43b2d91d7facd1d09, type: 2}
+    m_Mask: {fileID: 31900000, guid: bc9dd5c9cb7bdab4cbb3fe2fe9f7be0b, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0

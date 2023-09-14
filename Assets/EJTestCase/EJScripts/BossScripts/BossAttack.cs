@@ -18,6 +18,7 @@ public class BossAttack : MonoBehaviour
     Coroutine _coroutine = null;
 
     bool _finalPhase = false;
+    private float distance; 
 
     private void Start()
     {
