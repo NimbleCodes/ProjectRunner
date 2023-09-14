@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028359, g: 0.22571385, b: 0.30692258, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -325,6 +325,37 @@ RectTransform:
   m_AnchoredPosition: {x: -0.29571533, y: 0.054275513}
   m_SizeDelta: {x: 0.61789703, y: 0.10855007}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &180250748
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 180250749}
+  m_Layer: 0
+  m_Name: FinalWeaponPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &180250749
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180250748}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.345, y: 0.14, z: 0.013}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1707639864}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &181829572
 GameObject:
   m_ObjectHideFlags: 0
@@ -2951,14 +2982,14 @@ MonoBehaviour:
   _player: {fileID: 1245114538}
   _Boss: {fileID: 1611210621}
   weaponPoint: {fileID: 697323054}
-  finweapon: {fileID: 0}
+  finweapon: {fileID: 180250749}
   _weapon:
   - {fileID: 2459836965247881355, guid: 53b2c31742e3969419da352e261581aa, type: 3}
   - {fileID: 1912286663973524651, guid: fa1734247b77f1140aed125be3754a52, type: 3}
   - {fileID: 4171178958804062880, guid: 483d826c6b682b149abb33245e9119f2, type: 3}
   - {fileID: 7717320651334647596, guid: 44f563e73df7b5845887fbc54e667781, type: 3}
   - {fileID: 9078974998194778380, guid: 2fa4ac3b1d328e441a39aa58af9898bf, type: 3}
-  _figure: {fileID: 0}
+  _figure: {fileID: 9078974998194778380, guid: 2fa4ac3b1d328e441a39aa58af9898bf, type: 3}
   _ani: {fileID: 1611210625}
   throwPower: 3
 --- !u!4 &1611210621 stripped
