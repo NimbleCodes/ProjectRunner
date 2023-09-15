@@ -83,12 +83,18 @@ public class MoveNRotate : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            _playerObj.GetComponent<Animator>().Play("AttackHorizontal"); 
+            _playerObj.GetComponent<Animator>().Play("AttackHorizontal");
+            _playerObj.GetComponent<Animator>().SetLayerWeight(1, 0); 
         }
         if (Input.GetMouseButtonUp(0))
         {
-            _playerObj.GetComponent<Animator>().SetBool("OnAttack", false); 
+            _playerObj.GetComponent<Animator>().SetBool("OnAttack", false);
         }
+    }
+
+    void AttackAniFin()
+    {
+        _playerObj.GetComponent<Animator>().SetLayerWeight(1, 1);
     }
 
     void LimitSpeed(){

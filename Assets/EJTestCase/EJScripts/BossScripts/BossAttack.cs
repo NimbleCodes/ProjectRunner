@@ -45,6 +45,7 @@ public class BossAttack : MonoBehaviour
     void LookAt()
     {
         _Boss.LookAt(_player);
+        weaponPoint.LookAt(_player);
     }
 
 
@@ -89,12 +90,12 @@ public class BossAttack : MonoBehaviour
 
     void RealThrow()
     {
-        Vector3 target = _player.position - _Boss.position;
+        Vector3 target = _player.position - weaponPoint.position;
         _temp.transform.SetParent(null);
         _temp.GetComponent<Rigidbody>().isKinematic = false;
         Invoke("Objecttrig", 0.2f);
         _temp.GetComponent<Rigidbody>().AddForce(target * throwPower, ForceMode.Impulse);
-        _temp.GetComponent<Rigidbody>().AddForce(_temp.transform.up * 2f, ForceMode.Impulse);
+        _temp.GetComponent<Rigidbody>().AddForce(_temp.transform.up * 10f, ForceMode.Impulse);
 
         equipped = false;
     }
