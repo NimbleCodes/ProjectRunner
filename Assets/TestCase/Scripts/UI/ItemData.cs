@@ -41,8 +41,6 @@ public class ItemData : MonoBehaviour
             GameObject temp = Resources.Load("Weaponprefabs/" + data.ItemName) as GameObject;
             objPools.Add(data.ItemName, temp);
         }
-
-        testObj = objPools["ClipBoard"];
     }
 
     //랜덤으로 아이템 생성을 위한 랜덤번호 생성
