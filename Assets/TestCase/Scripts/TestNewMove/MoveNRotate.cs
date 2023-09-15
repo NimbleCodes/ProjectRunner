@@ -92,11 +92,6 @@ public class MoveNRotate : MonoBehaviour
         }
     }
 
-    void AttackAniFin()
-    {
-        _playerObj.GetComponent<Animator>().SetLayerWeight(1, 1);
-    }
-
     void LimitSpeed(){
         Vector3 flatVal = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 

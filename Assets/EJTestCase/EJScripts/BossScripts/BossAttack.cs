@@ -6,6 +6,7 @@ public class BossAttack : MonoBehaviour
     [SerializeField] Transform _player;
     [SerializeField] Transform _Boss;
     [SerializeField] Transform weaponPoint;
+    [SerializeField] Transform Camp; 
     [SerializeField] Transform finweapon;
     [SerializeField] GameObject[] _weapon;
     [SerializeField] GameObject _figure;
@@ -45,14 +46,11 @@ public class BossAttack : MonoBehaviour
     void LookAt()
     {
         _Boss.LookAt(_player);
-        weaponPoint.LookAt(_player);
     }
 
 
     void Spawn()
     {
-        Vector3 target = _player.position - _Boss.position;
-        float distance = Vector3.Distance(_player.position, _Boss.position);
         if (equipped == false)
         {
             int selection = Random.Range(0, _weapon.Length);
@@ -73,7 +71,7 @@ public class BossAttack : MonoBehaviour
 
     IEnumerator ThrowObject() //2.5 초마다 생성된 오브젝트 던지기
     {
-        while (_bosshealth > 8f)
+        while (_bosshealth > 3f)
         {
             Vector3 target = _player.position - _Boss.position;
             float distance = Vector3.Distance(_player.position, _Boss.position);
@@ -90,12 +88,12 @@ public class BossAttack : MonoBehaviour
 
     void RealThrow()
     {
-        Vector3 target = _player.position - weaponPoint.position;
+        Vector3 target = Camp.position - weaponPoint.position;
         _temp.transform.SetParent(null);
         _temp.GetComponent<Rigidbody>().isKinematic = false;
         Invoke("Objecttrig", 0.2f);
         _temp.GetComponent<Rigidbody>().AddForce(target * throwPower, ForceMode.Impulse);
-        _temp.GetComponent<Rigidbody>().AddForce(_temp.transform.up * 10f, ForceMode.Impulse);
+        _temp.GetComponent<Rigidbody>().AddForce(_temp.transform.up * 6f, ForceMode.Impulse);
 
         equipped = false;
     }
@@ -107,7 +105,7 @@ public class BossAttack : MonoBehaviour
 
     void FinalSpawn()
     {
-        if ((finequipped == false) && (_bosshealth < 8f))
+        if ((finequipped == false) && (_bosshealth < 3f))
         {
             _temp = Instantiate(_figure);
             _temp.transform.SetParent(finweapon);
@@ -124,7 +122,7 @@ public class BossAttack : MonoBehaviour
 
     IEnumerator FinalThrow()
     {
-        while (_bosshealth < 8f)
+        while (_bosshealth < 3f)
         {
             Vector3 target = _player.position - _Boss.position;
             float distance = Vector3.Distance(_player.position, _Boss.position);
@@ -145,7 +143,7 @@ public class BossAttack : MonoBehaviour
 
     void RealFinThrow()
     {
-        Vector3 target = _player.position - _temp.transform.position;
+        Vector3 target = Camp.position - _temp.transform.position;
         _temp.transform.SetParent(null);
         _temp.GetComponent<Rigidbody>().isKinematic = false;
         Invoke("Objecttrig", 0.2f);
