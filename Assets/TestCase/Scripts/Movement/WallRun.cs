@@ -61,9 +61,11 @@ public class WallRun : MonoBehaviour
         if((wallLeft | wallRight) && y > 0 && AboveGround()){
             if(wallRight){
                 _player.localRotation = Quaternion.Euler(0,_player.eulerAngles.y,30);
+                _ani.SetBool("Isright", true);
                 StartWallRun();
             }else if(wallLeft){
                 _player.localRotation = Quaternion.Euler(0,_player.eulerAngles.y,-30);
+                _ani.SetBool("Isleft", true);
                 StartWallRun();
             }
         }else{
@@ -89,5 +91,7 @@ public class WallRun : MonoBehaviour
         mn.wallRunning = false;
         rb.useGravity = true;
         _ani.SetBool("OnWall",false);
+        _ani.SetBool("Isleft", false);
+        _ani.SetBool("Isright", false);
     }
 }
