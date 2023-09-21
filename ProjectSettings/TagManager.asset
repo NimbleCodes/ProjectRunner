@@ -12,6 +12,7 @@ TagManager:
   - ResPoint
   - Ground
   - WeaponTrigger
+  - Cam
   layers:
   - Default
   - TransparentFX
