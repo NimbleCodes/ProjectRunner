@@ -1,8 +1,6 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
@@ -135,6 +133,20 @@ public class Inventory : MonoBehaviour
                     Items.Remove(item);
                     _itemSlot[i].GetComponent<Slot>().isItemIn = false;
                     _isEquipped = false;
+                    // 1번 아이템이 삭제 되었을 경우 2번, 3번 아이템이 1번, 2번 자리로 
+                    // 2번 아이템이 삭제 되었을 경우 3번 아이템이 2번 자리로 
+                    if (_itemSlot[0].GetComponent<Slot>().isItemIn == false)
+                    {
+
+                    }
+                    else if(_itemSlot[1].GetComponent<Slot>().isItemIn == false)
+                    {
+
+                    }
+                    else if (_itemSlot[2].GetComponent<Slot>().isItemIn == false)
+                    {
+
+                    }
                 }
             }
         }
