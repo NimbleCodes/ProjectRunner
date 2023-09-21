@@ -137,13 +137,9 @@ public class Inventory : MonoBehaviour
                     // 2번 아이템이 삭제 되었을 경우 3번 아이템이 2번 자리로 
                     if (_itemSlot[0].GetComponent<Slot>().isItemIn == false)
                     {
-
+                        
                     }
                     else if(_itemSlot[1].GetComponent<Slot>().isItemIn == false)
-                    {
-
-                    }
-                    else if (_itemSlot[2].GetComponent<Slot>().isItemIn == false)
                     {
 
                     }
