@@ -10,7 +10,6 @@ public class Inventory : MonoBehaviour
     [SerializeField] GameObject[] _itemSlot;
     [SerializeField] GameObject[] _itemLife;
     [SerializeField] Transform _itemContainer;
-    [SerializeField] Text[] _itemHealthText; 
     private bool _AllslotFull = false;
     private bool _isEquipped = false; 
     public List<ItemController> Items = new List<ItemController>();
