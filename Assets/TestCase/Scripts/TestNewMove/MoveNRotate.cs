@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Resources;
 using Unity.VisualScripting;
 using UnityEditorInternal;
 using UnityEngine;
 
 public class MoveNRotate : MonoBehaviour
 {
-    // ±âº» ÀÌµ¿
+    // ï¿½âº» ï¿½Ìµï¿½
     [SerializeField] GameObject _playerObj;
     [SerializeField] public float moveSpeed;
     [SerializeField] Transform _orientation;
@@ -17,6 +18,8 @@ public class MoveNRotate : MonoBehaviour
     Rigidbody rb;
     public bool _isOnGround = true;
     public bool wallRunning;
+    public bool rightWall{get;set;}
+    public bool leftWall{get;set;}
     Animation anim;
     public MovementState state;
 
@@ -59,11 +62,13 @@ public class MoveNRotate : MonoBehaviour
         x = Input.GetAxisRaw("Horizontal");
         y = Input.GetAxisRaw("Vertical");
         
+        
+        if(state == MovementState.groundrunning){
+            _playerObj.GetComponent<Animator>().SetFloat("X",x);
+            _playerObj.GetComponent<Animator>().SetFloat("Y",y);
+        }
         moveDirection = _orientation.forward * y + _orientation.right * x;
         rb.AddForce(moveDirection.normalized * moveSpeed * 3f, ForceMode.Force);
-        _playerObj.GetComponent<Animator>().SetFloat("X",x);
-        _playerObj.GetComponent<Animator>().SetFloat("Y",y);
-
         
     }
 
@@ -76,6 +81,21 @@ public class MoveNRotate : MonoBehaviour
             _playerObj.GetComponent<Animator>().SetBool("OnTheGround", false);
             _jumpCount++;
             state = MovementState.jumping; 
+        }
+
+        
+
+        if(Input.GetKeyDown(KeyCode.Space) && wallRunning){
+            if(rightWall){
+                rb.AddForce(-transform.right * 3, ForceMode.Impulse);
+                rb.AddForce(transform.up * 4, ForceMode.Impulse);
+            }else if(leftWall){
+                rb.AddForce(transform.right * 3, ForceMode.Impulse);
+                rb.AddForce(transform.up * 4, ForceMode.Impulse);
+            }
+            
+            _isOnGround = false;
+            state = MovementState.jumping;
         }
     }
 

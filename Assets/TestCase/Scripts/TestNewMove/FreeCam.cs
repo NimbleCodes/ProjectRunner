@@ -8,6 +8,8 @@ public class FreeCam : MonoBehaviour
     [SerializeField] Transform _Cam;
     [SerializeField] float rotationSpeed;
     float _rotY, _rotX;
+    public bool wallRun = false;
+    public bool _wallRun {get{return wallRun;}set{wallRun = value;}}
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -15,7 +17,7 @@ public class FreeCam : MonoBehaviour
     }
     private void Update() 
     {
-        
+        Vector3 inputDir;
         transform.position = new Vector3(_player.position.x, _player.position.y + 1, _player.position.z);
         //바라볼 방향 계산
         Vector3 viewDir = _player.position - new Vector3(_Cam.transform.position.x, _player.position.y, _Cam.transform.position.z);
@@ -23,7 +25,12 @@ public class FreeCam : MonoBehaviour
 
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
-        Vector3 inputDir = _orientation.forward * y + _orientation.right * x;
+        if(_wallRun){
+            inputDir = _orientation.right * x;
+        }else{
+            inputDir = _orientation.forward * y + _orientation.right * x;
+        }
+        
         //바라보는 방향 = 캐릭터 Z방향
         if (inputDir != Vector3.zero) 
         {

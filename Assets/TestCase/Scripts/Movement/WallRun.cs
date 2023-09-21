@@ -22,7 +22,8 @@ public class WallRun : MonoBehaviour
     
     //Reference
     [SerializeField] Transform _player;
-    [SerializeField] Animator _ani; 
+    [SerializeField] Animator _ani;
+    GameObject cam; 
     Rigidbody rb;
     MoveNRotate mn;
 
@@ -30,6 +31,7 @@ public class WallRun : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         mn = GetComponent<MoveNRotate>();
+        cam = GameObject.Find("CamPoint");
     }
     void Update()
     {
@@ -58,14 +60,16 @@ public class WallRun : MonoBehaviour
         x = Input.GetAxisRaw("Horizontal");
         y = Input.GetAxisRaw("Vertical");
 
-        if((wallLeft | wallRight) && y > 0 && AboveGround()){
+        if((wallLeft | wallRight) && AboveGround()){
             if(wallRight){
-                _player.localRotation = Quaternion.Euler(0,_player.eulerAngles.y,30);
-                _ani.SetBool("Isright", true);
+                //_player.localRotation = Quaternion.Euler(0,90,30);
+                //_ani.SetBool("Isright", true);
+                mn.rightWall = true;
                 StartWallRun();
             }else if(wallLeft){
-                _player.localRotation = Quaternion.Euler(0,_player.eulerAngles.y,-30);
-                _ani.SetBool("Isleft", true);
+                //_player.localRotation = Quaternion.Euler(0,-90,-30);
+                //_ani.SetBool("Isleft", true);
+                mn.leftWall = true;
                 StartWallRun();
             }
         }else{
@@ -77,21 +81,27 @@ public class WallRun : MonoBehaviour
     void StartWallRun(){
         wallRunning = true;
         mn.wallRunning = true;
+        cam.GetComponent<FreeCam>()._wallRun = true;
         _ani.SetBool("OnWall",true);
     }
 
     void WallRunningMovement(){
         rb.useGravity = false;
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        if(wallRight == true){_player.localRotation = Quaternion.Euler(0, _player.localEulerAngles.y, 30);}
+        else if(wallLeft == true){_player.localRotation = Quaternion.Euler(0, _player.localEulerAngles.y, -30);}
+        //rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(_player.forward * wallRunForce, ForceMode.Force);
     }
 
     void StopWallRun(){
         wallRunning = false;
         mn.wallRunning = false;
+        mn.rightWall = false;
+        mn.leftWall  =false;
+        cam.GetComponent<FreeCam>()._wallRun = false;
         rb.useGravity = true;
         _ani.SetBool("OnWall",false);
-        _ani.SetBool("Isleft", false);
-        _ani.SetBool("Isright", false);
+        // _ani.SetBool("Isleft", false);
+        // _ani.SetBool("Isright", false);
     }
 }
