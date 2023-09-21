@@ -11,9 +11,9 @@ public class Inventory : MonoBehaviour
     [SerializeField] GameObject[] _itemLife;
     [SerializeField] Transform _itemContainer;
     [SerializeField] Text[] _itemHealthText; 
-    public bool _AllslotFull = false;
+    private bool _AllslotFull = false;
+    private bool _isEquipped = false; 
     public List<ItemController> Items = new List<ItemController>();
-    int currentHealth;
 
     private void Awake()
     {
@@ -41,12 +41,13 @@ public class Inventory : MonoBehaviour
 
     public void SwapItem()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && _isEquipped == false)
         {
            if(Items != null){
             foreach(ItemController item in Items){
                 item._gameObject.SetActive(false);
             }
+            _isEquipped = true; 
             Items[0]._gameObject.SetActive(true);
             Items[0]._gameObject.transform.SetParent(_itemContainer);
             Items[0]._gameObject.transform.localPosition = Vector3.zero;
@@ -62,12 +63,13 @@ public class Inventory : MonoBehaviour
            }
             
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2) && _isEquipped == false)
         {
             if(Items.Count >= 2){
                 foreach(ItemController item in Items){
                 item.GetComponent<GameObject>().SetActive(false);
             }
+            _isEquipped = true; 
             Items[1]._gameObject.SetActive(true);
             Items[1]._gameObject.transform.SetParent(_itemContainer);
             Items[1]._gameObject.transform.localPosition = Vector3.zero;
@@ -80,12 +82,13 @@ public class Inventory : MonoBehaviour
                 //Do Nothing
             }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha3) && _isEquipped == false)
         {
             if(Items.Count >= 2){
                 foreach(ItemController item in Items){
                 item.GetComponent<GameObject>().SetActive(false);
             }
+            _isEquipped = true; 
             Items[2]._gameObject.SetActive(true);
             Items[2]._gameObject.transform.SetParent(_itemContainer);
             Items[2]._gameObject.transform.localPosition = Vector3.zero;
@@ -116,11 +119,25 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void CheckItemHealth(ItemController item)
+    public void ReduceItemHP(ItemController item)
     {
-        for (int i = 0; i < _itemSlot.Length; i++)
+        int itemHP; 
+        for(int i = 0; i < Items.Count; i++)
         {
-            _itemLife[i].GetComponent<Text>().text = item.itemHealth.ToString();
+            if (Items[i] == item)
+            {
+                _itemLife[i].GetComponent<Text>().text = item.itemHealth.ToString();
+                itemHP = item.itemHealth;
+
+                if (itemHP <= 0)
+                {
+                    _itemSlot[i].SetActive(false);
+                    _itemLife[i].SetActive(false);
+                    Items.Remove(item);
+                    _itemSlot[i].GetComponent<Slot>().isItemIn = false;
+                    _isEquipped = false;
+                }
+            }
         }
     }
 
@@ -142,18 +159,6 @@ public class Inventory : MonoBehaviour
         else
         {
             _AllslotFull = false;
-        }
-    }
-
-    public void DeleteItemImg(ItemController item)
-    {
-        for (int i = 0; i < _itemSlot.Length; i++)
-        {
-            if (_itemSlot[i].GetComponent<Slot>().isItemIn == true && GetComponent<PickUpItem>().isItemDestory == true)
-            {
-                _itemSlot[i].SetActive(false);
-                break;
-            }
         }
     }
 }

@@ -14,6 +14,7 @@ public class ItemController : MonoBehaviour
         if (other.tag == "Enemy")
         {
             itemHealth -= 1;
+            Inventory.Instance.ReduceItemHP(this);
             if (itemHealth == 0)
             {
                 Destroy(gameObject);
