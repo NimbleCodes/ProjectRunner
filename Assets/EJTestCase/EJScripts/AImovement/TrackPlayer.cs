@@ -40,7 +40,7 @@ public class TrackPlayer : MonoBehaviour
 
     public void behave()
     {
-        if (Vector3.Distance(_player.position, _AI.position) < 4f)
+        if (Vector3.Distance(_player.position, _AI.position) < 8f)
         {
             GetComponent<Animator>().Play("AIRunning");
             followplayer();

@@ -18,6 +18,7 @@ public class PickUpItem : MonoBehaviour
             _rig = GetComponent<Rigidbody>();
             coll = GetComponent<BoxCollider>();
             _itemCon = GetComponent<ItemController>();
+            _player = GameObject.FindGameObjectWithTag("WeaponPoint").transform;
         }
 
         void Update()

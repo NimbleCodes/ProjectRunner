@@ -2,14 +2,15 @@ using UnityEngine;
 
 public class PlayerAniEvent : MonoBehaviour
 {
+    
     void AttackStart()
     {
-        this.transform.rotation = Quaternion.Euler(0f, -70f, 0f);
+        transform.localEulerAngles += new Vector3(transform.localEulerAngles.x, 90 , transform.localEulerAngles.z );
     }
 
     void AttackAniFin()
     {
         GetComponent<Animator>().SetLayerWeight(1, 1);
-        this.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        transform.localEulerAngles += new Vector3(transform.localEulerAngles.x, -90, transform.localEulerAngles.z);
     }
 }
