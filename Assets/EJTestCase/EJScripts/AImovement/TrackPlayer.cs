@@ -16,6 +16,7 @@ public class TrackPlayer : MonoBehaviour
     {
         GetComponent<Animator>().Play("Idle");
         _Enemy = transform;
+        _player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame

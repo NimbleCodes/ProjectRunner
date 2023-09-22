@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Resources;
-using Unity.VisualScripting;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class MoveNRotate : MonoBehaviour
