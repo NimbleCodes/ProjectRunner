@@ -12,6 +12,7 @@ TagManager:
   - ResPoint
   - Ground
   - Cam
+  - WeaponPoint
   layers:
   - Default
   - TransparentFX

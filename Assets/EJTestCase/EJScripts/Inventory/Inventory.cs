@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -61,8 +62,10 @@ public class Inventory : MonoBehaviour
                 }
                 else if (_isEquipped == true)
                 {
-                    Items[1]._gameObject.SetActive(false);
-                    Items[2]._gameObject.SetActive(false);
+                    for (int i = 0; i < Items.Count; i++)
+                    {
+                        Items[i]._gameObject.SetActive(false);
+                    }
 
                     Items[0]._gameObject.SetActive(true);
                     Items[0]._gameObject.transform.SetParent(_WeaponPoint);
@@ -103,8 +106,10 @@ public class Inventory : MonoBehaviour
                 }
                 else if (_isEquipped == true)
                 {
-                    Items[0]._gameObject.SetActive(false);
-                    Items[2]._gameObject.SetActive(false);
+                    for(int i =0; i < Items.Count; i++)
+                    {
+                        Items[i]._gameObject.SetActive(false);
+                    }
 
                     Items[1]._gameObject.SetActive(true);
                     Items[1]._gameObject.transform.SetParent(_WeaponPoint);
@@ -144,8 +149,10 @@ public class Inventory : MonoBehaviour
                 }
                 else if (_isEquipped == true)
                 {
-                    Items[0]._gameObject.SetActive(false);
-                    Items[1]._gameObject.SetActive(false);
+                    for (int i = 0; i < Items.Count; i++)
+                    {
+                        Items[i]._gameObject.SetActive(false);
+                    }
 
                     Items[2]._gameObject.SetActive(true);
                     Items[2]._gameObject.transform.SetParent(_WeaponPoint);
