@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
     public static Inventory Instance;
     [SerializeField] GameObject[] _itemSlot;
     [SerializeField] GameObject[] _itemLife;
-    [SerializeField] Transform _itemContainer;
+    [SerializeField] Transform _WeaponPoint; 
     private bool _AllslotFull = false;
     private bool _isEquipped = false; 
     public List<ItemController> Items = new List<ItemController>();
@@ -38,21 +38,42 @@ public class Inventory : MonoBehaviour
 
     public void SwapItem()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && _isEquipped == false)
+        // 아이템을 손에 들고 있을때 다른 번호를 클릭을 하면 그 번호의 무기가 손에 들어와야함 
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-           if(Items != null){
-            foreach(ItemController item in Items){
-                item._gameObject.SetActive(false);
-            }
-            _isEquipped = true; 
-            Items[0]._gameObject.SetActive(true);
-            Items[0]._gameObject.transform.SetParent(_itemContainer);
-            Items[0]._gameObject.transform.localPosition = Vector3.zero;
-            Items[0]._gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
-            Items[0]._gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
+           if(Items != null)
+            {
+                foreach(ItemController item in Items)
+                {
+                    item._gameObject.SetActive(false);
+                }
+                if (_isEquipped == false)
+                {
+                    Items[0]._gameObject.SetActive(true);
+                    Items[0]._gameObject.transform.SetParent(_WeaponPoint);
+                    Items[0]._gameObject.transform.localPosition = Vector3.zero;
+                    Items[0]._gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                    Items[0]._gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
 
-            Items[0].rig.isKinematic = true;
-            Items[0].coll.isTrigger = true;
+                    Items[0].rig.isKinematic = true;
+                    Items[0].coll.isTrigger = true;
+                    _isEquipped = true;
+                }
+                else if (_isEquipped == true)
+                {
+                    Items[1]._gameObject.SetActive(false);
+                    Items[2]._gameObject.SetActive(false);
+
+                    Items[0]._gameObject.SetActive(true);
+                    Items[0]._gameObject.transform.SetParent(_WeaponPoint);
+                    Items[0]._gameObject.transform.localPosition = Vector3.zero;
+                    Items[0]._gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                    Items[0]._gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
+
+                    Items[0].rig.isKinematic = true;
+                    Items[0].coll.isTrigger = true;
+                    _isEquipped = true;
+                }
            }
            else
            {
@@ -60,41 +81,85 @@ public class Inventory : MonoBehaviour
            }
             
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && _isEquipped == false)
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            if(Items.Count >= 2){
-                foreach(ItemController item in Items){
-                item.GetComponent<GameObject>().SetActive(false);
-            }
-            _isEquipped = true; 
-            Items[1]._gameObject.SetActive(true);
-            Items[1]._gameObject.transform.SetParent(_itemContainer);
-            Items[1]._gameObject.transform.localPosition = Vector3.zero;
-            Items[1]._gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
-            Items[1]._gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            if(Items.Count >= 2)
+            {
+                foreach(ItemController item in Items)
+                {
+                    item._gameObject.SetActive(false);
+                }
+                if (_isEquipped == false)
+                {
+                    Items[1]._gameObject.SetActive(true);
+                    Items[1]._gameObject.transform.SetParent(_WeaponPoint);
+                    Items[1]._gameObject.transform.localPosition = Vector3.zero;
+                    Items[1]._gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                    Items[1]._gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
 
-            Items[1].rig.isKinematic = true;
-            Items[1].coll.isTrigger = true;
-            }else{
+                    Items[1].rig.isKinematic = true;
+                    Items[1].coll.isTrigger = true;
+                    _isEquipped = true;
+                }
+                else if (_isEquipped == true)
+                {
+                    Items[0]._gameObject.SetActive(false);
+                    Items[2]._gameObject.SetActive(false);
+
+                    Items[1]._gameObject.SetActive(true);
+                    Items[1]._gameObject.transform.SetParent(_WeaponPoint);
+                    Items[1]._gameObject.transform.localPosition = Vector3.zero;
+                    Items[1]._gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                    Items[1]._gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
+
+                    Items[1].rig.isKinematic = true;
+                    Items[1].coll.isTrigger = true;
+                    _isEquipped = true;
+                }
+            }
+            else
+            {
                 //Do Nothing
             }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3) && _isEquipped == false)
+        if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            if(Items.Count >= 2){
-                foreach(ItemController item in Items){
-                item.GetComponent<GameObject>().SetActive(false);
-            }
-            _isEquipped = true; 
-            Items[2]._gameObject.SetActive(true);
-            Items[2]._gameObject.transform.SetParent(_itemContainer);
-            Items[2]._gameObject.transform.localPosition = Vector3.zero;
-            Items[2]._gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
-            Items[2]._gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            if(Items.Count >= 2)
+            {
+                foreach(ItemController item in Items)
+                {
+                    item._gameObject.SetActive(false);
+                }
+                if (_isEquipped == false)
+                {
+                    Items[2]._gameObject.SetActive(true);
+                    Items[2]._gameObject.transform.SetParent(_WeaponPoint);
+                    Items[2]._gameObject.transform.localPosition = Vector3.zero;
+                    Items[2]._gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                    Items[2]._gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
 
-            Items[2].rig.isKinematic = true;
-            Items[2].coll.isTrigger = true;
-            }else{
+                    Items[2].rig.isKinematic = true;
+                    Items[2].coll.isTrigger = true;
+                    _isEquipped = true;
+                }
+                else if (_isEquipped == true)
+                {
+                    Items[0]._gameObject.SetActive(false);
+                    Items[1]._gameObject.SetActive(false);
+
+                    Items[2]._gameObject.SetActive(true);
+                    Items[2]._gameObject.transform.SetParent(_WeaponPoint);
+                    Items[2]._gameObject.transform.localPosition = Vector3.zero;
+                    Items[2]._gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                    Items[2]._gameObject.transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
+
+                    Items[2].rig.isKinematic = true;
+                    Items[2].coll.isTrigger = true;
+                    _isEquipped = true;
+                }
+            }
+            else
+            {
                 //Do Nothing
             }
         }     
@@ -116,6 +181,18 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void ShowAllItemImg(List<ItemController> items)
+    {
+        for(int i =0; i < items.Count; i++)
+        {
+            _itemSlot[i].GetComponent<Slot>().isItemIn = true;
+            _itemSlot[i].SetActive(true);
+            _itemSlot[i].GetComponent<Image>().sprite = items[i].itemImg;
+            _itemLife[i].SetActive(true);
+            _itemLife[i].GetComponent<Text>().text = items[i].itemHealth.ToString();
+        }
+    }
+
     public void ReduceItemHP(ItemController item)
     {
         int itemHP; 
@@ -128,26 +205,15 @@ public class Inventory : MonoBehaviour
 
                 if (itemHP <= 0)
                 {
-                    _itemSlot[i].SetActive(false);
-                    _itemLife[i].SetActive(false);
-                    Items.Remove(item);
-                    _itemSlot[i].GetComponent<Slot>().isItemIn = false;
-                    _isEquipped = false;
-                    // 1번 아이템이 삭제 되었을 경우 2번, 3번 아이템이 1번, 2번 자리로 
-                    // 2번 아이템이 삭제 되었을 경우 3번 아이템이 2번 자리로 
-                    if (_itemSlot[0].GetComponent<Slot>().isItemIn == false && _itemSlot[1].GetComponent<Slot>().isItemIn == true && _itemSlot[2].GetComponent<Slot>().isItemIn == true)
+                    for (int j = 0; j < _itemSlot.Length; j++)
                     {
-                        
+                        _itemSlot[j].SetActive(false);
+                        _itemLife[j].SetActive(false);
+                        Items.Remove(item);
+                        _itemSlot[j].GetComponent<Slot>().isItemIn = false;
+                        _isEquipped = false;
                     }
-                    else if (_itemSlot[0].GetComponent<Slot>().isItemIn == true && _itemSlot[1].GetComponent<Slot>().isItemIn == false && _itemSlot[2].GetComponent<Slot>().isItemIn == true)
-                    {
-
-                    }
-                    else if (_itemSlot[0].GetComponent<Slot>().isItemIn == true && _itemSlot[1].GetComponent<Slot>().isItemIn == false && _itemSlot[2].GetComponent<Slot>().isItemIn == true)
-                    {
-
-                    }
-
+                    ShowAllItemImg(Items);
                 }
             }
         }
