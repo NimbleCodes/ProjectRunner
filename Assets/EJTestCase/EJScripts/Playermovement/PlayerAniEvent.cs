@@ -4,7 +4,7 @@ public class PlayerAniEvent : MonoBehaviour
 {
     void AttackStart()
     {
-        this.transform.rotation += Quaternion.Euler(0f, -70f, 0f);
+        this.transform.rotation = Quaternion.Euler(0f, -70f, 0f);
     }
 
     void AttackAniFin()
