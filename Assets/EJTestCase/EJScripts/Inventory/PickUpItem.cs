@@ -6,8 +6,6 @@ public class PickUpItem : MonoBehaviour
         BoxCollider coll;
         [SerializeField] Transform _player;
         private float pickUpRange = 1.8f;
-        private float dropFowardForce = 4f;
-        private float dropUpWardForce = 2f; 
         private ItemController _itemCon;
         private bool _isInside; 
 
