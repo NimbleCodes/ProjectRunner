@@ -3,7 +3,7 @@ using UnityEngine;
 public class ItemController : MonoBehaviour
 {
     public GameObject _gameObject;
-    public GameObject _GrabPoint; 
+    public GameObject _grabPoint; 
     public Sprite itemImg;
     public int itemHealth; 
     public Collider coll;

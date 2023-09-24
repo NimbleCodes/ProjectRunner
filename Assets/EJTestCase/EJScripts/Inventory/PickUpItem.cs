@@ -4,7 +4,7 @@ public class PickUpItem : MonoBehaviour
 {
         Rigidbody _rig;
         BoxCollider coll;
-        [SerializeField] Transform _player;
+        Transform _player;
         private float pickUpRange = 1.8f;
         private ItemController _itemCon;
         private bool _isInside; 
