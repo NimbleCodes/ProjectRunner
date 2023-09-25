@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028359, g: 0.22571385, b: 0.30692258, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -744,12 +744,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7368e671c1ca3fd478adbff185c82238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 1245114538}
-  _playerObj: {fileID: 1174561223}
-  _orientation: {fileID: 1554935207}
   _Cam: {fileID: 346600887}
   rotationSpeed: 7
-  wallRun: 0
 --- !u!1 &346600884
 GameObject:
   m_ObjectHideFlags: 0
@@ -3612,11 +3608,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5691447334464821938, guid: e6226d8e79b17cb4f8c95fafab7d32d9, type: 3}
   m_PrefabInstance: {fileID: 5691447335706978842}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1245114538 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5691447334464821936, guid: e6226d8e79b17cb4f8c95fafab7d32d9, type: 3}
-  m_PrefabInstance: {fileID: 5691447335706978842}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1343735318
 GameObject:
   m_ObjectHideFlags: 0
@@ -3926,11 +3917,6 @@ MonoBehaviour:
   Enemyz: []
   _isDead: 0
   _dead: 0
---- !u!4 &1554935207 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5691447334152832957, guid: e6226d8e79b17cb4f8c95fafab7d32d9, type: 3}
-  m_PrefabInstance: {fileID: 5691447335706978842}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &1554973480 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 1295555790207291659, guid: e5561c92286f56c4b9a96421217fce85, type: 3}
@@ -5276,6 +5262,10 @@ PrefabInstance:
     - target: {fileID: 5691447334464821938, guid: e6226d8e79b17cb4f8c95fafab7d32d9, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5691447334464821938, guid: e6226d8e79b17cb4f8c95fafab7d32d9, type: 3}
+      propertyPath: m_TagString
+      value: PlayerHolder
       objectReference: {fileID: 0}
     - target: {fileID: 5691447334464821941, guid: e6226d8e79b17cb4f8c95fafab7d32d9, type: 3}
       propertyPath: _player

@@ -1,19 +1,25 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FreeCam : MonoBehaviour
 {
-    [SerializeField] Transform _player;
-    [SerializeField] Transform _playerObj;
-    [SerializeField] Transform _orientation;
     [SerializeField] Transform _Cam;
     [SerializeField] float rotationSpeed;
+    Transform _player;
+    Transform _playerObj;
+    Transform _orientation;
     float _rotY, _rotX;
-    public bool wallRun = false;
-    public bool _wallRun {get{return wallRun;}set{wallRun = value;}}
+    public bool wallRun = false, wallRight = false, wallLeft = false;
+    public bool _wallRun {get{return wallRun;} set{wallRun = value;}}
+    public bool _wallRight{get{return wallRight;} set{wallRight = value;}}
+    public bool _wallLeft{get{return wallLeft;} set{wallLeft = value;}}
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        _player = GameObject.Find("Player").transform;
+        _playerObj = GameObject.Find("PlayerObj").transform;
+        _orientation = GameObject.Find("orientation").transform;
     }
     private void Update() 
     {
@@ -25,8 +31,15 @@ public class FreeCam : MonoBehaviour
 
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
-        if(_wallRun){
+        float mx = Input.GetAxisRaw("Mouse X");
+        if(_wallRun ==  true){
             inputDir = _orientation.right * x;
+            if(_wallRight == true){
+                _playerObj.localRotation = Quaternion.Euler(transform.eulerAngles.x, _playerObj.eulerAngles.y,30);
+            }
+            if(_wallLeft == true){
+                _playerObj.localRotation = Quaternion.Euler(transform.eulerAngles.x, _playerObj.eulerAngles.y,-30);
+            }   
         }else{
             inputDir = _orientation.forward * y + _orientation.right * x;
         }
