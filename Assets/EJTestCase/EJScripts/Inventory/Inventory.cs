@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +11,8 @@ public class Inventory : MonoBehaviour
     [SerializeField] GameObject[] _itemLife;
     [SerializeField] Transform _WeaponPoint; 
     private bool _AllslotFull = false;
-    private bool _isEquipped = false; 
+    private bool _isEquipped = false;
+    public float x, y, z;
     private List<ItemController> Items = new List<ItemController>();
 
     private void Awake()
@@ -52,9 +54,9 @@ public class Inventory : MonoBehaviour
                 {
                     Items[0]._gameObject.SetActive(true);
                     Items[0]._grabPoint.transform.SetParent(_WeaponPoint);
-                    Items[0]._gameObject.transform.SetParent(Items[0]._grabPoint.transform); 
                     Items[0]._grabPoint.transform.localPosition = Vector3.zero;
-                    Items[0]._gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                    Vector3 v3 = Items[0].GetComponent<ItemController>().GetRotation();
+                    Items[0]._grabPoint.transform.localRotation = Quaternion.Euler(v3);
 
                     Items[0].rig.isKinematic = true;
                     Items[0].coll.isTrigger = true;
@@ -69,9 +71,9 @@ public class Inventory : MonoBehaviour
 
                     Items[0]._gameObject.SetActive(true);
                     Items[0]._grabPoint.transform.SetParent(_WeaponPoint);
-                    Items[0]._gameObject.transform.SetParent(Items[0]._grabPoint.transform);
-                    Items[0]._grabPoint.transform.localPosition = Vector3.zero;
-                    Items[0]._gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                    Items[0]._grabPoint.transform.position = Vector3.zero;
+                    Vector3 v3 = Items[0].GetComponent<ItemController>().GetRotation();
+                    Items[0]._grabPoint.transform.localRotation = Quaternion.Euler(v3);
 
                     Items[0].rig.isKinematic = true;
                     Items[0].coll.isTrigger = true;
@@ -96,9 +98,9 @@ public class Inventory : MonoBehaviour
                 {
                     Items[1]._gameObject.SetActive(true);
                     Items[1]._grabPoint.transform.SetParent(_WeaponPoint);
-                    Items[1]._gameObject.transform.SetParent(Items[1]._grabPoint.transform);
                     Items[1]._grabPoint.transform.localPosition = Vector3.zero;
-                    Items[1]._gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                    Vector3 v3 = Items[1].GetComponent<ItemController>().GetRotation();
+                    Items[1]._grabPoint.transform.localRotation = Quaternion.Euler(v3);
 
                     Items[1].rig.isKinematic = true;
                     Items[1].coll.isTrigger = true;
@@ -113,9 +115,9 @@ public class Inventory : MonoBehaviour
 
                     Items[1]._gameObject.SetActive(true);
                     Items[1]._grabPoint.transform.SetParent(_WeaponPoint);
-                    Items[1]._gameObject.transform.SetParent(Items[1]._grabPoint.transform);
                     Items[1]._grabPoint.transform.localPosition = Vector3.zero;
-                    Items[1]._gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                    Vector3 v3 = Items[1].GetComponent<ItemController>().GetRotation();
+                    Items[1]._grabPoint.transform.localRotation = Quaternion.Euler(v3);
 
                     Items[1].rig.isKinematic = true;
                     Items[1].coll.isTrigger = true;
@@ -139,9 +141,9 @@ public class Inventory : MonoBehaviour
                 {
                     Items[2]._gameObject.SetActive(true);
                     Items[2]._grabPoint.transform.SetParent(_WeaponPoint);
-                    Items[2]._gameObject.transform.SetParent(Items[2]._grabPoint.transform);
                     Items[2]._grabPoint.transform.localPosition = Vector3.zero;
-                    Items[2]._gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                    Vector3 v3 = Items[2].GetComponent<ItemController>().GetRotation();
+                    Items[2]._grabPoint.transform.localRotation = Quaternion.Euler(v3);
 
                     Items[2].rig.isKinematic = true;
                     Items[2].coll.isTrigger = true;
@@ -156,9 +158,9 @@ public class Inventory : MonoBehaviour
 
                     Items[2]._gameObject.SetActive(true);
                     Items[2]._grabPoint.transform.SetParent(_WeaponPoint);
-                    Items[2]._gameObject.transform.SetParent(Items[2]._grabPoint.transform);
                     Items[2]._grabPoint.transform.localPosition = Vector3.zero;
-                    Items[2]._gameObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
+                    Vector3 v3 = Items[2].GetComponent<ItemController>().GetRotation();
+                    Items[2]._grabPoint.transform.localRotation = Quaternion.Euler(v3);
 
                     Items[2].rig.isKinematic = true;
                     Items[2].coll.isTrigger = true;
