@@ -9,6 +9,7 @@ public class FreeCam : MonoBehaviour
     Transform _playerObj;
     Transform _orientation;
     float _rotY, _rotX;
+    float x, y;
     public bool wallRun = false, wallRight = false, wallLeft = false;
     public bool _wallRun {get{return wallRun;} set{wallRun = value;}}
     public bool _wallRight{get{return wallRight;} set{wallRight = value;}}
@@ -23,32 +24,17 @@ public class FreeCam : MonoBehaviour
     }
     private void Update() 
     {
-        Vector3 inputDir;
+        
         transform.position = new Vector3(_player.position.x, _player.position.y + 1, _player.position.z);
         //바라볼 방향 계산
         Vector3 viewDir = _player.position - new Vector3(_Cam.transform.position.x, _player.position.y, _Cam.transform.position.z);
         _orientation.forward = viewDir.normalized;
 
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
-        float mx = Input.GetAxisRaw("Mouse X");
-        if(_wallRun ==  true){
-            inputDir = _orientation.right * x;
-            if(_wallRight == true){
-                _playerObj.localRotation = Quaternion.Euler(transform.eulerAngles.x, _playerObj.eulerAngles.y,30);
-            }
-            if(_wallLeft == true){
-                _playerObj.localRotation = Quaternion.Euler(transform.eulerAngles.x, _playerObj.eulerAngles.y,-30);
-            }   
-        }else{
-            inputDir = _orientation.forward * y + _orientation.right * x;
-        }
+        x = Input.GetAxisRaw("Horizontal");
+        y = Input.GetAxisRaw("Vertical");
         
-        //바라보는 방향 = 캐릭터 Z방향
-        if (inputDir != Vector3.zero) 
-        {
-            _playerObj.forward = Vector3.Slerp(_playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
-        }
+        CheckWallRun();
+        
 
         CamRotation();
     }
@@ -65,6 +51,29 @@ public class FreeCam : MonoBehaviour
 
         //카메라 로테이션
         transform.rotation = Quaternion.Euler(_rotX, _rotY, 0);
+    }
+    void CheckWallRun(){
+        Vector3 inputDir;
+        if(_wallRun ==  true){
+            inputDir = _orientation.right * x;
+            
+            if(_wallRight == true){
+                //inputDir = _orientation.forward;
+                _playerObj.localRotation = Quaternion.Euler(_orientation.eulerAngles.x, _orientation.eulerAngles.y,30);
+            }
+            if(_wallLeft == true){
+                
+                _playerObj.localRotation = Quaternion.Euler(_orientation.eulerAngles.x, _orientation.eulerAngles.y,-30);
+            }   
+        }else{
+            inputDir = _orientation.forward * y + _orientation.right * x;
+        }
+
+        //바라보는 방향 = 캐릭터 Z방향
+        if (inputDir != Vector3.zero) 
+        {
+            _playerObj.forward = Vector3.Slerp(_playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
+        }
     }
 
     

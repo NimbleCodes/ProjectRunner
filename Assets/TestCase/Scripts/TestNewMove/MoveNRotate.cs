@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class MoveNRotate : MonoBehaviour
@@ -82,11 +83,13 @@ public class MoveNRotate : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space) && wallRunning){
             if(rightWall){
-                rb.AddForce(-transform.right * 3, ForceMode.Impulse);
-                rb.AddForce(transform.up * 4, ForceMode.Impulse);
+                StartCoroutine(wallCheckTimer());
+                rb.AddForce(-transform.right * 15, ForceMode.Impulse);
+                //rb.AddForce(transform.up * 7, ForceMode.Impulse);
             }else if(leftWall){
-                rb.AddForce(transform.right * 3, ForceMode.Impulse);
-                rb.AddForce(transform.up * 4, ForceMode.Impulse);
+                StartCoroutine(wallCheckTimer());
+                rb.AddForce(transform.right * 15, ForceMode.Impulse);
+                //rb.AddForce(transform.up * 7, ForceMode.Impulse);
             }
             
             _isOnGround = false;
@@ -145,5 +148,12 @@ public class MoveNRotate : MonoBehaviour
         {
             state = MovementState.groundrunning; 
         }
+    }
+
+    IEnumerator wallCheckTimer(){
+
+        yield return new WaitForSeconds(0.3f);
+
+        gameObject.GetComponent<WallRun>().wallRunning = false;
     }
 }

@@ -17,8 +17,9 @@ public class WallRun : MonoBehaviour
     [SerializeField] float wallCheckDistance;
     [SerializeField] float minJumpHeight;
     RaycastHit leftWallhit, rightWallHit;
-    public bool wallLeft = false, wallRight = false;
+    bool wallLeft = false, wallRight = false;
     public bool wallRunning = false;
+    public bool wallChecking = true;
     
     //Reference
     [SerializeField] Transform _player;
@@ -36,7 +37,7 @@ public class WallRun : MonoBehaviour
     void Update()
     {
         CheckWall();
-        StateMachine();
+        if(!wallRunning)StateMachine();
     }
     void FixedUpdate()
     {
@@ -45,11 +46,13 @@ public class WallRun : MonoBehaviour
 
 
     void CheckWall(){
+        
         Ray rayRight = new Ray(transform.position, _player.right);
         Ray rayLeft = new Ray(transform.position, -_player.right); 
 
         wallRight = Physics.Raycast(rayRight, out rightWallHit, wallCheckDistance, whatIsWall);
         wallLeft = Physics.Raycast(rayLeft, out leftWallhit, wallCheckDistance, whatIsWall);
+        
     }
 
     bool AboveGround(){
@@ -91,7 +94,7 @@ public class WallRun : MonoBehaviour
         rb.useGravity = false;
         //if(wallRight == true){_player.localRotation = Quaternion.Euler(0, _player.localEulerAngles.y, 30);}
         //else if(wallLeft == true){_player.localRotation = Quaternion.Euler(0, _player.localEulerAngles.y, -30);}
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        rb.velocity = new Vector3(rb.velocity.x, 0f ,rb.velocity.z);
         rb.AddForce(_player.forward * wallRunForce, ForceMode.Force);
     }
 
