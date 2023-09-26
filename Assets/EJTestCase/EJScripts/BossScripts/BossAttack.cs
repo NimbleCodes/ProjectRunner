@@ -14,7 +14,7 @@ public class BossAttack : MonoBehaviour
     [SerializeField] Animator _ani;
     GameObject _temp;
     [SerializeField] float throwPower;
-    public bool equipped = false;
+    public bool baseequipped = false;
     private bool finequipped = false;
     private float _bosshealth;
     Coroutine _coroutine = null;
@@ -25,9 +25,9 @@ public class BossAttack : MonoBehaviour
 
     private void Start()
     {
-        Spawn();
+        BaseSpawn();
         _bosshealth = 10f;
-        _coroutine = StartCoroutine(ThrowObject());
+        _coroutine = StartCoroutine(BaseThrowObject());
     }
 
     void Update()
@@ -50,9 +50,9 @@ public class BossAttack : MonoBehaviour
     }
 
 
-    void Spawn()
+    void BaseSpawn()
     {
-        if (equipped == false)
+        if (baseequipped == false)
         {
             _particle.Play();
             int selection = Random.Range(0, _weapon.Length);
@@ -66,19 +66,19 @@ public class BossAttack : MonoBehaviour
             _temp.GetComponent<BoxCollider>().isTrigger = true;
             _ani.SetBool("isThrow", false);
 
-            equipped = true;
+            baseequipped = true;
         }
     }
 
 
-    IEnumerator ThrowObject() //2.5 초마다 생성된 오브젝트 던지기
+    IEnumerator BaseThrowObject() //2.5 초마다 생성된 오브젝트 던지기
     {
         while (_bosshealth > 3f)
         {
             Vector3 target = _player.position - _Boss.position;
             float distance = Vector3.Distance(_player.position, _Boss.position);
 
-            if (distance < 20f && equipped)
+            if (distance < 20f && baseequipped)
             {
                 _ani.SetBool("isThrow", true);
             }
@@ -88,7 +88,7 @@ public class BossAttack : MonoBehaviour
         }
     }
 
-    void RealThrow()
+    void BaseThrowAni()
     {
         Vector3 target = Camp.position - weaponPoint.position;
         _temp.transform.SetParent(null);
@@ -96,7 +96,7 @@ public class BossAttack : MonoBehaviour
         Invoke("Objecttrig", 0.2f);
         _temp.GetComponent<Rigidbody>().AddForce(target * throwPower, ForceMode.Impulse);
         _temp.GetComponent<Rigidbody>().AddForce(_temp.transform.up * 6f, ForceMode.Impulse);
-        equipped = false;
+        baseequipped = false;
     }
 
     void Objecttrig()
@@ -142,7 +142,7 @@ public class BossAttack : MonoBehaviour
         _temp.transform.localScale = _temp.transform.localScale * 2f;
     }
 
-    void RealFinThrow()
+    void FinThrowAni()
     {
         Vector3 target = Camp.position - _temp.transform.position;
         _temp.transform.SetParent(null);

@@ -58,7 +58,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.45210055
-        functionName: RealThrow
+        functionName: BaseThrowAni
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
