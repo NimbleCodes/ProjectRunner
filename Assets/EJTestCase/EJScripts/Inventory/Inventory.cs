@@ -8,7 +8,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] GameObject[] _itemSlot;
     [SerializeField] GameObject[] _itemLife;
     [SerializeField] Transform _WeaponPoint; 
-    private bool _AllslotFull = false;
+    public bool _AllslotFull = false;
     private bool _isEquipped = false;
     private float x, y, z;
     private List<ItemController> Items = new List<ItemController>();
@@ -20,6 +20,7 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
+        CheckFullSlot();
         SwapItem();
     }
 
@@ -226,16 +227,7 @@ public class Inventory : MonoBehaviour
 
     public void CheckFullSlot()
     {
-        int count = 1;
-        for (int i = 0; i < _itemSlot.Length; i++)
-        {
-            if (_itemSlot[i].GetComponent<Slot>().isItemIn == true)
-            {
-                count++;
-            }
-        }
-
-        if (count == _itemSlot.Length)
+        if (Items.Count >= 3)
         {
             _AllslotFull = true;
         }

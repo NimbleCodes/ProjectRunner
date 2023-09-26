@@ -9,7 +9,7 @@ public class BossAttack : MonoBehaviour
     [SerializeField] Transform Camp; 
     [SerializeField] Transform finweapon;
     [SerializeField] GameObject[] _weapon;
-    [SerializeField] ParticleSystem[] _particle; 
+    [SerializeField] ParticleSystem _particle; 
     [SerializeField] GameObject _figure;
     [SerializeField] Animator _ani;
     GameObject _temp;
@@ -22,12 +22,12 @@ public class BossAttack : MonoBehaviour
     bool _finalPhase = false;
     private float distance; 
 
+
     private void Start()
     {
         Spawn();
         _bosshealth = 10f;
         _coroutine = StartCoroutine(ThrowObject());
-
     }
 
     void Update()
@@ -54,9 +54,7 @@ public class BossAttack : MonoBehaviour
     {
         if (equipped == false)
         {
-            _particle[0].Play();
-            _particle[1].Play();
-            _particle[2].Play();
+            _particle.Play();
             int selection = Random.Range(0, _weapon.Length);
             GameObject selectedWeapon = _weapon[selection];
             _temp = Instantiate(selectedWeapon);
@@ -98,7 +96,6 @@ public class BossAttack : MonoBehaviour
         Invoke("Objecttrig", 0.2f);
         _temp.GetComponent<Rigidbody>().AddForce(target * throwPower, ForceMode.Impulse);
         _temp.GetComponent<Rigidbody>().AddForce(_temp.transform.up * 6f, ForceMode.Impulse);
-
         equipped = false;
     }
 
