@@ -24,7 +24,7 @@ public class PickUpItem : MonoBehaviour
         void Update()
         {
             Vector3 distance2Player = (_player.position - transform.position);
-            if (distance2Player.magnitude <= pickUpRange && Input.GetKeyDown(KeyCode.F) && _isInside == false)
+            if (distance2Player.magnitude <= pickUpRange && Input.GetKeyDown(KeyCode.F) && _isInside == false && Inventory.Instance._AllslotFull == false)
             {
                 PickUp();
             }
@@ -32,10 +32,10 @@ public class PickUpItem : MonoBehaviour
 
         public void PickUp()
         {
-            Inventory.Instance.Add(_itemCon);
-            Inventory.Instance.ShowItemImg(_itemCon);
-            this.gameObject.SetActive(false);
-            _isInside = true;
+             Inventory.Instance.Add(_itemCon);
+             Inventory.Instance.ShowItemImg(_itemCon);
+             this.gameObject.SetActive(false);
+             _isInside = true;
         }
 
 }

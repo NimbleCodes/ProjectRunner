@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,9 +8,9 @@ public class Inventory : MonoBehaviour
     [SerializeField] GameObject[] _itemSlot;
     [SerializeField] GameObject[] _itemLife;
     [SerializeField] Transform _WeaponPoint; 
-    private bool _AllslotFull = false;
+    public bool _AllslotFull = false;
     private bool _isEquipped = false;
-    public float x, y, z;
+    private float x, y, z;
     private List<ItemController> Items = new List<ItemController>();
 
     private void Awake()
@@ -22,7 +20,7 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-        // CheckFullSlot();
+        CheckFullSlot();
         SwapItem();
     }
 
@@ -41,7 +39,6 @@ public class Inventory : MonoBehaviour
 
     public void SwapItem()
     {
-        // 아이템을 손에 들고 있을때 다른 번호를 클릭을 하면 그 번호의 무기가 손에 들어와야함 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
            if(Items != null)
@@ -71,7 +68,7 @@ public class Inventory : MonoBehaviour
 
                     Items[0]._gameObject.SetActive(true);
                     Items[0]._grabPoint.transform.SetParent(_WeaponPoint);
-                    Items[0]._grabPoint.transform.position = Vector3.zero;
+                    Items[0]._grabPoint.transform.localPosition = Vector3.zero;
                     Vector3 v3 = Items[0].GetComponent<ItemController>().GetRotation();
                     Items[0]._grabPoint.transform.localRotation = Quaternion.Euler(v3);
 
@@ -230,16 +227,7 @@ public class Inventory : MonoBehaviour
 
     public void CheckFullSlot()
     {
-        int count = 1;
-        for (int i = 0; i < _itemSlot.Length; i++)
-        {
-            if (_itemSlot[i].GetComponent<Slot>().isItemIn == true)
-            {
-                count++;
-            }
-        }
-
-        if (count == _itemSlot.Length)
+        if (Items.Count >= 3)
         {
             _AllslotFull = true;
         }

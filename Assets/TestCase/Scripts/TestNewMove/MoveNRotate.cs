@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class MoveNRotate : MonoBehaviour
 {
-    // �⺻ �̵�
     [SerializeField] GameObject _playerObj;
     [SerializeField] public float moveSpeed;
     [SerializeField] Transform _orientation;
@@ -17,7 +16,7 @@ public class MoveNRotate : MonoBehaviour
     public bool rightWall{get;set;}
     public bool leftWall{get;set;}
     Animation anim;
-    public MovementState state;
+    MovementState state;
 
     public enum MovementState
     {
