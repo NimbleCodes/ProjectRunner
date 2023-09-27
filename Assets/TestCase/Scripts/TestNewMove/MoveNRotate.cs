@@ -7,6 +7,7 @@ public class MoveNRotate : MonoBehaviour
     [SerializeField] public float moveSpeed;
     [SerializeField] Transform _orientation;
     [SerializeField] int groundDrag;
+    [SerializeField] float wallRunForce;
     float x,y;
     int _jumpCount = 0;
     Vector3 moveDirection;
@@ -34,8 +35,14 @@ public class MoveNRotate : MonoBehaviour
         state = MovementState.groundrunning; 
     }
 
+    //State로 Movment Controll
     private void FixedUpdate() {
-        MovePlayer();
+        if(state == MovementState.groundrunning || state == MovementState.jumping){
+            MovePlayer();
+        }else if(state == MovementState.wallrunning){
+            WallRunningMovement();
+        }
+        
         LimitSpeed();
     }
 
@@ -83,12 +90,11 @@ public class MoveNRotate : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && wallRunning){
             if(rightWall){
                 StartCoroutine(wallCheckTimer());
-                rb.AddForce(-transform.right * 15, ForceMode.Impulse);
-                //rb.AddForce(transform.up * 7, ForceMode.Impulse);
+                rb.AddForce(-transform.right * 15 + transform.up * 7, ForceMode.Impulse);
             }else if(leftWall){
                 StartCoroutine(wallCheckTimer());
                 rb.AddForce(transform.right * 15, ForceMode.Impulse);
-                //rb.AddForce(transform.up * 7, ForceMode.Impulse);
+                rb.AddForce(transform.up * 7, ForceMode.Impulse);
             }
             
             _isOnGround = false;
@@ -118,6 +124,11 @@ public class MoveNRotate : MonoBehaviour
             rb.velocity = new Vector3(limitedVal.x, rb.velocity.y, limitedVal.z);
         }
     }
+    void WallRunningMovement(){
+        rb.useGravity = false;
+        rb.velocity = new Vector3(rb.velocity.x, 0f ,rb.velocity.z);
+        rb.AddForce(_playerObj.transform.forward * wallRunForce, ForceMode.Force);
+    }
 
     private void OnCollisionEnter(Collision other){
         if(other.collider.CompareTag("Ground")){
@@ -135,24 +146,22 @@ public class MoveNRotate : MonoBehaviour
 
     private void StateHandler()
     {
-        if (wallRunning == true)
-        {
+        if (wallRunning == true){
             state = MovementState.wallrunning;
         }
-        else if((wallRunning == false) && (_isOnGround == false))
-        {
+        else if((wallRunning == false) && (_isOnGround == false)){
             state = MovementState.jumping; 
         }
-        else
-        {
+        else{
             state = MovementState.groundrunning; 
         }
     }
 
     IEnumerator wallCheckTimer(){
+        gameObject.GetComponent<WallRun>().StopWallRun();
 
         yield return new WaitForSeconds(0.3f);
 
-        gameObject.GetComponent<WallRun>().wallRunning = false;
+        gameObject.GetComponent<WallRun>().wallChecking = true;
     }
 }

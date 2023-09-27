@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028359, g: 0.22571385, b: 0.30692258, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1034,7 +1034,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 398912862}
-  m_LocalRotation: {x: 0.030079572, y: 0.000000029788897, z: -8.9644286e-10, w: 0.99954754}
+  m_LocalRotation: {x: 0.030079598, y: -5.8126254e-11, z: 1.7492448e-12, w: 0.99954754}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2842,7 +2842,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1366939661}
-  m_LocalRotation: {x: -0.006248767, y: -5.755777e-10, z: -3.5967212e-12, w: 0.9999805}
+  m_LocalRotation: {x: -0.0062487675, y: -1.6477486e-10, z: -1.0296602e-12, w: 0.9999805}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3968,6 +3968,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 187900710}
     m_Modifications:
+    - target: {fileID: 3012674029936228406, guid: a4f53301d24806c439f436febbccc91e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3284276899724342158, guid: a4f53301d24806c439f436febbccc91e, type: 3}
       propertyPath: m_Name
       value: Laptop
