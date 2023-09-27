@@ -18,7 +18,7 @@ public class BossAttack : MonoBehaviour
     public bool baseequipped = false;
     private bool finequipped = false;
     private bool finPhase = false; 
-    public float _bosshealth;
+    private float _bosshealth;
     Coroutine _coroutine = null;
 
     bool _finalPhase = false;

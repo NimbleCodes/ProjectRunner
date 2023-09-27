@@ -41,7 +41,8 @@ public class HealthManager : MonoBehaviour
     {
         if (_health.fillAmount <= 0)
         {
-            _playeranim.Play("Die");
+            _playeranim.Play("Die", 0);
+            _playeranim.Play("Die", 1);
             playerRes.GetComponent<PlayerRes>()._isDead = true;
             StartCoroutine(waitSecond());
         }
@@ -49,7 +50,7 @@ public class HealthManager : MonoBehaviour
 
     IEnumerator waitSecond()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         gameObject.SetActive(false);
         playerRes.GetComponent<PlayerRes>()._isDead = false;
         playerRes.GetComponent<PlayerRes>()._isRespwan = true;
