@@ -45,7 +45,6 @@ public class HealthManager : MonoBehaviour
             playerRes.GetComponent<PlayerRes>()._dead = true;
             StartCoroutine(waitSecond());
             //playerRes.GetComponent<PlayerRes>().setDeath(true);
-            
         }
     }
 
