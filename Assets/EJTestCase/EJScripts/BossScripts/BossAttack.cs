@@ -159,8 +159,8 @@ public class BossAttack : MonoBehaviour
             _fintemp.GetComponent<Rigidbody>().AddForce(target * throwPower, ForceMode.Impulse);
             _fintemp.GetComponent<Rigidbody>().AddForce(_fintemp.transform.up * 2f, ForceMode.Impulse);
 
-            finPhase = false;
             _ani.SetBool("FinalThrow", false);
+            finPhase = false;
         }
     }
 
