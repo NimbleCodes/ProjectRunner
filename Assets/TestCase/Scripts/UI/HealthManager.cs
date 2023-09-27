@@ -11,7 +11,8 @@ public class HealthManager : MonoBehaviour
     float _damageNheal = 0.25f;
     
 
-    void SetHealth(){
+    void SetHealth()
+    {
         _health.fillAmount = 1.0f;
     }
 
@@ -42,16 +43,16 @@ public class HealthManager : MonoBehaviour
         {
             _playeranim.Play("Die");
             playerRes.GetComponent<PlayerRes>()._isDead = true;
-            playerRes.GetComponent<PlayerRes>()._dead = true;
             StartCoroutine(waitSecond());
-            //playerRes.GetComponent<PlayerRes>().setDeath(true);
         }
     }
 
     IEnumerator waitSecond()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3f);
         gameObject.SetActive(false);
+        playerRes.GetComponent<PlayerRes>()._isDead = false;
+        playerRes.GetComponent<PlayerRes>()._isRespwan = true;
         SetHealth();
     }
 

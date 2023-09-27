@@ -24,7 +24,7 @@ public class TrackPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!_isPlayerDead)
+        if (_isPlayerDead == false)
         {
             behave();
         }
