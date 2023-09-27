@@ -13,7 +13,7 @@ public class BossAttack : MonoBehaviour
     [SerializeField] GameObject _figure;
     [SerializeField] Animator _ani;
     GameObject _temp;
-    GameObject _fintemp; 
+    GameObject _fintemp;  
     [SerializeField] float throwPower;
     public bool baseequipped = false;
     private bool finequipped = false;
@@ -115,28 +115,21 @@ public class BossAttack : MonoBehaviour
     {
         while ( _bosshealth > 0 && _bosshealth <= 3f)
         {
-            if (finPhase == false)
-            {
-                _ani.SetBool("FinalThrow", true);
-                finPhase = true;
-            }
+            _ani.SetBool("FinalThrow", true);
             yield return new WaitForSeconds(2.5f);
         }
     }
 
     void FinalSpawn()
     {
-        if(finequipped == false)
-        {
-            _fintemp = Instantiate(_figure);
-            _fintemp.transform.SetParent(finweapon);
-            _fintemp.transform.localPosition = Vector3.zero;
+        _fintemp = Instantiate(_figure);
+        _fintemp.transform.SetParent(finweapon);
+        _fintemp.transform.localPosition = Vector3.zero;
 
-            _fintemp.GetComponent<Rigidbody>().isKinematic = true;
-            _fintemp.GetComponent<BoxCollider>().isTrigger = true;
+        _fintemp.GetComponent<Rigidbody>().isKinematic = true;
+        _fintemp.GetComponent<BoxCollider>().isTrigger = true;
 
-            finequipped = true;
-        }
+        finequipped = true;
     }
 
     void ChangeScale()
@@ -149,7 +142,7 @@ public class BossAttack : MonoBehaviour
 
     void FinThrowAni()
     {
-        if (finPhase == true)
+        if (finequipped == true)
         {
             Vector3 target = Camp.position - _fintemp.transform.position;
             _fintemp.transform.SetParent(null);
@@ -158,9 +151,6 @@ public class BossAttack : MonoBehaviour
             Invoke("FinObjecttrig", 0.2f);
             _fintemp.GetComponent<Rigidbody>().AddForce(target * throwPower, ForceMode.Impulse);
             _fintemp.GetComponent<Rigidbody>().AddForce(_fintemp.transform.up * 2f, ForceMode.Impulse);
-
-            _ani.SetBool("FinalThrow", false);
-            finPhase = false;
         }
     }
 
