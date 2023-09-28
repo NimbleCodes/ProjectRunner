@@ -509,10 +509,11 @@ MonoBehaviour:
   - {fileID: 7184503666504273655, guid: c13bb416ba50cbc4183d524808d9598b, type: 3}
   - {fileID: 9078974998194778380, guid: 2fa4ac3b1d328e441a39aa58af9898bf, type: 3}
   _particle: {fileID: 4720627098282812072}
-  _figure: {fileID: 9078974998194778380, guid: 2fa4ac3b1d328e441a39aa58af9898bf, type: 3}
+  _figure: {fileID: 4140708009855177111, guid: 3a768913b6624ce40bcd34837f93aa91, type: 3}
   _ani: {fileID: 4720627099327544352}
   throwPower: 7
-  equipped: 0
+  baseequipped: 0
+  isStand: 0
 --- !u!1 &4720627099320274912
 GameObject:
   m_ObjectHideFlags: 0

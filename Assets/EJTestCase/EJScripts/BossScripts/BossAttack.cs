@@ -17,11 +17,10 @@ public class BossAttack : MonoBehaviour
     [SerializeField] float throwPower;
     public bool baseequipped = false;
     private bool finequipped = false;
-    private bool finPhase = false; 
+    public bool isStand = false; 
+    private bool isFinphase = false; 
     private float _bosshealth;
     Coroutine _coroutine = null;
-
-    bool _finalPhase = false;
     private float distance; 
 
 
@@ -41,7 +40,12 @@ public class BossAttack : MonoBehaviour
             baseequipped = false; 
             StopCoroutine(_coroutine);
             _ani.SetBool("StandUp", true);
-            StartCoroutine(FinalThrow()); 
+            isStand = true;
+        }
+
+        if (isStand == true)
+        {
+            StartCoroutine(FinalThrow());
         }
     }
 
@@ -86,7 +90,7 @@ public class BossAttack : MonoBehaviour
             }
             Invoke("BaseSpawn", 1f);
 
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(2f);
         }
     }
 
@@ -106,52 +110,61 @@ public class BossAttack : MonoBehaviour
         _temp.GetComponent<BoxCollider>().isTrigger = false;
     }
 
-    void FinObjecttrig()
-    {
-        _fintemp.GetComponent<BoxCollider>().isTrigger = false;
-    }
-
     IEnumerator FinalThrow()
     {
         while ( _bosshealth > 0 && _bosshealth <= 3f)
         {
-            _ani.SetBool("FinalThrow", true);
-            yield return new WaitForSeconds(2.5f);
+            if (isFinphase == false)
+            {
+                _ani.SetBool("FinalThrow", false);
+            }
+            else if (isFinphase == true)
+            {
+                _ani.SetBool("FinalThrow", true);
+            }
+            yield return new WaitForSeconds(5f);
         }
+    }
+
+    void changePhase()
+    {
+        isFinphase = true; 
     }
 
     void FinalSpawn()
     {
-        _fintemp = Instantiate(_figure);
-        _fintemp.transform.SetParent(finweapon);
-        _fintemp.transform.localPosition = Vector3.zero;
+        if (finequipped == false)
+        {
+            finequipped = true;
+            _fintemp = Instantiate(_figure);
+            _fintemp.transform.SetParent(finweapon);
+            _fintemp.transform.localPosition = Vector3.zero;
 
-        _fintemp.GetComponent<Rigidbody>().isKinematic = true;
-        _fintemp.GetComponent<BoxCollider>().isTrigger = true;
-
-        finequipped = true;
+            _fintemp.GetComponent<Rigidbody>().isKinematic = true;
+            _fintemp.GetComponent<BoxCollider>().isTrigger = true;
+        }
     }
 
     void ChangeScale()
     {
-        if (finequipped == true)
-        {
-            _fintemp.transform.localScale = _fintemp.transform.localScale * 2f;
-        }
+        _fintemp.transform.localScale = _fintemp.transform.localScale * 2f;
     }
 
     void FinThrowAni()
     {
-        if (finequipped == true)
-        {
-            Vector3 target = Camp.position - _fintemp.transform.position;
-            _fintemp.transform.SetParent(null);
-            finequipped = false;
-            _fintemp.GetComponent<Rigidbody>().isKinematic = false;
-            Invoke("FinObjecttrig", 0.2f);
-            _fintemp.GetComponent<Rigidbody>().AddForce(target * throwPower, ForceMode.Impulse);
-            _fintemp.GetComponent<Rigidbody>().AddForce(_fintemp.transform.up * 2f, ForceMode.Impulse);
-        }
+        Vector3 target = Camp.position - _fintemp.transform.position;
+        _fintemp.transform.SetParent(null);
+        _fintemp.GetComponent<Rigidbody>().isKinematic = false;
+        Invoke("FinObjecttrig", 0.2f);
+        _fintemp.GetComponent<Rigidbody>().AddForce(target * throwPower, ForceMode.Impulse);
+        _fintemp.GetComponent<Rigidbody>().AddForce(_fintemp.transform.up * 2f, ForceMode.Impulse);
+        isFinphase = false;
+        finequipped = false; 
+    }
+
+    void FinObjecttrig()
+    {
+        _fintemp.GetComponent<BoxCollider>().isTrigger = false;
     }
 
     private void OnTriggerEnter(Collider other)
