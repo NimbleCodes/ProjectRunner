@@ -10,16 +10,16 @@ public class BossAttack : MonoBehaviour
     [SerializeField] Transform finweapon;
     [SerializeField] GameObject[] _weapon;
     [SerializeField] ParticleSystem _particle; 
-    [SerializeField] GameObject _figure;
+    [SerializeField] GameObject document;
     [SerializeField] Animator _ani;
     GameObject _temp;
     GameObject _fintemp;  
     [SerializeField] float throwPower;
-    public bool baseequipped = false;
+    private bool baseequipped = false;
     private bool finequipped = false;
-    public bool isStand = false; 
+    private bool isStand = false; 
     private bool isFinphase = false; 
-    private float _bosshealth;
+    public float _bosshealth;
     Coroutine _coroutine = null;
     private float distance; 
 
@@ -136,7 +136,7 @@ public class BossAttack : MonoBehaviour
         if (finequipped == false)
         {
             finequipped = true;
-            _fintemp = Instantiate(_figure);
+            _fintemp = Instantiate(document);
             _fintemp.transform.SetParent(finweapon);
             _fintemp.transform.localPosition = Vector3.zero;
 
