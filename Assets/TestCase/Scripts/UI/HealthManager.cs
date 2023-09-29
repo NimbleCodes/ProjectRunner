@@ -10,7 +10,8 @@ public class HealthManager : MonoBehaviour
     [SerializeField] Animator _playeranim;
     [SerializeField] GameObject _Inven; 
     float _damageNheal = 0.25f;
-    
+    private bool isHit = false;
+    float CoolTime;
 
     void SetHealth()
     {
@@ -34,9 +35,10 @@ public class HealthManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) 
     {
-        if(other.collider.tag == "Enemy")
+        if(other.collider.tag == "Enemy" && isHit == false)
         {
             MinusHealth();
+            isHit = true;
         }
         if(other.collider.tag == "HealPack")
         {
@@ -52,6 +54,16 @@ public class HealthManager : MonoBehaviour
             _playeranim.Play("Die", 1);
             playerRes.GetComponent<PlayerRes>()._isDead = true;
             StartCoroutine(waitSecond());
+        }
+
+        if (isHit == true)
+        {
+            CoolTime += Time.deltaTime;
+            if (CoolTime >= 1.5f)
+            {
+                isHit = false;
+                CoolTime = 0;
+            }
         }
     }
 
