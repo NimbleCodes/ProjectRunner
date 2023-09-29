@@ -18,11 +18,11 @@ public class WallRun : MonoBehaviour
     [SerializeField] float minJumpHeight;
     RaycastHit leftWallhit, rightWallHit;
     public bool wallLeft = false, wallRight = false;
-    public bool wallRunning = false;
     public bool wallChecking = true;
     
     //Reference
     [SerializeField] Transform _player;
+    [SerializeField] Transform _orientation;
     [SerializeField] Animator _ani;
     GameObject cam; 
     Rigidbody rb;
@@ -36,10 +36,10 @@ public class WallRun : MonoBehaviour
     }
     void Update()
     {
-        if(wallChecking){
-            CheckWall();
-            StateMachine();
-        }
+        
+        CheckWall();
+        StateMachine();
+        
     }
 
     void CheckWall(){
@@ -63,11 +63,13 @@ public class WallRun : MonoBehaviour
         if((wallLeft | wallRight) && AboveGround()){
             if(wallRight == true){
                 mn.rightWall = true;
-                cam.GetComponent<FreeCam>()._wallRight = true;
+                _player.localRotation = Quaternion.Euler(_orientation.eulerAngles.x, _orientation.eulerAngles.y,30);
+                
                 StartWallRun();
             }else if(wallLeft == true){
                 mn.leftWall = true;
-                cam.GetComponent<FreeCam>()._wallLeft = true;
+                _player.localRotation = Quaternion.Euler(_orientation.eulerAngles.x, _orientation.eulerAngles.y,-30);
+                
                 StartWallRun();
             }
         }
@@ -75,7 +77,6 @@ public class WallRun : MonoBehaviour
     }
 
     void StartWallRun(){
-        wallRunning = true;
         mn.wallRunning = true;
         wallChecking = false;
         cam.GetComponent<FreeCam>()._wallRun = true;
@@ -83,7 +84,6 @@ public class WallRun : MonoBehaviour
     }
     
     public void StopWallRun(){
-        wallRunning = false;
         mn.wallRunning = false;
         mn.rightWall = false;
         mn.leftWall  =false;

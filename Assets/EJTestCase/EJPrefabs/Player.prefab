@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 6206028276799024017}
   - component: {fileID: 6206028276799024023}
   - component: {fileID: 6206028276799024016}
-  - component: {fileID: 6206028276799024019}
+  - component: {fileID: 9168165599949631695}
   m_Layer: 0
   m_Name: Player
   m_TagString: PlayerHolder
@@ -135,6 +135,7 @@ MonoBehaviour:
   wallRunForce: 0
   _isOnGround: 0
   wallRunning: 0
+  state: 0
 --- !u!114 &6206028276799024016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,7 +152,7 @@ MonoBehaviour:
   playerRes: {fileID: 0}
   _respwanPoint: {fileID: 0}
   _playeranim: {fileID: 6206028276296540281}
---- !u!114 &6206028276799024019
+--- !u!114 &9168165599949631695
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,23 +161,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 6206028276799024020}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28264d94850cf504299a3d69eaec59c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f5daceb524fa25418aa24ee1ab71e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whatIsWall:
+  wallLayer:
     serializedVersion: 2
     m_Bits: 128
-  whatIsGround:
+  groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  wallCheckDistance: 1.5
-  minJumpHeight: 1
+  wallRunForce: 8.5
+  wallJumpUpForce: 7
+  wallJumpSideForce: 12
+  wallCheckDistance: 0.7
+  minJumpHeight: 2
   wallLeft: 0
   wallRight: 0
-  wallRunning: 0
-  wallChecking: 1
-  _player: {fileID: 6206028276288819127}
-  _ani: {fileID: 6206028276296540281}
+  orientation: {fileID: 6206028276624406171}
+  playerObj: {fileID: 6206028276288819127}
 --- !u!1 &6206028277961496397
 GameObject:
   m_ObjectHideFlags: 0

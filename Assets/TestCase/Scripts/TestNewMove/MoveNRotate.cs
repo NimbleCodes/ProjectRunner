@@ -17,7 +17,7 @@ public class MoveNRotate : MonoBehaviour
     public bool rightWall{get;set;}
     public bool leftWall{get;set;}
     Animation anim;
-    MovementState state;
+    public MovementState state;
 
     public enum MovementState
     {
@@ -56,6 +56,7 @@ public class MoveNRotate : MonoBehaviour
         {
             rb.drag = 0;
         }
+        StateHandler();
         PlayerAnimation();
         Attack();
     }
@@ -78,7 +79,7 @@ public class MoveNRotate : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space) && (_jumpCount < 1 || _isOnGround == true))
         {
-            rb.AddForce(transform.up * 7, ForceMode.Impulse);
+            rb.AddForce(transform.up * 10, ForceMode.Impulse);
             _isOnGround = false;
             _playerObj.GetComponent<Animator>().SetBool("OnTheGround", false);
             _jumpCount++;
@@ -90,6 +91,7 @@ public class MoveNRotate : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && wallRunning){
             if(rightWall){
                 StartCoroutine(wallCheckTimer());
+                rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
                 rb.AddForce(-transform.right * 15 + transform.up * 7, ForceMode.Impulse);
             }else if(leftWall){
                 StartCoroutine(wallCheckTimer());
@@ -130,6 +132,7 @@ public class MoveNRotate : MonoBehaviour
         rb.AddForce(_playerObj.transform.forward * wallRunForce, ForceMode.Force);
     }
 
+    
     private void OnCollisionEnter(Collision other){
         if(other.collider.CompareTag("Ground")){
             _playerObj.GetComponent<Animator>().SetBool("OnTheGround", true);
@@ -141,8 +144,9 @@ public class MoveNRotate : MonoBehaviour
         {
             state = MovementState.wallrunning; 
         }
-       
     }
+       
+    
 
     private void StateHandler()
     {
