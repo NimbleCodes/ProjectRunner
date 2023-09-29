@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +12,7 @@ public class Inventory : MonoBehaviour
     public bool _AllslotFull = false;
     private bool _isEquipped = false;
     private float x, y, z;
-    private List<ItemController> Items = new List<ItemController>();
+    public List<ItemController> Items = new List<ItemController>();
 
     private void Awake()
     {
@@ -222,6 +223,18 @@ public class Inventory : MonoBehaviour
                     ShowAllItemImg(Items);
                 }
             }
+        }
+    }
+
+    public void ResetItem()
+    {
+        Items.Clear();
+        for (int i = 0; i < _itemSlot.Length; i++)
+        {
+            _itemSlot[i].SetActive(false);
+            _itemLife[i].SetActive(false);
+            _itemSlot[i].GetComponent<Slot>().isItemIn = false;
+            _isEquipped = false;
         }
     }
 
