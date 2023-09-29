@@ -29,13 +29,13 @@ public class PlayerRes : MonoBehaviour
         if (_isDead == false && _isRespwan == true)
         {
             StartCoroutine(Respawn());
-            _isRespwan = false; 
         }
     }
 
     IEnumerator Respawn()
     {
         yield return new WaitForSeconds(3f);
+        _isRespwan = false; 
         _player.SetActive(true);
         _player.transform.position = _respawnPoint.position;
         _player.GetComponent<Rigidbody>().useGravity = true;

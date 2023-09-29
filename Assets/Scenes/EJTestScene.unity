@@ -655,10 +655,10 @@ MonoBehaviour:
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &261312069
@@ -2619,6 +2619,7 @@ MonoBehaviour:
   - {fileID: 713513326}
   _WeaponPoint: {fileID: 259574898}
   _AllslotFull: 0
+  Items: []
 --- !u!1 &1366939661
 GameObject:
   m_ObjectHideFlags: 3
@@ -4189,6 +4190,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.24
       objectReference: {fileID: 0}
+    - target: {fileID: 6206028276799024016, guid: e6226d8e79b17cb4f8c95fafab7d32d9, type: 3}
+      propertyPath: _Inven
+      value: 
+      objectReference: {fileID: 1343735318}
+    - target: {fileID: 6206028276799024016, guid: e6226d8e79b17cb4f8c95fafab7d32d9, type: 3}
+      propertyPath: _inven
+      value: 
+      objectReference: {fileID: 1343735318}
     - target: {fileID: 6206028276799024016, guid: e6226d8e79b17cb4f8c95fafab7d32d9, type: 3}
       propertyPath: _health
       value: 

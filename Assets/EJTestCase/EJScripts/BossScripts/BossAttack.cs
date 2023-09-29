@@ -18,7 +18,9 @@ public class BossAttack : MonoBehaviour
     private bool baseequipped = false;
     private bool finequipped = false;
     private bool isStand = false; 
-    private bool isFinphase = false; 
+    private bool isFinphase = false;
+    private bool isHit = false;
+    float CoolTime; 
     public float _bosshealth;
     Coroutine _coroutine = null;
     private float distance; 
@@ -46,6 +48,16 @@ public class BossAttack : MonoBehaviour
         if (isStand == true)
         {
             StartCoroutine(FinalThrow());
+        }
+
+        if (isHit == true)
+        {
+            CoolTime += Time.deltaTime;
+            if (CoolTime >= 1f)
+            {
+                isHit = false;
+                CoolTime = 0;
+            }
         }
     }
 
@@ -169,9 +181,10 @@ public class BossAttack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Weapon")
+        if (other.tag == "Weapon" && isHit == false)
         {
             _bosshealth = _bosshealth - 1;
+            isHit = true; 
         }
     }
 }

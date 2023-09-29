@@ -11,7 +11,9 @@ public class TrackPlayer : MonoBehaviour
     [SerializeField] SkinnedMeshRenderer _Renderer;
     public bool _isPlayerDead = false;
     public bool IsPlayerDead { set { _isPlayerDead = value; } }
-    private bool AIdead = false; 
+    private bool AIdead = false;
+    private bool isHit = false;
+    float CoolTime;
 
     // Start is called before the first frame update
     private void Start()
@@ -31,6 +33,16 @@ public class TrackPlayer : MonoBehaviour
         else
         {
             GetComponent<Animator>().Play("Laugh");
+        }
+
+        if (isHit == true)
+        {
+            CoolTime += Time.deltaTime;
+            if (CoolTime >= 1f)
+            {
+                isHit = false;
+                CoolTime = 0;
+            }
         }
     }
 
@@ -60,11 +72,12 @@ public class TrackPlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Weapon"))
+        if (other.CompareTag("Weapon") && isHit == false)
         {
-            _particle.Play(); 
-            _Renderer.enabled = false;
             AIdead = true;
+            _particle.Play();
+            isHit = true;
+            _Renderer.enabled = false;
             Destroy(gameObject, 1f); 
         }
     }
