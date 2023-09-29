@@ -34,6 +34,11 @@
       "ItemName": "Laptop",
       "Description": "똑바로 앉아야 허리가 안아파요",
       "UseCount": "4"
+    },
+    {
+      "ItemName": "Wand",
+      "Description": "드디어 만났어요",
+      "UseCount": "30"
     }
   ]
 }
