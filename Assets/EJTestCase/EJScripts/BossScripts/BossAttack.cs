@@ -159,7 +159,7 @@ public class BossAttack : MonoBehaviour
 
     void ChangeScale()
     {
-        _fintemp.transform.localScale = _fintemp.transform.localScale * 2f;
+        _fintemp.transform.localScale = _fintemp.transform.localScale * 1.5f;
     }
 
     void FinThrowAni()
