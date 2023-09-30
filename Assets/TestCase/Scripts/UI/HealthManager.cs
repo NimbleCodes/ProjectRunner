@@ -44,7 +44,7 @@ public class HealthManager : MonoBehaviour
         if(other.collider.tag == "Enemy")
         {
             var direction = (transform.position - other.transform.position).normalized;
-            _rb.AddForce(direction * 30f, ForceMode.Impulse);
+            _rb.AddForce(direction * 20f, ForceMode.Impulse);
         }
         if (other.collider.tag == "Enemy" && isHit == false)
         {

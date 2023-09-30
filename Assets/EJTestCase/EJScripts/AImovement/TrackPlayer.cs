@@ -1,14 +1,16 @@
 using UnityEngine;
+using UnityEngine.AI; 
 
 public class TrackPlayer : MonoBehaviour
 {
 
     [SerializeField] Transform _player;
-    [SerializeField] Transform _AI;
-    [SerializeField] float _AIspeed;
+    Transform _AI;
     [SerializeField] ParticleSystem _particle; 
     Transform _Enemy;
     [SerializeField] SkinnedMeshRenderer _Renderer;
+    private Vector3 _targetPos;
+    NavMeshAgent agent; 
     public bool _isPlayerDead = false;
     public bool IsPlayerDead { set { _isPlayerDead = value; } }
     private bool AIdead = false;
@@ -21,6 +23,8 @@ public class TrackPlayer : MonoBehaviour
         GetComponent<Animator>().Play("Idle");
         _Enemy = transform;
         _player = GameObject.FindGameObjectWithTag("Player").transform;   
+        agent = GetComponent<NavMeshAgent>();
+        _AI = GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -50,14 +54,16 @@ public class TrackPlayer : MonoBehaviour
     {
         if (AIdead == false)
         {
-           _Enemy.LookAt(_player);
-           _Enemy.position = Vector3.MoveTowards(_Enemy.position, _player.position, _AIspeed * Time.deltaTime);
+            _targetPos = new Vector3(_player.position.x, transform.position.y, _player.transform.position.z);
+            _Enemy.LookAt(_targetPos);
+            //_Enemy.position = Vector3.MoveTowards(_Enemy.position, _player.position, _AIspeed * Time.deltaTime);
+            agent.SetDestination(_player.position); 
         }
     }
 
     public void behave()
     {
-        if (Vector3.Distance(_player.position, _AI.position) < 8f)
+        if (Vector3.Distance(_player.position, _AI.position) < 15f)
         {
             GetComponent<Animator>().Play("AIRunning");
             followplayer();
@@ -65,7 +71,8 @@ public class TrackPlayer : MonoBehaviour
         else
         {
             GetComponent<Animator>().Play("Idle");
-            _Enemy.LookAt(_player);
+            _targetPos = new Vector3(_player.position.x, transform.position.y, _player.transform.position.z);
+            _Enemy.LookAt(_targetPos);
         }
     }
 

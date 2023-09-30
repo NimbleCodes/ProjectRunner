@@ -23,7 +23,8 @@ public class BossAttack : MonoBehaviour
     float CoolTime; 
     public float _bosshealth;
     Coroutine _coroutine = null;
-    private float distance; 
+    private float distance;
+    private Vector3 _targetPos; 
 
 
     private void Start()
@@ -64,7 +65,8 @@ public class BossAttack : MonoBehaviour
 
     void LookAt()
     {
-        _Boss.LookAt(_player);
+        _targetPos = new Vector3(_player.position.x, transform.position.y, _player.transform.position.z);
+        _Boss.LookAt(_targetPos);
     }
 
 

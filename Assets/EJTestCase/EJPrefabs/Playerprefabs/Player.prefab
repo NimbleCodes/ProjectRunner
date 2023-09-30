@@ -108,7 +108,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6206028276799024020}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 2
   m_Drag: 0
   m_AngularDrag: 1
   m_UseGravity: 1
@@ -152,6 +152,7 @@ MonoBehaviour:
   playerRes: {fileID: 0}
   _respwanPoint: {fileID: 0}
   _playeranim: {fileID: 6206028276296540281}
+  _Inven: {fileID: 0}
 --- !u!114 &9168165599949631695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +180,7 @@ MonoBehaviour:
   wallRight: 0
   orientation: {fileID: 6206028276624406171}
   playerObj: {fileID: 6206028276288819127}
+  _ani: {fileID: 0}
 --- !u!1 &6206028277961496397
 GameObject:
   m_ObjectHideFlags: 0
