@@ -20,7 +20,7 @@ public class TrackPlayer : MonoBehaviour
     {
         GetComponent<Animator>().Play("Idle");
         _Enemy = transform;
-        _player = GameObject.FindGameObjectWithTag("Player").transform;
+        _player = GameObject.FindGameObjectWithTag("Player").transform;   
     }
 
     // Update is called once per frame
@@ -78,7 +78,7 @@ public class TrackPlayer : MonoBehaviour
             _particle.Play();
             isHit = true;
             _Renderer.enabled = false;
-            Destroy(gameObject, 1f); 
+            Destroy(gameObject, 1f);
         }
     }
 

@@ -8,10 +8,16 @@ public class HealthManager : MonoBehaviour
     [SerializeField] GameObject playerRes;
     [SerializeField] Transform _respwanPoint;
     [SerializeField] Animator _playeranim;
-    [SerializeField] GameObject _Inven; 
+    [SerializeField] GameObject _Inven;
+    Rigidbody _rb; 
     float _damageNheal = 0.25f;
     private bool isHit = false;
     float CoolTime;
+
+    private void Start()
+    {
+        _rb = GetComponent<Rigidbody>();
+    }
 
     void SetHealth()
     {
@@ -35,12 +41,17 @@ public class HealthManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) 
     {
-        if(other.collider.tag == "Enemy" && isHit == false)
+        if(other.collider.tag == "Enemy")
+        {
+            var direction = (transform.position - other.transform.position).normalized;
+            _rb.AddForce(direction * 30f, ForceMode.Impulse);
+        }
+        if (other.collider.tag == "Enemy" && isHit == false)
         {
             MinusHealth();
             isHit = true;
         }
-        if(other.collider.tag == "HealPack")
+        if (other.collider.tag == "HealPack")
         {
             AddHealth();
         }
@@ -59,7 +70,7 @@ public class HealthManager : MonoBehaviour
         if (isHit == true)
         {
             CoolTime += Time.deltaTime;
-            if (CoolTime >= 1.5f)
+            if (CoolTime >= 1.3f)
             {
                 isHit = false;
                 CoolTime = 0;
