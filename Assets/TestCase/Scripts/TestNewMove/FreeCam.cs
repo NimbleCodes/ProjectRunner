@@ -10,6 +10,7 @@ public class FreeCam : MonoBehaviour
     Transform _orientation;
     MoveNRotate mn;
     float _rotY, _rotX;
+    float camSpeed = 1f;
     float x, y;
     public bool wallRun = false, wallRight = false, wallLeft = false;
     public bool _wallRun {get{return wallRun;} set{wallRun = value;}}
@@ -57,13 +58,17 @@ public class FreeCam : MonoBehaviour
         float x = Input.GetAxisRaw("Mouse X");
         float y = Input.GetAxisRaw("Mouse Y");
 
-        _rotY += x;
+        _rotY += x * camSpeed;
 
-        _rotX -= y;
+        _rotX -= y * camSpeed;
         _rotX = Mathf.Clamp(_rotX, -90f, 90f); //y회전 90도 리미트
 
         //카메라 로테이션
         transform.rotation = Quaternion.Euler(_rotX, _rotY, 0);
+    }
+
+    public void ChangeCamSpeed(float value){
+        camSpeed = value;
     }
     
 
