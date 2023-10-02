@@ -6,6 +6,7 @@ public class ItemSpawner : MonoBehaviour
 {
     [SerializeField] Transform[] _spawnPoint;
     Transform _player;
+    GameObject childObject;
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -19,7 +20,9 @@ public class ItemSpawner : MonoBehaviour
             string itemName = ItemData.Instance.itemPool.itemObjects[randItemNum].ItemName;
             GameObject temp = Instantiate(ItemData.Instance.objPools[itemName]);
             temp.transform.position = new Vector3(_spawnPoint[i].position.x,_spawnPoint[i].position.y + 1, _spawnPoint[i].position.z);
-            temp.GetComponent<PickUpItem>().player = _player;
+            temp.transform.GetChild(0).GetComponent<PickUpItem>().player = _player;
+            temp.GetComponent<Rigidbody>().freezeRotation = true;
+            temp.GetComponent<Rigidbody>().isKinematic = true;
         }
     }
 }

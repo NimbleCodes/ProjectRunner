@@ -14,6 +14,8 @@ TagManager:
   - Cam
   - WeaponPoint
   - PlayerHolder
+  - FxTemporaire
+  - CamPos
   layers:
   - Default
   - TransparentFX

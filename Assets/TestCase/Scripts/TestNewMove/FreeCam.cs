@@ -8,7 +8,10 @@ public class FreeCam : MonoBehaviour
     Transform _player;
     Transform _playerObj;
     Transform _orientation;
+    MoveNRotate mn;
     float _rotY, _rotX;
+    float camSpeed = 1f;
+    float x, y;
     public bool wallRun = false, wallRight = false, wallLeft = false;
     public bool _wallRun {get{return wallRun;} set{wallRun = value;}}
     public bool _wallRight{get{return wallRight;} set{wallRight = value;}}
@@ -20,6 +23,7 @@ public class FreeCam : MonoBehaviour
         _player = GameObject.Find("Player").transform;
         _playerObj = GameObject.Find("PlayerObj").transform;
         _orientation = GameObject.Find("orientation").transform;
+        mn = _player.GetComponent<MoveNRotate>();
     }
     private void Update() 
     {
@@ -29,27 +33,23 @@ public class FreeCam : MonoBehaviour
         Vector3 viewDir = _player.position - new Vector3(_Cam.transform.position.x, _player.position.y, _Cam.transform.position.z);
         _orientation.forward = viewDir.normalized;
 
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
-        float mx = Input.GetAxisRaw("Mouse X");
-        if(_wallRun ==  true){
-            inputDir = _orientation.right * x;
-            if(_wallRight == true){
-                _playerObj.localRotation = Quaternion.Euler(transform.eulerAngles.x, _playerObj.eulerAngles.y,30);
-            }
-            if(_wallLeft == true){
-                _playerObj.localRotation = Quaternion.Euler(transform.eulerAngles.x, _playerObj.eulerAngles.y,-30);
-            }   
-        }else{
+        x = Input.GetAxisRaw("Horizontal");
+        y = Input.GetAxisRaw("Vertical");
+        inputDir = _orientation.forward * y + _orientation.right * x;
+        if(mn.state == MoveNRotate.MovementState.groundrunning){
             inputDir = _orientation.forward * y + _orientation.right * x;
-        }
+            
+            //바라보는 방향 = 캐릭터 Z방향
+            if (inputDir != Vector3.zero) 
+            {
+                _playerObj.forward = Vector3.Slerp(_playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
+            }
+        }else if(mn.state == MoveNRotate.MovementState.wallrunning){
+            inputDir = _orientation.right * x;
+        }        
         
-        //바라보는 방향 = 캐릭터 Z방향
-        if (inputDir != Vector3.zero) 
-        {
-            _playerObj.forward = Vector3.Slerp(_playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
-        }
-
+        
+        
         CamRotation();
     }
     
@@ -58,14 +58,19 @@ public class FreeCam : MonoBehaviour
         float x = Input.GetAxisRaw("Mouse X");
         float y = Input.GetAxisRaw("Mouse Y");
 
-        _rotY += x;
+        _rotY += x * camSpeed;
 
-        _rotX -= y;
+        _rotX -= y * camSpeed;
         _rotX = Mathf.Clamp(_rotX, -90f, 90f); //y회전 90도 리미트
 
         //카메라 로테이션
         transform.rotation = Quaternion.Euler(_rotX, _rotY, 0);
     }
+
+    public void ChangeCamSpeed(float value){
+        camSpeed = value;
+    }
+    
 
     
 
