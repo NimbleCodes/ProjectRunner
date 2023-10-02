@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SettingsPanel : MonoBehaviour
@@ -19,5 +17,13 @@ public class SettingsPanel : MonoBehaviour
 
     void OnSoundControllChange(float value){
         
+    }
+
+    void OnExitButtonClick(){
+        Application.Quit();
+    }
+
+    void OnMainMenuButtonClick(){
+        SceneManager.LoadScene("Home");
     }
 }
