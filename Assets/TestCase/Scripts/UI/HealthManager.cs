@@ -44,8 +44,7 @@ public class HealthManager : MonoBehaviour
     {
         if(other.collider.tag == "Enemy")
         {
-            _rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-            var direction = (transform.position - other.transform.position).normalized;
+            Vector3 direction = new Vector3(transform.position.x - other.transform.position.x, 0f, transform.position.z - other.transform.position.z); 
             _rb.AddForce(direction * 30f, ForceMode.Impulse);
         }
         if (other.collider.tag == "Enemy" && isHit == false)
@@ -56,14 +55,6 @@ public class HealthManager : MonoBehaviour
         if (other.collider.tag == "HealPack")
         {
             AddHealth();
-        }
-    }
-
-    private void OnCollisionExit(Collision other)
-    {
-        if (other.collider.tag == "Enemy")
-        {
-            _rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
         }
     }
 

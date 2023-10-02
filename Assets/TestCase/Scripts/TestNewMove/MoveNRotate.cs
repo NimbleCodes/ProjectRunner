@@ -109,13 +109,15 @@ public class MoveNRotate : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             _playerObj.GetComponent<Animator>().Play("AttackHorizontal");
-            _playerObj.GetComponent<Animator>().SetLayerWeight(1, 0); 
+            _playerObj.GetComponent<Animator>().SetLayerWeight(2, 0.3f); 
         }
         if (Input.GetMouseButtonUp(0))
         {
             _playerObj.GetComponent<Animator>().SetBool("OnAttack", false);
         }
     }
+
+   
 
     void LimitSpeed(){
         Vector3 flatVal = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
