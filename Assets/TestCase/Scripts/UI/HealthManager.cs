@@ -56,14 +56,18 @@ public class HealthManager : MonoBehaviour
         {
             AddHealth();
         }
+        if (other.collider.tag == "BossPoint")
+        {
+            _Inven.GetComponent<Inventory>().ResetItem();
+        }
     }
 
     private void Update()
     {
         if (_health.fillAmount <= 0)
         {
-            _playeranim.Play("Die", 0);
             _playeranim.Play("Die", 1);
+            _playeranim.Play("Die", 2);
             playerRes.GetComponent<PlayerRes>()._isDead = true;
             StartCoroutine(waitSecond());
         }

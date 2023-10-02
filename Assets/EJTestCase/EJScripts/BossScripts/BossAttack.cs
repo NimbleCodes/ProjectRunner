@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossAttack : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class BossAttack : MonoBehaviour
     [SerializeField] ParticleSystem _particle; 
     [SerializeField] GameObject document;
     [SerializeField] Animator _ani;
+    [SerializeField] Image _HP; 
     GameObject _temp;
     GameObject _fintemp;  
     [SerializeField] float throwPower;
@@ -186,7 +188,13 @@ public class BossAttack : MonoBehaviour
         if (other.tag == "Weapon" && isHit == false)
         {
             _bosshealth = _bosshealth - 1;
+            MinusHealth(); 
             isHit = true; 
         }
+    }
+
+    void MinusHealth()
+    {
+        _HP.fillAmount -= 0.1f; 
     }
 }

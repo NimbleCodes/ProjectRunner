@@ -1,5 +1,5 @@
 using UnityEngine;
-using static UnityEngine.ParticleSystem;
+using UnityEngine.UI;
 
 public class BossDie : MonoBehaviour
 {
