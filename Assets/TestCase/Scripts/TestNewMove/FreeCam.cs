@@ -1,3 +1,4 @@
+using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -5,17 +6,13 @@ public class FreeCam : MonoBehaviour
 {
     [SerializeField] Transform _Cam;
     [SerializeField] float rotationSpeed;
+    [SerializeField] CinemachineFreeLook _camsense;
     Transform _player;
     Transform _playerObj;
     Transform _orientation;
     MoveNRotate mn;
     float _rotY, _rotX;
-    float camSpeed = 1f;
     float x, y;
-    public bool wallRun = false, wallRight = false, wallLeft = false;
-    public bool _wallRun {get{return wallRun;} set{wallRun = value;}}
-    public bool _wallRight{get{return wallRight;} set{wallRight = value;}}
-    public bool _wallLeft{get{return wallLeft;} set{wallLeft = value;}}
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -58,9 +55,9 @@ public class FreeCam : MonoBehaviour
         float x = Input.GetAxisRaw("Mouse X");
         float y = Input.GetAxisRaw("Mouse Y");
 
-        _rotY += x * camSpeed;
+        _rotY += x;
 
-        _rotX -= y * camSpeed;
+        _rotX -= y;
         _rotX = Mathf.Clamp(_rotX, -90f, 90f); //y회전 90도 리미트
 
         //카메라 로테이션
@@ -68,7 +65,8 @@ public class FreeCam : MonoBehaviour
     }
 
     public void ChangeCamSpeed(float value){
-        camSpeed = value;
+        _camsense.m_YAxis.m_MaxSpeed = 4 *value;
+        _camsense.m_XAxis.m_MaxSpeed = 400 * value;
     }
     
 

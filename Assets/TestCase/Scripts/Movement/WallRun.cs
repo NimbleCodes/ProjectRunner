@@ -79,7 +79,6 @@ public class WallRun : MonoBehaviour
     void StartWallRun(){
         mn.wallRunning = true;
         wallChecking = false;
-        cam.GetComponent<FreeCam>()._wallRun = true;
         _ani.SetBool("OnWall",true);
     }
     
@@ -87,9 +86,6 @@ public class WallRun : MonoBehaviour
         mn.wallRunning = false;
         mn.rightWall = false;
         mn.leftWall  =false;
-        cam.GetComponent<FreeCam>()._wallRun = false;
-        cam.GetComponent<FreeCam>()._wallRight = false;
-        cam.GetComponent<FreeCam>()._wallLeft = false;
         rb.useGravity = true;
         _ani.SetBool("OnWall",false);
     }
