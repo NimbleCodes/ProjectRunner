@@ -22,7 +22,7 @@ public class PlayerRes : MonoBehaviour
             Enemyz=GameObject.FindGameObjectsWithTag("Enemy");
             for(int i=0; i<Enemyz.Length; i++)
             {
-                Enemyz[i].GetComponent<TrackPlayer>()._isPlayerDead = true;
+                Enemyz[i].GetComponent<TrackPlayer>().IsPlayerDead = true;
             }
         }
 
