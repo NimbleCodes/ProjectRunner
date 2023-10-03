@@ -8,6 +8,7 @@ public class TrackPlayer : MonoBehaviour
     [SerializeField] ParticleSystem _particle; 
     Transform _Enemy;
     [SerializeField] SkinnedMeshRenderer _Renderer;
+    AudioSource _AIdead; 
     private Vector3 _targetPos;
     NavMeshAgent agent; 
     public bool _isPlayerDead = false;
@@ -24,6 +25,7 @@ public class TrackPlayer : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player").transform;   
         agent = GetComponent<NavMeshAgent>();
         _AI = GetComponent<Transform>();
+        _AIdead = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -81,6 +83,7 @@ public class TrackPlayer : MonoBehaviour
         if (other.CompareTag("Weapon") && isHit == false)
         {
             AIdead = true;
+            _AIdead.Play();
             _particle.Play();
             isHit = true;
             _Renderer.enabled = false;
