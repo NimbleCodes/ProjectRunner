@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class UIController : MonoBehaviour
@@ -8,29 +9,41 @@ public class UIController : MonoBehaviour
     [SerializeField] GameObject _settingsPanel;
     [SerializeField] GameObject _gameoverPanel;
     bool settingsOpen = false;
-
+    public static UIController Instance;
+    private void Awake() {
+        _settingsPanel.SetActive(false);
+    }
     private void Update() {
         if(Input.GetKeyDown(KeyCode.Escape)){
             if(settingsOpen == false){
                 settingsOpen = true;
-                SettingsControll(true);
             }else{
                 settingsOpen = false;
-                SettingsControll(false);
+                //_settingsPanel.GetComponent<Animator>().SetBool("Active", false);
             }
         }
+
+        SettingsOpen(settingsOpen);
     }
-    void SettingsControll(bool openner){
+    void SettingsOpen(bool openner){
         if(openner == true){
+            Time.timeScale = 0f;
             _settingsPanel.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            //_settingsPanel.GetComponent<Animator>().SetBool("Active", true);
         }else{
             _settingsPanel.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            Time.timeScale = 1f;
         }
-        
     }
+
+    public void SetOpenner(bool openner){
+        settingsOpen = openner;
+    }
+
+    
 
 }
