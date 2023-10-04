@@ -11,18 +11,19 @@ public class SceneLoader : MonoBehaviour
 {
     [SerializeField] Text loadingText;
     UnityEngine.AsyncOperation asyncScene = new UnityEngine.AsyncOperation();
-    UnityEngine.AsyncOperation dummyLoader = new UnityEngine.AsyncOperation();
+
     DummyWrapper wrapper = new DummyWrapper();
     string loading ="Loading......";
     bool loaded = false;
     int stringCount =0;
 
-    // private void Start() {
-    //     StartCoroutine(LoadScene("KSUmap01"));
-    // }
+    private void Start() {
+        StartCoroutine(LoadScene("KSUmap01"));
+    }
     private void Update() {
         if(Input.anyKeyDown && loaded == true){
             asyncScene.allowSceneActivation = true;
+            loaded = false;
         }
     }
 
@@ -38,12 +39,8 @@ public class SceneLoader : MonoBehaviour
                 loadingText.text = "";
                 stringCount =0;
             }
-            
-            
-            if(loaded == true){
-                loadingText.text = "-press anykey to Start-";
-            }
         }
+        loadingText.text = "-press anykey to Start-";
 
     }
 
@@ -61,10 +58,10 @@ public class SceneLoader : MonoBehaviour
         loaded = true;
     }
 
-    void OnEnable()
-    {
-        StartCoroutine(LoadScene("KSUmap01"));
-    }
+    // void OnEnable()
+    // {
+    //     StartCoroutine(LoadScene("KSUmap01"));
+    // }
 }
 [Serializable]
 public class DummyWrapper{
