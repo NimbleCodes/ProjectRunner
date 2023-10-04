@@ -6,6 +6,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class SceneLoader : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class SceneLoader : MonoBehaviour
     string loading ="Loading......";
     bool loaded = true;
     int stringCount =0;
+    string json;
 
     private void Start() {
         StartCoroutine(LoadScene("KSUmap01"));
@@ -26,13 +28,19 @@ public class SceneLoader : MonoBehaviour
             loaded = false;
         }
     }
-
+    bool _loadEnd = false;  
+    bool _readStart = false;
     IEnumerator LoadScene(string sceneName){
         asyncScene = SceneManager.LoadSceneAsync("KSUMap01");
         AsyncLoadData();    
         asyncScene.allowSceneActivation =false;
         while(loaded == false){
             yield return new WaitForSeconds(0.1f);
+            if(_loadEnd == true && _readStart == false){
+                _readStart = true;
+                jsonRead();
+
+            }
             loadingText.text += loading[stringCount];
             stringCount++;
             if(stringCount >= loading.Length){
@@ -44,18 +52,33 @@ public class SceneLoader : MonoBehaviour
 
     }
 
-    async void AsyncLoadData(){
-        string json;
-        using(StreamReader rd = new StreamReader("Assets/Resources/TestCase/Json/dummyData.json")){
-            json =await rd.ReadToEndAsync();//await is to make work async
-        }                                   //also await is needed to null check
+    void AsyncLoadData(){
+        
+        ResourceRequest rq = Resources.LoadAsync("ItemData");
+        // using(StreamReader rd = new StreamReader("Assets/Resources/TestCase/Json/dummyData.json")){
+        //     json =await rd.ReadToEndAsync();//await is to make work async
+        // }                                   //also await is needed to null check
                                             //without calling false thousand times
-        if(string.IsNullOrEmpty(json) == false){
-            await Task.Run(() => {
-                wrapper = JsonUtility.FromJson<DummyWrapper>(json);
-            });
-        }
-        loaded = true;
+                         
+        
+        rq.completed += (op) =>
+        {
+            Debug.Log("input complete");
+            json = ((TextAsset)rq.asset).text;
+            _loadEnd = true;
+        };
+    }
+
+    async void jsonRead()
+    {
+        await Task.Run(() => {
+            Debug.Log("start read");
+            if(string.IsNullOrEmpty(json) == false){
+                wrapper = JsonUtility.FromJson<DummyWrapper>(json);   
+                loaded = true;
+            }
+        }); 
+
     }
 
     // void OnEnable()
