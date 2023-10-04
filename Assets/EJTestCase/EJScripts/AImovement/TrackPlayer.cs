@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class TrackPlayer : MonoBehaviour
 {
-    [SerializeField] Transform _player;
+    Transform _player;
     Transform _AI;
     [SerializeField] ParticleSystem _particle; 
     Transform _Enemy;

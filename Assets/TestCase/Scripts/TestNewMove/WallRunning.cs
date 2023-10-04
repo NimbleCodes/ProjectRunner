@@ -20,16 +20,20 @@ public class WallRunning : MonoBehaviour
    public bool wallLeft, wallRight;
 
    // Reference
-   [SerializeField] Transform orientation;
-   [SerializeField] Transform playerObj;
-   [SerializeField] Animator _ani;
+   Transform orientation;
+   Transform playerObj;
+   Animator _ani;
    MoveNRotate mn;
    Rigidbody rb;
 
-   private void Start() {
+   private void Start() 
+   {
     mn = GetComponent<MoveNRotate>();
     rb = GetComponent<Rigidbody>();
-   } 
+    playerObj = GameObject.FindGameObjectWithTag("Player").transform; 
+    _ani = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
+    orientation = GameObject.FindGameObjectWithTag("orientation").transform;
+    } 
     private void Update() {
         CheckWall();
         StateMachine();

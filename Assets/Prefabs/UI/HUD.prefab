@@ -1128,7 +1128,7 @@ GameObject:
   - component: {fileID: 4837883166529787074}
   m_Layer: 0
   m_Name: ItemSlot
-  m_TagString: Untagged
+  m_TagString: Inven
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1214,7 +1214,6 @@ MonoBehaviour:
   - {fileID: 4837883168146736299}
   - {fileID: 4837883168141444944}
   - {fileID: 4837883168030264246}
-  _WeaponPoint: {fileID: 0}
   _AllslotFull: 0
   Items: []
 --- !u!1 &4837883166545217553
@@ -3333,7 +3332,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _settingsPanel: {fileID: 4837883166427483476}
   _gameoverPanel: {fileID: 0}
-  _backButton: {fileID: 0}
 --- !u!1 &4837883168123009665
 GameObject:
   m_ObjectHideFlags: 0

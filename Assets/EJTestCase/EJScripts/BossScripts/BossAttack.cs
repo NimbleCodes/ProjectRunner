@@ -4,19 +4,20 @@ using UnityEngine.UI;
 
 public class BossAttack : MonoBehaviour
 {
-    [SerializeField] Transform _player;
-    [SerializeField] Transform _Boss;
-    [SerializeField] Transform weaponPoint;
-    [SerializeField] Transform Camp; 
-    [SerializeField] Transform finweapon;
+    Transform _player;
+    Transform _Boss;
+    Transform weaponPoint;
+    Transform Camp; 
+    Transform finweapon;
     [SerializeField] GameObject[] _weapon;
     [SerializeField] ParticleSystem _particle; 
     [SerializeField] GameObject document;
-    [SerializeField] Animator _ani;
+    Animator _ani;
     [SerializeField] Image _HP;
     GameObject _temp;
     GameObject _fintemp;  
     [SerializeField] float throwPower;
+    AudioSource _Ouch;
     private bool baseequipped = false;
     private bool finequipped = false;
     private bool isStand = false; 
@@ -31,6 +32,13 @@ public class BossAttack : MonoBehaviour
 
     private void Start()
     {
+        _Boss = GetComponent<Transform>();
+        _player = GameObject.FindGameObjectWithTag("Player").transform;
+        weaponPoint = GameObject.FindGameObjectWithTag("BossWP").transform;
+        finweapon = GameObject.FindGameObjectWithTag("FinWP").transform;
+        _ani = GetComponent<Animator>();
+        Camp = GameObject.FindGameObjectWithTag("CamPos").transform;
+        _Ouch = GetComponent<AudioSource>(); 
         BaseSpawn();
         _bosshealth = 10f;
         _coroutine = StartCoroutine(BaseThrowObject());
@@ -187,6 +195,7 @@ public class BossAttack : MonoBehaviour
     {
         if (other.tag == "Weapon" && isHit == false)
         {
+            _Ouch.Play();
             _bosshealth = _bosshealth - 1;
             MinusHealth(); 
             isHit = true; 

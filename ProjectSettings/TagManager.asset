@@ -16,6 +16,11 @@ TagManager:
   - PlayerHolder
   - FxTemporaire
   - CamPos
+  - Inven
+  - orientation
+  - BossWP
+  - FinWP
+  - BGM
   layers:
   - Default
   - TransparentFX
