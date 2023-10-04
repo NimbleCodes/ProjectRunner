@@ -8,11 +8,16 @@ public class Inventory : MonoBehaviour
     public static Inventory Instance;
     [SerializeField] GameObject[] _itemSlot;
     [SerializeField] GameObject[] _itemLife;
-    [SerializeField] Transform _WeaponPoint; 
+    Transform _WeaponPoint; 
     public bool _AllslotFull = false;
     private bool _isEquipped = false;
     private float x, y, z;
     public List<ItemController> Items = new List<ItemController>();
+
+    private void Start()
+    {
+        _WeaponPoint = GameObject.FindGameObjectWithTag("WeaponPoint").transform; 
+    }
 
     private void Awake()
     {

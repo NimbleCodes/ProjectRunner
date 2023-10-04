@@ -38,6 +38,7 @@ public class SettingsPanel : MonoBehaviour
     }
 
     public void OnMainMenuButtonClick(){
+        _UIContorll.SetOpenner(false);
         SceneManager.LoadScene("Home");
     }
 
