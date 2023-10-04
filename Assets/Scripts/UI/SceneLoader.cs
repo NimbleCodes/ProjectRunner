@@ -14,7 +14,7 @@ public class SceneLoader : MonoBehaviour
     UnityEngine.AsyncOperation dummyLoader = new UnityEngine.AsyncOperation();
     DummyWrapper wrapper = new DummyWrapper();
     string loading ="Loading......";
-    bool loaded = false;
+    bool loaded = true;
     int stringCount =0;
 
     private void Start() {
