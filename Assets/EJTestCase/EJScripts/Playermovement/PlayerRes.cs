@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerRes : MonoBehaviour
 {
-    [SerializeField] GameObject _player;
+    GameObject _player;
     [SerializeField] CapsuleCollider _playerCollider;
     Transform _respawnPoint;
     public GameObject[] Enemyz = null;
@@ -12,7 +12,9 @@ public class PlayerRes : MonoBehaviour
 
     private void Start()
     {
-        _respawnPoint = GetComponent<Transform>();  
+        _respawnPoint = GetComponent<Transform>();
+        _player = GameObject.FindGameObjectWithTag("PlayerHolder"); 
+        _playerCollider = GameObject.FindGameObjectWithTag("Player").GetComponent<CapsuleCollider>();
     }
 
     void Update()

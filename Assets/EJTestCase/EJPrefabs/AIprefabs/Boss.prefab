@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1400250761420790803}
   m_Layer: 0
   m_Name: FinalWeaponPoint
-  m_TagString: Untagged
+  m_TagString: FinWP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,8 +41,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1400250761816735223}
   m_Layer: 0
-  m_Name: WeaponPoint1
-  m_TagString: Untagged
+  m_Name: WeaponPoint
+  m_TagString: BossWP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -588,6 +588,7 @@ GameObject:
   - component: {fileID: 1400250762852018961}
   - component: {fileID: 1400250762852018965}
   - component: {fileID: 5433662198307862666}
+  - component: {fileID: 3923458153503909113}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -677,11 +678,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79939e4047c786488befb57945b28ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
-  _Boss: {fileID: 1400250762142480821}
-  weaponPoint: {fileID: 1400250761816735223}
-  Camp: {fileID: 0}
-  finweapon: {fileID: 1400250761420790803}
   _weapon:
   - {fileID: 6346420229587932475, guid: 53b2c31742e3969419da352e261581aa, type: 3}
   - {fileID: 1912286663973524651, guid: fa1734247b77f1140aed125be3754a52, type: 3}
@@ -690,7 +686,7 @@ MonoBehaviour:
   - {fileID: 9078974998194778380, guid: 2fa4ac3b1d328e441a39aa58af9898bf, type: 3}
   _particle: {fileID: 1400250763247405299}
   document: {fileID: 4140708009855177111, guid: 3a768913b6624ce40bcd34837f93aa91, type: 3}
-  _ani: {fileID: 1400250762133378683}
+  _HP: {fileID: 0}
   throwPower: 10
   _bosshealth: 0
 --- !u!114 &5433662198307862666
@@ -708,6 +704,102 @@ MonoBehaviour:
   _bossdead: {fileID: 4671784774765392701}
   _bossbomb: {fileID: 8382538287010734624}
   _Renderer: {fileID: 1400250762129303739}
+--- !u!82 &3923458153503909113
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400250762142901707}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d6ac6a7d855fbbb4e8b7896d6f7467eb, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1400250762142901713
 GameObject:
   m_ObjectHideFlags: 0

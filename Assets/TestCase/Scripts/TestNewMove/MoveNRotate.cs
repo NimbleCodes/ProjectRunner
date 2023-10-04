@@ -3,11 +3,13 @@ using UnityEngine;
 
 public class MoveNRotate : MonoBehaviour
 {
-    [SerializeField] GameObject _playerObj;
+    GameObject _playerObj;
     [SerializeField] public float moveSpeed;
-    [SerializeField] Transform _orientation;
+    Transform _orientation;
     [SerializeField] int groundDrag;
     [SerializeField] float wallRunForce;
+    AudioSource _audio;
+    [SerializeField] AudioClip _attack; 
     float x,y;
     int _jumpCount = 0;
     Vector3 moveDirection;
@@ -16,7 +18,6 @@ public class MoveNRotate : MonoBehaviour
     public bool wallRunning;
     public bool rightWall{get;set;}
     public bool leftWall{get;set;}
-    Animation anim;
     public MovementState state;
 
     public enum MovementState
@@ -29,9 +30,11 @@ public class MoveNRotate : MonoBehaviour
     
     private void Start() 
     {
+        _audio = GetComponent<AudioSource>();
+        _playerObj = GameObject.FindGameObjectWithTag("Player"); 
+        _orientation = GameObject.FindGameObjectWithTag("orientation").transform;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-        anim = _playerObj.GetComponent<Animation>();
         state = MovementState.groundrunning; 
     }
 
@@ -108,6 +111,8 @@ public class MoveNRotate : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            _audio.clip = _attack; 
+            _audio.Play();
             _playerObj.GetComponent<Animator>().Play("AttackHorizontal");
             _playerObj.GetComponent<Animator>().SetLayerWeight(2, 0.3f); 
         }
