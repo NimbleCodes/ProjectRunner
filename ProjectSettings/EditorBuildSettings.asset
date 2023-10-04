@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Home.unity
+    path: Assets/Resources/Scenes/Home.unity
     guid: 5ff0ecd8c476366428938d47d3e82ddd
   - enabled: 1
-    path: Assets/Scenes/KSUMap01.unity
+    path: Assets/Resources/Scenes/KSUMap01.unity
     guid: 645278191a293ae4f87df6ecc8f72411
   m_configObjects: {}

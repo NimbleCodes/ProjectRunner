@@ -15,7 +15,7 @@ public class SceneLoader : MonoBehaviour
 
     DummyWrapper wrapper = new DummyWrapper();
     string loading ="Loading......";
-    bool loaded = true;
+    bool loaded = false;
     int stringCount =0;
     string json;
 
@@ -31,8 +31,8 @@ public class SceneLoader : MonoBehaviour
     bool _loadEnd = false;  
     bool _readStart = false;
     IEnumerator LoadScene(string sceneName){
+        AsyncLoadData();  
         asyncScene = SceneManager.LoadSceneAsync("KSUMap01");
-        AsyncLoadData();    
         asyncScene.allowSceneActivation =false;
         while(loaded == false){
             yield return new WaitForSeconds(0.1f);
@@ -54,7 +54,7 @@ public class SceneLoader : MonoBehaviour
 
     void AsyncLoadData(){
         
-        ResourceRequest rq = Resources.LoadAsync("ItemData");
+        ResourceRequest rq = Resources.LoadAsync("TestCase/Json/dummyData");
         // using(StreamReader rd = new StreamReader("Assets/Resources/TestCase/Json/dummyData.json")){
         //     json =await rd.ReadToEndAsync();//await is to make work async
         // }                                   //also await is needed to null check
