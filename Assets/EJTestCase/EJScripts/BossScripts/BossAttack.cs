@@ -13,7 +13,7 @@ public class BossAttack : MonoBehaviour
     [SerializeField] ParticleSystem _particle; 
     [SerializeField] GameObject document;
     [SerializeField] Animator _ani;
-    [SerializeField] Image _HP; 
+    [SerializeField] Image _HP;
     GameObject _temp;
     GameObject _fintemp;  
     [SerializeField] float throwPower;
