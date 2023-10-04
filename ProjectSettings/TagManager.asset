@@ -16,6 +16,7 @@ TagManager:
   - PlayerHolder
   - FxTemporaire
   - CamPos
+  - BossTrigger
   layers:
   - Default
   - TransparentFX
