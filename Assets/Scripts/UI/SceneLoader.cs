@@ -17,11 +17,11 @@ public class SceneLoader : MonoBehaviour
     bool loaded = false;
     int stringCount =0;
 
-    private void Start() {
-        StartCoroutine(LoadScene("KSUmap01"));
-    }
+    // private void Start() {
+    //     StartCoroutine(LoadScene("KSUmap01"));
+    // }
     private void Update() {
-        if(Input.anyKeyDown){
+        if(Input.anyKeyDown && loaded == true){
             asyncScene.allowSceneActivation = true;
         }
     }
@@ -59,6 +59,11 @@ public class SceneLoader : MonoBehaviour
             });
         }
         loaded = true;
+    }
+
+    void OnEnable()
+    {
+        StartCoroutine(LoadScene("KSUmap01"));
     }
 }
 [Serializable]
