@@ -9,6 +9,7 @@ public class PlayerRes : MonoBehaviour
     public GameObject[] Enemyz = null;
     public bool _isDead = false;
     public bool _isRespwan = false;
+    public bool _isPannelClose = false; 
 
     private void Start()
     {
@@ -28,7 +29,7 @@ public class PlayerRes : MonoBehaviour
             }
         }
 
-        if (_isDead == false && _isRespwan == true)
+        if (_isDead == false && _isRespwan == true && _isPannelClose == true)
         {
             StartCoroutine(Respawn());
         }
