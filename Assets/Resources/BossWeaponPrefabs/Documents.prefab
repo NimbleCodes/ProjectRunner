@@ -580,7 +580,7 @@ GameObject:
   - component: {fileID: 5837184825507743158}
   m_Layer: 0
   m_Name: Documents
-  m_TagString: Enemy
+  m_TagString: BossWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

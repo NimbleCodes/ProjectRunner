@@ -8,7 +8,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] GameObject[] _itemSlot;
     [SerializeField] GameObject[] _itemLife;
     
-    Transform _WeaponPoint; 
+    Transform _WeaponPoint;
     public bool _AllslotFull = false;
     private bool _isEquipped = false;
     public List<ItemController> Items = new List<ItemController>();
@@ -233,12 +233,16 @@ public class Inventory : MonoBehaviour
     public void ResetItem()
     {
         Items.Clear();
+        if (_isEquipped == true)
+        {
+            Destroy(_WeaponPoint.GetChild(0).gameObject);
+            _isEquipped = false;
+        }
         for (int i = 0; i < _itemSlot.Length; i++)
         {
             _itemSlot[i].SetActive(false);
             _itemLife[i].SetActive(false);
             _itemSlot[i].GetComponent<Slot>().isItemIn = false;
-            _isEquipped = false;
         }
     }
 

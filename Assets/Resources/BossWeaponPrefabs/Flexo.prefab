@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8760913151010651777}
   m_Layer: 0
   m_Name: Flexo
-  m_TagString: Enemy
+  m_TagString: BossWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

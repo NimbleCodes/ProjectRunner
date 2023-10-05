@@ -23,6 +23,7 @@ TagManager:
   - Inven
   - BGM
   - UIController
+  - BossWeapon
   layers:
   - Default
   - TransparentFX

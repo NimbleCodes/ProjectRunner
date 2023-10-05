@@ -14,36 +14,46 @@ public class SettingsPanel : MonoBehaviour
     float _currentVolume = 1f;
 
     
-    private void Start() {
+    private void Start() 
+    {
         _fc = GameObject.Find("CamPoint").GetComponent<FreeCam>();
     }
 
-    public void OnMouseControllChange(float value){
+    public void OnMouseControllChange(float value)
+    {
         _fc.ChangeCamSpeed(value);
     }
 
-    public void OnSoundControllChange(float value){
+    public void OnSoundControllChange(float value)
+    {
         _bgm.volume = value;
         _currentVolume = _bgm.volume;
     }
 
-    public void OnExitButtonClick(){
+    public void OnExitButtonClick()
+    {
         Application.Quit();
     }
 
-    public void OnResumekButtonClick(){
+    public void OnResumekButtonClick()
+    {
        _UIContorll.SetOpenner(false);
     }
 
-    public void OnMainMenuButtonClick(){
+    public void OnMainMenuButtonClick()
+    {
         _UIContorll.SetOpenner(false);
         SceneManager.LoadScene("Home");
     }
 
-    public void OnBGMToggleClick(bool mute){
-        if(mute == true){
+    public void OnBGMToggleClick(bool mute)
+    {
+        if(mute == true)
+        {
             _bgm.mute = mute;
-        }else{
+        }
+        else
+        {
             _bgm.mute = mute;
             _bgm.volume = _currentVolume;
         }

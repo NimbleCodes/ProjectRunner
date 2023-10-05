@@ -13,19 +13,20 @@ public class PlayerInBossMap : MonoBehaviour
         _audio = GameObject.FindGameObjectWithTag("BGM").GetComponent<AudioSource>();
         _Inven = GameObject.FindGameObjectWithTag("Inven");
         Enemyz = GameObject.FindGameObjectsWithTag("Enemy");
-        _BossTrigger = GameObject.FindGameObjectWithTag("BossTrigger");
+        _BossTrigger = GetComponent<GameObject>(); 
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.collider.tag == "BossTrigger")
+        if (other.tag == "Player")
         {
             _Inven.GetComponent<Inventory>().ResetItem();
             _audio.clip = _BossMap;
+            _audio.Play();
 
             for (int i = 0; i < Enemyz.Length; i++)
             {
-                Enemyz[i].SetActive(false);
+                Destroy(Enemyz[i]);
             }
 
             _BossTrigger.SetActive(false);

@@ -61,13 +61,14 @@ public class HealthManager : MonoBehaviour
             MinusHealth();
             isHit = true;
         }
+        if (other.collider.tag == "BossWeapon")
+        {
+            _audioSource.clip = _Ouch;
+            MinusHealth();
+        }
         if (other.collider.tag == "HealPack")
         {
             AddHealth();
-        }
-        if (other.collider.tag == "BossPoint")
-        {
-            _Inven.GetComponent<Inventory>().ResetItem();
         }
     }
 

@@ -9,7 +9,8 @@ public class BossTrigger : MonoBehaviour
     {
         _BossMapInit = GetComponent<PlayerInBossMap>();
     }
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other) 
+    {
         _BossHP.SetActive(true);
         _BossMapInit.InitBossStage();
     }
