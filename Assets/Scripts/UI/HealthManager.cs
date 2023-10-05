@@ -10,7 +10,8 @@ public class HealthManager : MonoBehaviour
     Animator _playeranim;
     GameObject _Inven;
     AudioSource _audioSource;
-    [SerializeField] AudioClip _Ouch; 
+    [SerializeField] AudioClip _Ouch;
+    UIController _uiControll;
 
     Rigidbody _rb; 
     float _damageNheal = 0.25f;
@@ -25,7 +26,9 @@ public class HealthManager : MonoBehaviour
         _respwanPoint = GameObject.FindGameObjectWithTag("ResPoint").transform; 
         _Inven = GameObject.FindGameObjectWithTag("Inven");
         _playeranim = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
-        _audioSource = GetComponent<AudioSource>();
+        _audioSource = gameObject.GetComponent<AudioSource>();
+        _audioSource.Play();
+        _uiControll = GameObject.FindGameObjectWithTag("UIController").GetComponent<UIController>();
     }
 
     void SetHealth()
@@ -52,13 +55,12 @@ public class HealthManager : MonoBehaviour
     {
         if(other.collider.tag == "Enemy")
         {
-            _audioSource.clip = _Ouch; 
-            _audioSource.Play(); 
             Vector3 direction = new Vector3(transform.position.x - other.transform.position.x, 0f, transform.position.z - other.transform.position.z); 
             _rb.AddForce(direction * 30f, ForceMode.Impulse);
         }
         if (other.collider.tag == "Enemy" && isHit == false)
         {
+            _audioSource.clip = _Ouch; 
             MinusHealth();
             isHit = true;
         }
@@ -79,6 +81,7 @@ public class HealthManager : MonoBehaviour
             _playeranim.Play("Die", 1);
             _playeranim.Play("Die", 2);
             playerRes.GetComponent<PlayerRes>()._isDead = true;
+            _uiControll.OpenGameOver();
             StartCoroutine(waitSecond());
         }
 
