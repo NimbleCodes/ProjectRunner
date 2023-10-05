@@ -4,20 +4,18 @@ using UnityEngine.UI;
 
 public class BossAttack : MonoBehaviour
 {
-    Transform _player;
-    Transform _Boss;
-    Transform weaponPoint;
-    Transform Camp; 
-    Transform finweapon;
+    [SerializeField] float throwPower;
     [SerializeField] GameObject[] _weapon;
     [SerializeField] ParticleSystem _particle; 
     [SerializeField] GameObject document;
-    Animator _ani;
     [SerializeField] Image _HP;
-    GameObject _temp;
-    GameObject _fintemp;  
-    [SerializeField] float throwPower;
+
+    Transform _player, _Boss, _weaponPoint,_camp;
+    Transform _finweapon;
+    Animator _ani;
+    GameObject _temp, _fintemp;
     AudioSource _Ouch;
+
     private bool baseequipped = false;
     private bool finequipped = false;
     private bool isStand = false; 
@@ -34,10 +32,10 @@ public class BossAttack : MonoBehaviour
     {
         _Boss = GetComponent<Transform>();
         _player = GameObject.FindGameObjectWithTag("Player").transform;
-        weaponPoint = GameObject.FindGameObjectWithTag("BossWP").transform;
-        finweapon = GameObject.FindGameObjectWithTag("FinWP").transform;
+        _weaponPoint = GameObject.FindGameObjectWithTag("BossWP").transform;
+        _finweapon = GameObject.FindGameObjectWithTag("FinWP").transform;
         _ani = GetComponent<Animator>();
-        Camp = GameObject.FindGameObjectWithTag("CamPos").transform;
+        _camp = GameObject.FindGameObjectWithTag("CamPos").transform;
         _Ouch = GetComponent<AudioSource>(); 
         BaseSpawn();
         _bosshealth = 10f;
@@ -88,7 +86,7 @@ public class BossAttack : MonoBehaviour
             int selection = Random.Range(0, _weapon.Length);
             GameObject selectedWeapon = _weapon[selection];
             _temp = Instantiate(selectedWeapon);
-            _temp.transform.SetParent(weaponPoint);
+            _temp.transform.SetParent(_weaponPoint);
             _temp.transform.localPosition = Vector3.zero;
             _temp.transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
 
@@ -120,7 +118,7 @@ public class BossAttack : MonoBehaviour
 
     void BaseThrowAni()
     {
-        Vector3 target = Camp.position - weaponPoint.position;
+        Vector3 target = _camp.position - _weaponPoint.position;
         _temp.transform.SetParent(null);
         _temp.GetComponent<Rigidbody>().isKinematic = false;
         Invoke("Objecttrig", 0.2f);
@@ -161,7 +159,7 @@ public class BossAttack : MonoBehaviour
         {
             finequipped = true;
             _fintemp = Instantiate(document);
-            _fintemp.transform.SetParent(finweapon);
+            _fintemp.transform.SetParent(_finweapon);
             _fintemp.transform.localPosition = Vector3.zero;
 
             _fintemp.GetComponent<Rigidbody>().isKinematic = true;
@@ -176,7 +174,7 @@ public class BossAttack : MonoBehaviour
 
     void FinThrowAni()
     {
-        Vector3 target = Camp.position - _fintemp.transform.position;
+        Vector3 target = _camp.position - _fintemp.transform.position;
         _fintemp.transform.SetParent(null);
         _fintemp.GetComponent<Rigidbody>().isKinematic = false;
         Invoke("FinObjecttrig", 0.2f);

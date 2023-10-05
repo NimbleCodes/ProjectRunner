@@ -17,7 +17,7 @@ public class TrackPlayer : MonoBehaviour
     private bool isHit = false;
     float CoolTime;
 
-    // Start is called before the first frame update
+    
     private void Start()
     {
         GetComponent<Animator>().Play("Idle");
@@ -27,8 +27,7 @@ public class TrackPlayer : MonoBehaviour
         _AI = GetComponent<Transform>();
         _AIdead = GetComponent<AudioSource>();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (_isPlayerDead == false)
@@ -57,7 +56,6 @@ public class TrackPlayer : MonoBehaviour
         {
             _targetPos = new Vector3(_player.position.x, transform.position.y, _player.transform.position.z);
             _Enemy.LookAt(_targetPos);
-            //_Enemy.position = Vector3.MoveTowards(_Enemy.position, _player.position, _AIspeed * Time.deltaTime);
             agent.SetDestination(_player.position); 
         }
     }

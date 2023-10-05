@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class BGM : MonoBehaviour
 {
-    AudioSource _audio;
     [SerializeField] AudioClip _BGM;
     [SerializeField] AudioClip _Giggling;
-    GameObject _player; 
+    GameObject _player;
+    AudioSource _audio; 
 
     private void Start()
     {
@@ -17,7 +17,7 @@ public class BGM : MonoBehaviour
 
     private void Update()
     {
-        if (_player.GetComponent<HealthManager>()._health.fillAmount <= 0)
+        if (_player.GetComponent<HealthManager>().GetCurrentHealth() <= 0)
         {
             //_audio.PlayOneShot(_Giggling); 
         }

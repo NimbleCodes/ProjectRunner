@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using System.Threading.Tasks;
-using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEditor;
 
 public class SceneLoader : MonoBehaviour
 {
@@ -34,12 +32,12 @@ public class SceneLoader : MonoBehaviour
         AsyncLoadData();  
         asyncScene = SceneManager.LoadSceneAsync("KSUMap01");
         asyncScene.allowSceneActivation =false;
+        
         while(loaded == false){
             yield return new WaitForSeconds(0.1f);
             if(_loadEnd == true && _readStart == false){
                 _readStart = true;
                 jsonRead();
-
             }
             loadingText.text += loading[stringCount];
             stringCount++;
@@ -53,13 +51,7 @@ public class SceneLoader : MonoBehaviour
     }
 
     void AsyncLoadData(){
-        
         ResourceRequest rq = Resources.LoadAsync("TestCase/Json/dummyData");
-        // using(StreamReader rd = new StreamReader("Assets/Resources/TestCase/Json/dummyData.json")){
-        //     json =await rd.ReadToEndAsync();//await is to make work async
-        // }                                   //also await is needed to null check
-                                            //without calling false thousand times
-                         
         
         rq.completed += (op) =>
         {
@@ -80,12 +72,8 @@ public class SceneLoader : MonoBehaviour
         }); 
 
     }
-
-    // void OnEnable()
-    // {
-    //     StartCoroutine(LoadScene("KSUmap01"));
-    // }
 }
+
 [Serializable]
 public class DummyWrapper{
     public List<DummyData> _datas = new List<DummyData>();

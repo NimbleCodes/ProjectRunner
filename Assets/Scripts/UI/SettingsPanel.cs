@@ -10,12 +10,12 @@ public class SettingsPanel : MonoBehaviour
     [SerializeField] AudioSource _bgm;
     [SerializeField] UIController _UIContorll;
 
-    Animator _anim;
     FreeCam _fc;
     float _currentVolume = 1f;
+
+    
     private void Start() {
         _fc = GameObject.Find("CamPoint").GetComponent<FreeCam>();
-        _anim = GetComponent<Animator>();
     }
 
     public void OnMouseControllChange(float value){
@@ -32,8 +32,6 @@ public class SettingsPanel : MonoBehaviour
     }
 
     public void OnResumekButtonClick(){
-        //_anim.SetBool("Active",false);
-       //UIController.Instance.SetOpenner(false);
        _UIContorll.SetOpenner(false);
     }
 

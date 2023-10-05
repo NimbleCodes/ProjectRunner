@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class DoorOpenner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] Animator _door;
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter(Collider other)
     {
-        
+        _door.SetBool("Open", true);
     }
 }
