@@ -6,7 +6,7 @@ public class BossRoomEntry : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {        
-        if(other.name == "Player")
+        if(other.CompareTag("Player"))
         {
             anim.SetBool("Open", true);
         }
@@ -14,7 +14,7 @@ public class BossRoomEntry : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.name == "Player")
+        if(other.CompareTag("Player"))
         {
             anim.SetBool("Open", false);
         }
