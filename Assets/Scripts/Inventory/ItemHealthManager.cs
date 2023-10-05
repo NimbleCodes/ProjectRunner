@@ -2,12 +2,7 @@ using UnityEngine;
 
 public class ItemHealthManager : MonoBehaviour
 {
-    public int itemHealth;
-
-    private void Start()
-    {
-        //itemHealth = GetComponent<ItemController>().itemLife; 
-    }
+    int itemHealth;
 
     private void OnTriggerEnter(Collider other)
     {

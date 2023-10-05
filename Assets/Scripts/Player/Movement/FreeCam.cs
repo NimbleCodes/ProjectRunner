@@ -1,5 +1,4 @@
 using Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class FreeCam : MonoBehaviour
@@ -44,9 +43,7 @@ public class FreeCam : MonoBehaviour
         }else if(mn.state == MoveNRotate.MovementState.wallrunning){
             inputDir = _orientation.right * x;
         }        
-        
-        
-        
+
         CamRotation();
     }
     
@@ -69,8 +66,4 @@ public class FreeCam : MonoBehaviour
         _camsense.m_XAxis.m_MaxSpeed = 400 * value;
     }
     
-
-    
-
-
 }

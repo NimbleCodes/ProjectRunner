@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,10 +7,10 @@ public class Inventory : MonoBehaviour
     public static Inventory Instance;
     [SerializeField] GameObject[] _itemSlot;
     [SerializeField] GameObject[] _itemLife;
+    
     Transform _WeaponPoint; 
     public bool _AllslotFull = false;
     private bool _isEquipped = false;
-    private float x, y, z;
     public List<ItemController> Items = new List<ItemController>();
 
     private void Start()

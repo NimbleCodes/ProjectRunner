@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class PlayerInBossMap : MonoBehaviour
 {
-    AudioSource _audio;
     [SerializeField] AudioClip _BossMap;
+    [SerializeField] GameObject[] Enemyz = null;
     GameObject _Inven;
-    public GameObject[] Enemyz = null;
-    GameObject _BossTrigger; 
+    GameObject _BossTrigger;
+    AudioSource _audio; 
 
     private void Start()
     {

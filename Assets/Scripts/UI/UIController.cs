@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 public class UIController : MonoBehaviour
@@ -20,7 +17,6 @@ public class UIController : MonoBehaviour
                 settingsOpen = true;
             }else{
                 settingsOpen = false;
-                //_settingsPanel.GetComponent<Animator>().SetBool("Active", false);
             }
         }
 
@@ -32,7 +28,6 @@ public class UIController : MonoBehaviour
             _settingsPanel.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            //_settingsPanel.GetComponent<Animator>().SetBool("Active", true);
         }else{
             _settingsPanel.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;

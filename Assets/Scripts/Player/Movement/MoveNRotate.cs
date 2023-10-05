@@ -1,19 +1,20 @@
-using System.Collections;
 using UnityEngine;
 
 public class MoveNRotate : MonoBehaviour
 {
-    GameObject _playerObj;
     [SerializeField] public float moveSpeed;
-    Transform _orientation;
     [SerializeField] int groundDrag;
     [SerializeField] float wallRunForce;
-    AudioSource _audio;
     [SerializeField] AudioClip _attack; 
+
+    GameObject _playerObj;
+    Transform _orientation;
+    AudioSource _audio;
     float x,y;
     int _jumpCount = 0;
     Vector3 moveDirection;
     Rigidbody rb;
+
     public bool _isOnGround = true;
     public bool wallRunning;
     public bool rightWall{get;set;}
@@ -93,11 +94,9 @@ public class MoveNRotate : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space) && wallRunning){
             if(rightWall){
-                StartCoroutine(wallCheckTimer());
                 rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
                 rb.AddForce(-transform.right * 15 + transform.up * 7, ForceMode.Impulse);
             }else if(leftWall){
-                StartCoroutine(wallCheckTimer());
                 rb.AddForce(transform.right * 15, ForceMode.Impulse);
                 rb.AddForce(transform.up * 7, ForceMode.Impulse);
             }
@@ -122,8 +121,6 @@ public class MoveNRotate : MonoBehaviour
         }
     }
 
-   
-
     void LimitSpeed(){
         Vector3 flatVal = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
@@ -133,14 +130,14 @@ public class MoveNRotate : MonoBehaviour
             rb.velocity = new Vector3(limitedVal.x, rb.velocity.y, limitedVal.z);
         }
     }
+
     void WallRunningMovement(){
         rb.useGravity = false;
         rb.velocity = new Vector3(rb.velocity.x, 0f ,rb.velocity.z);
         rb.AddForce(_playerObj.transform.forward * wallRunForce, ForceMode.Force);
     }
 
-    
-    private void OnCollisionEnter(Collision other){
+    void OnCollisionEnter(Collision other){
         if(other.collider.CompareTag("Ground")){
             _playerObj.GetComponent<Animator>().SetBool("OnTheGround", true);
             _isOnGround = true;
@@ -153,9 +150,7 @@ public class MoveNRotate : MonoBehaviour
         }
     }
        
-    
-
-    private void StateHandler()
+    void StateHandler()
     {
         if (wallRunning == true){
             state = MovementState.wallrunning;
@@ -166,13 +161,5 @@ public class MoveNRotate : MonoBehaviour
         else{
             state = MovementState.groundrunning; 
         }
-    }
-
-    IEnumerator wallCheckTimer(){
-        gameObject.GetComponent<WallRun>().StopWallRun();
-
-        yield return new WaitForSeconds(0.3f);
-
-        gameObject.GetComponent<WallRun>().wallChecking = true;
     }
 }

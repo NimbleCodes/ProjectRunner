@@ -1,11 +1,11 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class BossDie : MonoBehaviour
 {
     [SerializeField] ParticleSystem _bossdead;
     [SerializeField] ParticleSystem _bossbomb;
     [SerializeField] SkinnedMeshRenderer _Renderer; 
+    
     float _bosshealth;
     Animator _ani;
 

@@ -4,9 +4,8 @@ using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
-    [SerializeField] public Image _health;
+    [SerializeField] Image _health;
     GameObject playerRes;
-    Transform _respwanPoint;
     Animator _playeranim;
     GameObject _Inven;
     AudioSource _audioSource;
@@ -15,15 +14,13 @@ public class HealthManager : MonoBehaviour
 
     Rigidbody _rb; 
     float _damageNheal = 0.25f;
-    private bool isHit = false;
-    private bool _isfreeze = false;
+    bool isHit = false;
     float CoolTime;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
         playerRes = GameObject.FindGameObjectWithTag("ResPoint"); 
-        _respwanPoint = GameObject.FindGameObjectWithTag("ResPoint").transform; 
         _Inven = GameObject.FindGameObjectWithTag("Inven");
         _playeranim = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
         _audioSource = gameObject.GetComponent<AudioSource>();
@@ -36,9 +33,9 @@ public class HealthManager : MonoBehaviour
         _health.fillAmount = 1.0f;
     }
 
-    public void GetCurrentHealth(float health)
+    public float GetCurrentHealth()
     {
-        health = _health.fillAmount;
+        return _health.fillAmount;
     }
 
     void AddHealth()
