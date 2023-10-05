@@ -93,11 +93,11 @@ public class MoveNRotate : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space) && wallRunning){
             if(rightWall){
-                StartCoroutine(wallCheckTimer());
+                
                 rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
                 rb.AddForce(-transform.right * 15 + transform.up * 7, ForceMode.Impulse);
             }else if(leftWall){
-                StartCoroutine(wallCheckTimer());
+                
                 rb.AddForce(transform.right * 15, ForceMode.Impulse);
                 rb.AddForce(transform.up * 7, ForceMode.Impulse);
             }
@@ -168,11 +168,5 @@ public class MoveNRotate : MonoBehaviour
         }
     }
 
-    IEnumerator wallCheckTimer(){
-        gameObject.GetComponent<WallRun>().StopWallRun();
-
-        yield return new WaitForSeconds(0.3f);
-
-        gameObject.GetComponent<WallRun>().wallChecking = true;
-    }
+    
 }
