@@ -12,6 +12,7 @@ public class UIController : MonoBehaviour
     public static UIController Instance;
     private void Awake() {
         _settingsPanel.SetActive(false);
+        _gameoverPanel.SetActive(false);
     }
     private void Update() {
         if(Input.GetKeyDown(KeyCode.Escape)){
@@ -39,7 +40,12 @@ public class UIController : MonoBehaviour
             Time.timeScale = 1f;
         }
     }
-
+    public void OpenGameOver()
+    {
+        _gameoverPanel.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
     public void SetOpenner(bool openner){
         settingsOpen = openner;
     }

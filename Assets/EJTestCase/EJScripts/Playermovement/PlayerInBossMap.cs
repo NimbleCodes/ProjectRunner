@@ -31,4 +31,17 @@ public class PlayerInBossMap : MonoBehaviour
             _BossTrigger.SetActive(false);
         }
     }
+
+    public void InitBossStage()
+    {
+        _Inven.GetComponent<Inventory>().ResetItem();
+        _audio.clip = _BossMap;
+
+        for (int i = 0; i < Enemyz.Length; i++)
+        {
+            Enemyz[i].SetActive(false);
+        }
+
+        _BossTrigger.SetActive(false);
+    }
 }

@@ -17,6 +17,12 @@ TagManager:
   - FxTemporaire
   - CamPos
   - BossTrigger
+  - orientation
+  - BossWP
+  - FinWP
+  - Inven
+  - BGM
+  - UIController
   layers:
   - Default
   - TransparentFX
