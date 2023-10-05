@@ -12,7 +12,7 @@ public class UIController : MonoBehaviour
     private void Awake() {
         _settingsPanel.SetActive(false);
         _gameoverPanel.SetActive(false);
-        _howToPlay.SetActive(false);
+        _howToPlay.SetActive(true);
         _creadits.SetActive(false);
     }
     private void Update() {

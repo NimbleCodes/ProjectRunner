@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 175050659808535629}
   - component: {fileID: 175050659808535627}
   - component: {fileID: 175050659808535626}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wand
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -146,9 +146,9 @@ GameObject:
   - component: {fileID: 8927658814249948004}
   - component: {fileID: 8927658814249948007}
   - component: {fileID: 8927658814249948006}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wand
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -245,6 +245,18 @@ PrefabInstance:
     - target: {fileID: 8863148555998440487, guid: 7a30c15fef5d3e54a9ddd03c49381368, type: 3}
       propertyPath: m_Name
       value: WandEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 8863148555998440487, guid: 7a30c15fef5d3e54a9ddd03c49381368, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8863714516250564463, guid: 7a30c15fef5d3e54a9ddd03c49381368, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8864631738393620103, guid: 7a30c15fef5d3e54a9ddd03c49381368, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8865882495314244423, guid: 7a30c15fef5d3e54a9ddd03c49381368, type: 3}
       propertyPath: m_RootOrder

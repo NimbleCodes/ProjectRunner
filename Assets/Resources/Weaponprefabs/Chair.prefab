@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 373168723366903069}
   - component: {fileID: 3036395406092352461}
   - component: {fileID: 6847235022845801523}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chair
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -145,9 +145,9 @@ GameObject:
   - component: {fileID: 6959094783480815854}
   - component: {fileID: 6959094783480815855}
   - component: {fileID: 6959094783480815852}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chair
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -241,9 +241,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 373168723242661691}
     m_Modifications:
+    - target: {fileID: 3057485092376087886, guid: 8831cfa03d2eecf4284f76b9e057c6a9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5778851114024916746, guid: 8831cfa03d2eecf4284f76b9e057c6a9, type: 3}
       propertyPath: m_Name
       value: ChairEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 5778851114024916746, guid: 8831cfa03d2eecf4284f76b9e057c6a9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7122333290455985844, guid: 8831cfa03d2eecf4284f76b9e057c6a9, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8710731393477357379, guid: 8831cfa03d2eecf4284f76b9e057c6a9, type: 3}
       propertyPath: m_RootOrder

@@ -17,6 +17,7 @@ public class TrackPlayer : MonoBehaviour
     private bool AIdead = false;
     private bool isHit = false;
     float CoolTime;
+    bool cinematic = false;
 
     
     private void Start()
@@ -49,6 +50,9 @@ public class TrackPlayer : MonoBehaviour
                 isHit = false;
                 CoolTime = 0;
             }
+        }
+        if(cinematic == true){
+            followplayer();
         }
     }
 
@@ -90,6 +94,10 @@ public class TrackPlayer : MonoBehaviour
             _Renderer.enabled = false;
             Destroy(gameObject, 1f);
         }
+    }
+
+    public void SetCinematic(){
+        cinematic = true;
     }
 
 }

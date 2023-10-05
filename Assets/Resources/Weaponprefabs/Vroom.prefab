@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4471476691625082750}
   - component: {fileID: 4471476691625082751}
   - component: {fileID: 4471476691625082744}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Vroom
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 7226160994290348217}
   - component: {fileID: 7226160994290348218}
   - component: {fileID: 7226160994290348219}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Vroom
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -241,6 +241,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7226160994286956692}
     m_Modifications:
+    - target: {fileID: 1270003397882519418, guid: 11d1aa981cc5c7f4eb87a6a119237a61, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4833232318371806583, guid: 11d1aa981cc5c7f4eb87a6a119237a61, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -297,9 +301,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6423882695547550848, guid: 11d1aa981cc5c7f4eb87a6a119237a61, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7765104448927548734, guid: 11d1aa981cc5c7f4eb87a6a119237a61, type: 3}
       propertyPath: m_Name
       value: VroomEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 7765104448927548734, guid: 11d1aa981cc5c7f4eb87a6a119237a61, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11d1aa981cc5c7f4eb87a6a119237a61, type: 3}

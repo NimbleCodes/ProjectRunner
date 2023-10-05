@@ -24,6 +24,7 @@ TagManager:
   - BGM
   - UIController
   - BossWeapon
+  - GetItemPanel
   layers:
   - Default
   - TransparentFX

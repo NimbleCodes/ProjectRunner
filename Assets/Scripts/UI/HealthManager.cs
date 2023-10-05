@@ -28,7 +28,7 @@ public class HealthManager : MonoBehaviour
         _uiControll = GameObject.FindGameObjectWithTag("UIController").GetComponent<UIController>();
     }
 
-    void SetHealth()
+    public void SetHealth()
     {
         _health.fillAmount = 1.0f;
     }
@@ -81,7 +81,6 @@ public class HealthManager : MonoBehaviour
             _playeranim.Play("Die", 2);
             playerRes.GetComponent<PlayerRes>()._isDead = true;
             _uiControll.OpenGameOver();
-            StartCoroutine(waitSecond());
         }
 
         if (isHit == true)
@@ -98,8 +97,6 @@ public class HealthManager : MonoBehaviour
     IEnumerator waitSecond()
     {
         yield return new WaitForSeconds(2f);
-        gameObject.SetActive(false);
-        _Inven.GetComponent<Inventory>().ResetItem();
         _audioSource.clip = null;
         playerRes.GetComponent<PlayerRes>()._isDead = false;
         playerRes.GetComponent<PlayerRes>()._isRespwan = true;

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2542540861046240846}
   - component: {fileID: 8941721424264588896}
   - component: {fileID: 6554884217587124164}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Calculator
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 8610698336304156995}
   - component: {fileID: 7943148226928406358}
   - component: {fileID: 7351807315344210516}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Calculator
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -285,9 +285,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2753951296708486331, guid: b55e44ea02861c8418472a7bf2d7f11e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2755434565548795419, guid: b55e44ea02861c8418472a7bf2d7f11e, type: 3}
       propertyPath: m_Name
       value: CalculatorEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 2755434565548795419, guid: b55e44ea02861c8418472a7bf2d7f11e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2755995059513285971, guid: b55e44ea02861c8418472a7bf2d7f11e, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b55e44ea02861c8418472a7bf2d7f11e, type: 3}

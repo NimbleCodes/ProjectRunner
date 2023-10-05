@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4297129168462046726}
   - component: {fileID: 5876837765395011671}
   - component: {fileID: 3254207518442144283}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DoubleA
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 8654408014500156606}
   - component: {fileID: 8654408014500156601}
   - component: {fileID: 7345705793749331264}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DoubleA
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -242,6 +242,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8654408014500156605}
     m_Modifications:
+    - target: {fileID: 3805044720929066299, guid: 5b94167bf386ca7468c25f163138896e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3805044721388293093, guid: 5b94167bf386ca7468c25f163138896e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -289,6 +293,14 @@ PrefabInstance:
     - target: {fileID: 3805044721388293094, guid: 5b94167bf386ca7468c25f163138896e, type: 3}
       propertyPath: m_Name
       value: DoubleAEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 3805044721388293094, guid: 5b94167bf386ca7468c25f163138896e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3805044722781602547, guid: 5b94167bf386ca7468c25f163138896e, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b94167bf386ca7468c25f163138896e, type: 3}

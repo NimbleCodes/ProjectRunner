@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1301187124728230307}
   - component: {fileID: 6665553616892437894}
   - component: {fileID: 2855591299645541361}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laptop
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -147,9 +147,9 @@ GameObject:
   - component: {fileID: 4314136210922239977}
   - component: {fileID: 6259834747845469964}
   - component: {fileID: 5945971865163558071}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Laptop
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,6 +243,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1301187124728097626}
     m_Modifications:
+    - target: {fileID: 278505643095306172, guid: 173fbbfc41e29fc40880965dd03bb692, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 764217078407691315, guid: 173fbbfc41e29fc40880965dd03bb692, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 882849953266562527, guid: 173fbbfc41e29fc40880965dd03bb692, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -290,6 +298,10 @@ PrefabInstance:
     - target: {fileID: 4101097059016207094, guid: 173fbbfc41e29fc40880965dd03bb692, type: 3}
       propertyPath: m_Name
       value: LaptopEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 4101097059016207094, guid: 173fbbfc41e29fc40880965dd03bb692, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 173fbbfc41e29fc40880965dd03bb692, type: 3}

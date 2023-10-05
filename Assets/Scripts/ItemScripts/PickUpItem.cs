@@ -5,7 +5,7 @@ public class PickUpItem : MonoBehaviour
     Rigidbody _rig;
     BoxCollider coll;
     Transform _player;
-    GameObject _effect; 
+    GameObject _effect;
     private float pickUpRange = 1.8f;
     private ItemController _itemCon;
     private bool _isInside; 

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3146739839762064961}
   - component: {fileID: 6202862465904346949}
   - component: {fileID: 48333645999422322}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 5108831271035013140}
   - component: {fileID: 4138604160588821535}
   - component: {fileID: 481539960608384785}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ClipBoard
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 9165688601697208595}
   - component: {fileID: 1592834543531011275}
   - component: {fileID: 7298914005012853775}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 1873237589303058602}
   - component: {fileID: 7982161350046456458}
   - component: {fileID: 6766748900693596637}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Paper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,9 +345,9 @@ GameObject:
   - component: {fileID: 7859281265727514884}
   - component: {fileID: 7409092948008609445}
   - component: {fileID: 5525892369629141081}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ClipBoard
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -441,9 +441,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4714300707348456642}
     m_Modifications:
+    - target: {fileID: 112072004345880492, guid: 71bdd51d9e8d7744d8941dd625fce900, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5033669882539276935, guid: 71bdd51d9e8d7744d8941dd625fce900, type: 3}
       propertyPath: m_Name
       value: ClipBoardEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033669882539276935, guid: 71bdd51d9e8d7744d8941dd625fce900, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5627631907345732926, guid: 71bdd51d9e8d7744d8941dd625fce900, type: 3}
       propertyPath: m_RootOrder
@@ -488,6 +496,10 @@ PrefabInstance:
     - target: {fileID: 5627631907345732926, guid: 71bdd51d9e8d7744d8941dd625fce900, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8332859479874538003, guid: 71bdd51d9e8d7744d8941dd625fce900, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71bdd51d9e8d7744d8941dd625fce900, type: 3}
