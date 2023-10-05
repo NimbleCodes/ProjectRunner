@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,8 +24,7 @@ public class HealthManager : MonoBehaviour
         playerRes = GameObject.FindGameObjectWithTag("ResPoint"); 
         _Inven = GameObject.FindGameObjectWithTag("Inven");
         _playeranim = GameObject.FindGameObjectWithTag("Player").GetComponent<Animator>();
-        _audioSource = gameObject.GetComponent<AudioSource>();
-        _audioSource.Play();
+        _audioSource = GetComponent<AudioSource>();
         _uiControll = GameObject.FindGameObjectWithTag("UIController").GetComponent<UIController>();
     }
 
@@ -58,6 +58,7 @@ public class HealthManager : MonoBehaviour
         if (other.collider.tag == "Enemy" && isHit == false)
         {
             _audioSource.clip = _Ouch; 
+            _audioSource.Play();
             MinusHealth();
             isHit = true;
         }
@@ -99,6 +100,7 @@ public class HealthManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         gameObject.SetActive(false);
         _Inven.GetComponent<Inventory>().ResetItem();
+        _audioSource.clip = null;
         playerRes.GetComponent<PlayerRes>()._isDead = false;
         playerRes.GetComponent<PlayerRes>()._isRespwan = true;
         SetHealth();
