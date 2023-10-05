@@ -9,6 +9,7 @@ public class SettingsPanel : MonoBehaviour
     [SerializeField] Slider _soundControll;
     [SerializeField] AudioSource _bgm;
     [SerializeField] UIController _UIContorll;
+    
 
     FreeCam _fc;
     float _currentVolume = 1f;
