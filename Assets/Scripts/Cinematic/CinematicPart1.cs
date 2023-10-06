@@ -15,6 +15,7 @@ public class CinematicPart1 : MonoBehaviour
     Transform _player, _playerObj;
     GameObject _cam;
     bool vcam1 = false, vcam2= false, freeLook=true;
+    bool cinematicDone = false;
     private void Start() {
         _player = GameObject.FindGameObjectWithTag("PlayerHolder").transform;
         _playerObj = GameObject.FindGameObjectWithTag("Player").transform;
@@ -81,10 +82,11 @@ public class CinematicPart1 : MonoBehaviour
 
         _player.GetComponent<MoveNRotate>().enabled = true;
         _cam.GetComponent<FreeCam>().enabled = true;
+        cinematicDone = true;
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(other.CompareTag("Player")){
+        if(other.CompareTag("Player") && cinematicDone == false){
             StartCoroutine(CinematicPartOne());
         }
     }
