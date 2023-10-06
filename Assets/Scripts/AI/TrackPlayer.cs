@@ -87,7 +87,7 @@ public class TrackPlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Weapon") && isHit == false)
+        if (other.CompareTag("Weapon") && isHit == false && _player.GetComponent<PlayerAniEvent>()._isSwing == true)
         {
             AIdead = true;
             _coll.enabled = false;
