@@ -12,6 +12,7 @@ public class PickUpItem : MonoBehaviour
     private bool _isItmeDestroy = false;
     public bool isItemDestory { get { return _isItmeDestroy; } set { _isItmeDestroy = value; } }
     public Transform player {get{return _player;} set{_player = value;}}
+    public bool _FpannelOn = true; 
 
     void Start()
     {
@@ -38,6 +39,7 @@ public class PickUpItem : MonoBehaviour
         Destroy(_effect); 
         this.gameObject.SetActive(false);
         _isInside = true;
+        _FpannelOn = false;
     }
 
 }
