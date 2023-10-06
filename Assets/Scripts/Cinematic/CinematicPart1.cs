@@ -6,6 +6,7 @@ public class CinematicPart1 : MonoBehaviour
 {
     [SerializeField] CinemachineVirtualCamera _vcam1;
     [SerializeField] CinemachineVirtualCamera _vcam2;
+    [SerializeField] CinemachineVirtualCamera _vcam3;
     [SerializeField] CinemachineFreeLook _freeLook;
     [SerializeField] GameObject[] _cam1Enemies;
     [SerializeField] GameObject[] _cam2Enemies;
@@ -14,7 +15,7 @@ public class CinematicPart1 : MonoBehaviour
     [SerializeField] Transform cinematicLookat;
     Transform _player, _playerObj;
     GameObject _cam;
-    bool vcam1 = false, vcam2= false, freeLook=true;
+    bool vcam1 = false, vcam2= false, vcam3=false,freeLook=true;
     bool cinematicDone = false;
     private void Start() {
         _player = GameObject.FindGameObjectWithTag("PlayerHolder").transform;
@@ -28,11 +29,19 @@ public class CinematicPart1 : MonoBehaviour
         if(vcam1){
             _vcam1.Priority = 10;
             _vcam2.Priority = 0;
+            _vcam3.Priority = 0;
             _freeLook.Priority = 0;
         }else if(vcam2){
             _vcam1.Priority = 0;
             _vcam2.Priority = 10;
+            _vcam3.Priority = 0;
             _freeLook.Priority = 0;
+        }else if(vcam3){
+            _vcam1.Priority = 0;
+            _vcam2.Priority = 0;
+            _vcam3.Priority = 10;
+            _freeLook.Priority = 0;
+
         }else if(freeLook){
             _vcam1.Priority = 0;
             _vcam2.Priority = 0;
@@ -65,9 +74,14 @@ public class CinematicPart1 : MonoBehaviour
             _cam2Enemies[i].transform.LookAt(_player);
         }
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
         vcam2 = false;
+        vcam3 = true;
+
+        yield return new WaitForSeconds(2f);
+
+        vcam3 = false;
         freeLook = true;
         // All Doors Open, All Enemies track Player
         for(int i =0; i < _allDoorInSection.Length; i++){
@@ -78,7 +92,7 @@ public class CinematicPart1 : MonoBehaviour
             _allEnemiesInSection[i].GetComponent<TrackPlayer>().SetCinematic();
         }
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
 
         _player.GetComponent<MoveNRotate>().enabled = true;
         _cam.GetComponent<FreeCam>().enabled = true;
