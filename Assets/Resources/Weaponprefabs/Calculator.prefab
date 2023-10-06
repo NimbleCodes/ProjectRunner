@@ -115,7 +115,6 @@ GameObject:
   - component: {fileID: 8610698336304156995}
   - component: {fileID: 7943148226928406358}
   - component: {fileID: 7351807315344210516}
-  - component: {fileID: 3750284369295895409}
   m_Layer: 8
   m_Name: Calculator
   m_TagString: Weapon
@@ -236,21 +235,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _FpannelOn: 1
---- !u!114 &3750284369295895409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8609310664229888194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70e4a396d6e3d814ea6c9edef5293fc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _LWeapon:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!1001 &2434079859776223241
 PrefabInstance:
   m_ObjectHideFlags: 0
