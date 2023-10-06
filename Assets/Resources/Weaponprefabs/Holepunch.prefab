@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6939308764352445001}
   - component: {fileID: 1578936784023469719}
   - component: {fileID: 1537369049163127982}
+  - component: {fileID: 6153106997699989666}
   m_Layer: 8
   m_Name: Holepunch
   m_TagString: Weapon
@@ -133,6 +134,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98aa1f8b51be1134fb136ca84b51507e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _FpannelOn: 1
+--- !u!114 &6153106997699989666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6938331577837467392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70e4a396d6e3d814ea6c9edef5293fc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _LWeapon:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &8095895836170851789
 GameObject:
   m_ObjectHideFlags: 0
