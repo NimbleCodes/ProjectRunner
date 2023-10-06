@@ -23,6 +23,7 @@ public class ItemSpawner : MonoBehaviour
             temp.transform.GetChild(0).GetComponent<PickUpItem>().player = _player;
             temp.GetComponent<Rigidbody>().freezeRotation = true;
             temp.GetComponent<Rigidbody>().isKinematic = true;
+            temp.transform.GetChild(0).GetComponent<BoxCollider>().isTrigger = true;
         }
     }
 }
