@@ -7,6 +7,7 @@ public class BossItem : MonoBehaviour
     {
         if (other.collider.tag == "Ground")
         {
+            GetComponent<Collider>().enabled = false;
             Destroy(this.gameObject, 4f);
         }
     }

@@ -7,14 +7,19 @@ public class GetItemUI : MonoBehaviour
 
     bool _isItemInRange;
 
-    private void Start() {
+    private void Start() 
+    {
         _getItemUI = GameObject.FindGameObjectWithTag("GetItemPanel");
     }
 
-    private void Update() {
-        if(_isItemInRange = Physics.CheckSphere(transform.position, 1.8f, _LWeapon)){
+    private void Update() 
+    {
+        if(_isItemInRange = Physics.CheckSphere(transform.position, 1.8f, _LWeapon) && gameObject.GetComponent<PickUpItem>()._FpannelOn == true)
+        {
             _getItemUI.SetActive(true);
-        }else{
+        }
+        else if(gameObject.GetComponent<PickUpItem>()._FpannelOn == false)
+        {
             _getItemUI.SetActive(false);
         }
         

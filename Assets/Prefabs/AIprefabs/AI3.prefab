@@ -103,9 +103,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e692fb0a780cd24f83430a658da17d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _particle: {fileID: 7560580166924642893}
   _Renderer: {fileID: 3239164761236714744}
+  _AIDead: {fileID: 8300000, guid: c27181c4f4f670140b5206609006519b, type: 3}
   _isPlayerDead: 0
 --- !u!195 &3239164761232624199
 NavMeshAgent:
@@ -139,7 +139,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c27181c4f4f670140b5206609006519b, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
