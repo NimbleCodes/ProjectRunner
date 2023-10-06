@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1301187124728230307}
   - component: {fileID: 6665553616892437894}
   - component: {fileID: 2855591299645541361}
+  - component: {fileID: 5757114961640963831}
   m_Layer: 8
   m_Name: Laptop
   m_TagString: Weapon
@@ -135,6 +136,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98aa1f8b51be1134fb136ca84b51507e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _FpannelOn: 1
+--- !u!114 &5757114961640963831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301187124728264570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70e4a396d6e3d814ea6c9edef5293fc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _LWeapon:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &5945971865163558068
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,11 +262,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 278505643095306172, guid: 173fbbfc41e29fc40880965dd03bb692, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 764217078407691315, guid: 173fbbfc41e29fc40880965dd03bb692, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 882849953266562527, guid: 173fbbfc41e29fc40880965dd03bb692, type: 3}
       propertyPath: m_RootOrder
@@ -301,7 +318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4101097059016207094, guid: 173fbbfc41e29fc40880965dd03bb692, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 173fbbfc41e29fc40880965dd03bb692, type: 3}

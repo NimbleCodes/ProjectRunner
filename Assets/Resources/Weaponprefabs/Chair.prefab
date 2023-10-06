@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 373168723366903069}
   - component: {fileID: 3036395406092352461}
   - component: {fileID: 6847235022845801523}
+  - component: {fileID: 1442149367517385429}
   m_Layer: 8
   m_Name: Chair
   m_TagString: Weapon
@@ -133,6 +134,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98aa1f8b51be1134fb136ca84b51507e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _FpannelOn: 1
+--- !u!114 &1442149367517385429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373168723242887963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70e4a396d6e3d814ea6c9edef5293fc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _LWeapon:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &6959094783480815850
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +260,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3057485092376087886, guid: 8831cfa03d2eecf4284f76b9e057c6a9, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5778851114024916746, guid: 8831cfa03d2eecf4284f76b9e057c6a9, type: 3}
       propertyPath: m_Name
@@ -251,11 +268,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5778851114024916746, guid: 8831cfa03d2eecf4284f76b9e057c6a9, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7122333290455985844, guid: 8831cfa03d2eecf4284f76b9e057c6a9, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8710731393477357379, guid: 8831cfa03d2eecf4284f76b9e057c6a9, type: 3}
       propertyPath: m_RootOrder
