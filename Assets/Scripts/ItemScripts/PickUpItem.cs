@@ -38,6 +38,7 @@ public class PickUpItem : MonoBehaviour
         Inventory.Instance.ShowItemImg(_itemCon);
         int LayerMaskNum = LayerMask.NameToLayer("Default");
         gameObject.layer = LayerMaskNum;
+        gameObject.GetComponent<BoxCollider>().isTrigger = false;
         Destroy(_effect); 
         this.gameObject.SetActive(false);
         _isInside = true;
