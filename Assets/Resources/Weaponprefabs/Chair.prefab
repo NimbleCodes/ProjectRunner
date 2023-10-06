@@ -149,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _LWeapon:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
 --- !u!1 &6959094783480815850
 GameObject:
   m_ObjectHideFlags: 0

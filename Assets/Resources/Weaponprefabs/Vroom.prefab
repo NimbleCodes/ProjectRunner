@@ -250,7 +250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _LWeapon:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 512
 --- !u!1001 &993083591407914736
 PrefabInstance:
   m_ObjectHideFlags: 0
