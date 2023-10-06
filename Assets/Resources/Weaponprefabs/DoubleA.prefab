@@ -115,7 +115,6 @@ GameObject:
   - component: {fileID: 8654408014500156606}
   - component: {fileID: 8654408014500156601}
   - component: {fileID: 7345705793749331264}
-  - component: {fileID: 6348170931751989670}
   m_Layer: 8
   m_Name: DoubleA
   m_TagString: Weapon
@@ -237,21 +236,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _FpannelOn: 1
---- !u!114 &6348170931751989670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8654408014500156600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70e4a396d6e3d814ea6c9edef5293fc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _LWeapon:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!1001 &8058024193062893336
 PrefabInstance:
   m_ObjectHideFlags: 0

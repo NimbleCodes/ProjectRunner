@@ -115,7 +115,6 @@ GameObject:
   - component: {fileID: 7226160994290348217}
   - component: {fileID: 7226160994290348218}
   - component: {fileID: 7226160994290348219}
-  - component: {fileID: 1707181129772019067}
   m_Layer: 8
   m_Name: Vroom
   m_TagString: Weapon
@@ -236,21 +235,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _FpannelOn: 1
---- !u!114 &1707181129772019067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7226160994287250612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70e4a396d6e3d814ea6c9edef5293fc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _LWeapon:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!1001 &993083591407914736
 PrefabInstance:
   m_ObjectHideFlags: 0

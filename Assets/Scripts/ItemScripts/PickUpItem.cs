@@ -36,6 +36,8 @@ public class PickUpItem : MonoBehaviour
     {
         Inventory.Instance.Add(_itemCon);
         Inventory.Instance.ShowItemImg(_itemCon);
+        int LayerMaskNum = LayerMask.NameToLayer("Default");
+        gameObject.layer = LayerMaskNum;
         Destroy(_effect); 
         this.gameObject.SetActive(false);
         _isInside = true;
