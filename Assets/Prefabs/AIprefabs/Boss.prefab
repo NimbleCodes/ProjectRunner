@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1400250761420790802}
   m_LocalRotation: {x: 0.003366235, y: -0.718736, z: -0.67741525, w: -0.15657547}
-  m_LocalPosition: {x: -0.083, y: 0.295, z: 0.247}
+  m_LocalPosition: {x: -0.078, y: 0.293, z: 0.227}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -678,6 +678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f79939e4047c786488befb57945b28ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  throwPower: 10
   _weapon:
   - {fileID: 6346420229587932475, guid: 53b2c31742e3969419da352e261581aa, type: 3}
   - {fileID: 1912286663973524651, guid: fa1734247b77f1140aed125be3754a52, type: 3}
@@ -687,7 +688,6 @@ MonoBehaviour:
   _particle: {fileID: 1400250763247405299}
   document: {fileID: 4140708009855177111, guid: 3a768913b6624ce40bcd34837f93aa91, type: 3}
   _HP: {fileID: 0}
-  throwPower: 10
   _bosshealth: 0
 --- !u!114 &5433662198307862666
 MonoBehaviour:

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028359, g: 0.22571385, b: 0.30692258, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -793,7 +793,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 398912862}
-  m_LocalRotation: {x: 0.030079598, y: 5.8126254e-11, z: -1.7492448e-12, w: 0.99954754}
+  m_LocalRotation: {x: 0.030079572, y: -0.000000029788897, z: 8.9644286e-10, w: 0.99954754}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1953,7 +1953,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1366939661}
-  m_LocalRotation: {x: -0.006248767, y: 5.755777e-10, z: 3.5967212e-12, w: 0.9999805}
+  m_LocalRotation: {x: -0.006248768, y: 3.5758307e-17, z: 1.6515692e-19, w: 0.9999805}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2010,6 +2010,7 @@ MonoBehaviour:
   Enemyz: []
   _isDead: 0
   _isRespwan: 0
+  _isPannelClose: 0
 --- !u!95 &1583798619 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6206028276296540281, guid: e6226d8e79b17cb4f8c95fafab7d32d9, type: 3}
@@ -2483,7 +2484,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1938663816
 Transform:
   m_ObjectHideFlags: 0
