@@ -14,11 +14,11 @@ public class GetItemUI : MonoBehaviour
 
     private void Update() 
     {
-        if(_isItemInRange = Physics.CheckSphere(transform.position, 1.8f, _LWeapon) && gameObject.GetComponent<PickUpItem>()._FpannelOn == true)
+        if(_isItemInRange = Physics.CheckSphere(transform.position, 1.8f, _LWeapon) && GetComponent<PickUpItem>()._FpannelOn == true)
         {
             _getItemUI.SetActive(true);
         }
-        else if(gameObject.GetComponent<PickUpItem>()._FpannelOn == false)
+        else if(GetComponent<PickUpItem>()._FpannelOn == false)
         {
             _getItemUI.SetActive(false);
         }
