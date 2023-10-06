@@ -48,6 +48,9 @@ public class UIController : MonoBehaviour
     public void SetOpenner(bool openner){
         settingsOpen = openner;
     }
+    public bool GetOpenner(){
+        return settingsOpen;
+    }
 
     public void OnHowToPlayButtonClick(){
         _howToPlay.SetActive(true);        
@@ -57,6 +60,10 @@ public class UIController : MonoBehaviour
         _creadits.SetActive(true);
     }
     public void OnHowToPlayCloseButtonClick(){
+        if(settingsOpen == false){
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
         _howToPlay.SetActive(false);
     }
 
