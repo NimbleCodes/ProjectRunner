@@ -9,12 +9,13 @@ public class BossAttack : MonoBehaviour
     [SerializeField] ParticleSystem _particle; 
     [SerializeField] GameObject document;
     [SerializeField] Image _HP;
+    [SerializeField] AudioClip _Ouch; 
 
     Transform _player, _Boss, _weaponPoint,_camp;
     Transform _finweapon;
     Animator _ani;
     GameObject _temp, _fintemp;
-    AudioSource _Ouch;
+    AudioSource _Audio; 
 
     private bool baseequipped = false;
     private bool finequipped = false;
@@ -36,7 +37,7 @@ public class BossAttack : MonoBehaviour
         _finweapon = GameObject.FindGameObjectWithTag("FinWP").transform;
         _ani = GetComponent<Animator>();
         _camp = GameObject.FindGameObjectWithTag("CamPos").transform;
-        _Ouch = GetComponent<AudioSource>(); 
+        _Audio = GetComponent<AudioSource>(); 
         BaseSpawn();
         _bosshealth = 10f;
         _coroutine = StartCoroutine(BaseThrowObject());
@@ -193,7 +194,8 @@ public class BossAttack : MonoBehaviour
     {
         if (other.tag == "Weapon" && isHit == false)
         {
-            _Ouch.Play();
+            _Audio.clip = _Ouch; 
+            _Audio.Play();
             _bosshealth = _bosshealth - 1;
             MinusHealth(); 
             isHit = true; 
