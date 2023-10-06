@@ -3,15 +3,18 @@ using UnityEngine.AI;
 
 public class TrackPlayer : MonoBehaviour
 {
+    [SerializeField] ParticleSystem _particle;
+    [SerializeField] SkinnedMeshRenderer _Renderer;
+    [SerializeField] AudioClip _AIDead; 
+
+    Transform _Enemy;
     Transform _player;
     Transform _AI;
-    [SerializeField] ParticleSystem _particle; 
-    Transform _Enemy;
-    [SerializeField] SkinnedMeshRenderer _Renderer;
-    AudioSource _AIdead;
+    NavMeshAgent agent;
+    AudioSource _Audio; 
     CapsuleCollider _coll; 
+
     private Vector3 _targetPos;
-    NavMeshAgent agent; 
     public bool _isPlayerDead = false;
     public bool IsPlayerDead { set { _isPlayerDead = value; } }
     private bool AIdead = false;
@@ -28,7 +31,7 @@ public class TrackPlayer : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player").transform;   
         agent = GetComponent<NavMeshAgent>();
         _AI = GetComponent<Transform>();
-        _AIdead = GetComponent<AudioSource>();
+        _Audio = GetComponent<AudioSource>();
     }
     
     void Update()
@@ -88,7 +91,8 @@ public class TrackPlayer : MonoBehaviour
         {
             AIdead = true;
             _coll.enabled = false;
-            _AIdead.Play();
+            _Audio.clip = _AIDead; 
+            _Audio.Play();
             _particle.Play();
             isHit = true;
             _Renderer.enabled = false;

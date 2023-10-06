@@ -688,6 +688,7 @@ MonoBehaviour:
   _particle: {fileID: 1400250763247405299}
   document: {fileID: 4140708009855177111, guid: 3a768913b6624ce40bcd34837f93aa91, type: 3}
   _HP: {fileID: 0}
+  _Ouch: {fileID: 8300000, guid: d6ac6a7d855fbbb4e8b7896d6f7467eb, type: 3}
   _bosshealth: 0
 --- !u!114 &5433662198307862666
 MonoBehaviour:
@@ -714,7 +715,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d6ac6a7d855fbbb4e8b7896d6f7467eb, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
