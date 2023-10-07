@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class Giggling : MonoBehaviour
 {
+    [SerializeField] AudioClip _giggling; 
+    [SerializeField] AudioSource _BGM;
     GameObject _player;
     AudioSource _audio;
-    [SerializeField] AudioClip _giggling; 
+    
+    bool _isSoundPlay = true;
 
     void Start()
     {
@@ -15,10 +18,13 @@ public class Giggling : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_player.GetComponent<HealthManager>().GetCurrentHealth() <= 0)
+        if (_player.GetComponent<HealthManager>().GetCurrentHealth() <= 0 && _isSoundPlay == true)
         {
+            _BGM.Stop();
             _audio.clip = _giggling;
             _audio.Play();
+            _isSoundPlay = false;
+            
         }
     }
 }

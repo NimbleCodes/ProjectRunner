@@ -80,6 +80,7 @@ public class HealthManager : MonoBehaviour
             _playeranim.Play("Die", 1);
             _playeranim.Play("Die", 2);
             playerRes.GetComponent<PlayerRes>()._isDead = true;
+            _audioSource.clip = null;
             _uiControll.OpenGameOver();
         }
 
@@ -92,15 +93,6 @@ public class HealthManager : MonoBehaviour
                 CoolTime = 0;
             }
         }
-    }
-
-    IEnumerator waitSecond()
-    {
-        yield return new WaitForSeconds(2f);
-        _audioSource.clip = null;
-        playerRes.GetComponent<PlayerRes>()._isDead = false;
-        playerRes.GetComponent<PlayerRes>()._isRespwan = true;
-        SetHealth();
     }
 
 }
