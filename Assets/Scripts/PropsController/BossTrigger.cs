@@ -23,7 +23,7 @@ public class BossTrigger : MonoBehaviour
         if(_triggered == false){
             _BossHP.SetActive(true);
             _BossMapInit.InitBossStage();
-            _BossMapInit._isTriggered = false;
+            _BossMapInit._isTriggered = true;
 
             StartCoroutine(BossStageCinematic());
             _triggered = true;
@@ -31,7 +31,7 @@ public class BossTrigger : MonoBehaviour
     }
 
     IEnumerator BossStageCinematic(){
-        Time.timeScale = 0f;
+        
 
         _freeCam.Priority =0;
         _vcam1.Priority = 10;

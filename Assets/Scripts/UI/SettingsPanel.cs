@@ -20,7 +20,9 @@ public class SettingsPanel : MonoBehaviour
     {
         _fc = GameObject.Find("CamPoint").GetComponent<FreeCam>();
         _bgm.volume = PlayerPrefs.GetFloat("BGMVolume");
+        _soundControll.value = PlayerPrefs.GetFloat("BGMVolume");
         _fc.ChangeCamSpeed(PlayerPrefs.GetFloat("SensitivityVal"));
+        
         if(PlayerPrefs.GetInt("isBGMOff") == 1){
             _bgm.mute = true;
             _BGMOff.isOn = true;
@@ -45,6 +47,7 @@ public class SettingsPanel : MonoBehaviour
 
     public void OnExitButtonClick()
     {
+        PlayerPrefs.SetInt("isHowToPlayShown", 0);
         Application.Quit();
     }
 
@@ -56,6 +59,7 @@ public class SettingsPanel : MonoBehaviour
     public void OnMainMenuButtonClick()
     {
         _UIContorll.SetOpenner(false);
+        
         SceneManager.LoadScene("Home");
     }
 

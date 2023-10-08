@@ -21,6 +21,7 @@ public class TrackPlayer : MonoBehaviour
     private bool isHit = false;
     float CoolTime;
     bool cinematic = false;
+    bool cinematicfollow =false;
 
     
     private void Start()
@@ -55,7 +56,10 @@ public class TrackPlayer : MonoBehaviour
             }
         }
         if(cinematic == true){
-            //GetComponent<Animator>().Play("AIRunning");
+            if(cinematicfollow == false){
+                GetComponent<Animator>().Play("AIRunning");
+                cinematicfollow = true;
+            }
             followplayer();
         }
     }

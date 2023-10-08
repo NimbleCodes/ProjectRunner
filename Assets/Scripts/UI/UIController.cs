@@ -30,13 +30,16 @@ public class UIController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Escape)){
             if(settingsOpen == false){
                 settingsOpen = true;
+                SettingsOpen(settingsOpen);
             }else{
                 settingsOpen = false;
+                SettingsOpen(settingsOpen);
             }
         }
 
-        SettingsOpen(settingsOpen);
-        OpenGameClear(_isGameClear);
+        if(_isGameClear == true){
+            OpenGameClear(_isGameClear);
+        }
 
     }
     void SettingsOpen(bool openner){
@@ -60,6 +63,7 @@ public class UIController : MonoBehaviour
     }
     public void SetOpenner(bool openner){
         settingsOpen = openner;
+        SettingsOpen(settingsOpen);
     }
     public bool GetOpenner(){
         return settingsOpen;

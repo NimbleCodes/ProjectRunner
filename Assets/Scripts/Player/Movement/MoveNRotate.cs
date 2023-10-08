@@ -40,9 +40,7 @@ public class MoveNRotate : MonoBehaviour
     }
 
     //State로 Movment Controll
-
-    private void Update() 
-    {
+    private void FixedUpdate() {
         if(state == MovementState.groundrunning || state == MovementState.jumping){
             MovePlayer();
         }else if(state == MovementState.wallrunning){
@@ -50,6 +48,9 @@ public class MoveNRotate : MonoBehaviour
         }
         
         LimitSpeed();
+    }
+    private void Update() 
+    {
         if(_isOnGround)
         {
             rb.drag = groundDrag;

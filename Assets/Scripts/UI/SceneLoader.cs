@@ -34,6 +34,7 @@ public class SceneLoader : MonoBehaviour
     bool _readStart = false;
     IEnumerator LoadScene(string sceneName){
         AsyncLoadData();  
+
         asyncScene = SceneManager.LoadSceneAsync("KSUMap01");
         asyncScene.allowSceneActivation =false;
         
@@ -60,6 +61,7 @@ public class SceneLoader : MonoBehaviour
         
         rq.completed += (op) =>
         {
+            Debug.Log("loading " + loaded);
             json = ((TextAsset)rq.asset).text;
             _loadEnd = true;
         };
@@ -68,9 +70,11 @@ public class SceneLoader : MonoBehaviour
     async void jsonRead()
     {
         await Task.Run(() => {
+            Debug.Log("writting");
             if(string.IsNullOrEmpty(json) == false){
                 wrapper = JsonUtility.FromJson<DummyWrapper>(json);   
                 loaded = true;
+                Debug.Log("json");
             }
         }); 
 
