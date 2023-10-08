@@ -55,6 +55,7 @@ public class TrackPlayer : MonoBehaviour
             }
         }
         if(cinematic == true){
+            //GetComponent<Animator>().Play("AIRunning");
             followplayer();
         }
     }

@@ -7,13 +7,24 @@ public class UIController : MonoBehaviour
     [SerializeField] GameObject _gameoverPanel;
     [SerializeField] GameObject _howToPlay;
     [SerializeField] GameObject _creadits;
+    [SerializeField] GameObject _gameClear;
+    [SerializeField] AudioSource _BGM;
+    [SerializeField] AudioClip _gameClearSound;
     bool settingsOpen = false;
+    bool _isGameClear = false;
     public static UIController Instance;
-    private void Awake() {
+
+    private void Start() {
         _settingsPanel.SetActive(false);
         _gameoverPanel.SetActive(false);
-        _howToPlay.SetActive(true);
+        _howToPlay.SetActive(false);
         _creadits.SetActive(false);
+        _gameClear.SetActive(false);
+
+        if(PlayerPrefs.GetInt("isHowToPlayShown") == 0){
+            _howToPlay.SetActive(true);
+            PlayerPrefs.SetInt("isHowToPlayShown", 1);
+        }
     }
     private void Update() {
         if(Input.GetKeyDown(KeyCode.Escape)){
@@ -25,6 +36,8 @@ public class UIController : MonoBehaviour
         }
 
         SettingsOpen(settingsOpen);
+        OpenGameClear(_isGameClear);
+
     }
     void SettingsOpen(bool openner){
         if(openner == true){
@@ -69,6 +82,18 @@ public class UIController : MonoBehaviour
 
     public void OnCreaditsCloseButtonClick(){
         _creadits.SetActive(false);
+    }
+
+    void OpenGameClear(bool clear){
+        if(clear == true){
+            //Time.timeScale =0;
+            _gameClear.SetActive(true);
+            _BGM.clip = _gameClearSound;
+            _BGM.Play();
+        }
+    }
+    public void IsGameClear(bool isit){
+        _isGameClear = isit;
     }
 
 }

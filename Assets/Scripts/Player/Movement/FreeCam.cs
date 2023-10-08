@@ -23,8 +23,9 @@ public class FreeCam : MonoBehaviour
     }
     private void Update() 
     {
+        CamRotation();
         Vector3 inputDir;
-        transform.position = new Vector3(_player.position.x, _player.position.y + 1, _player.position.z);
+        //transform.position = new Vector3(_player.position.x, _player.position.y + 1, _player.position.z);
         //바라볼 방향 계산
         Vector3 viewDir = _player.position - new Vector3(_Cam.transform.position.x, _player.position.y, _Cam.transform.position.z);
         _orientation.forward = viewDir.normalized;
@@ -44,7 +45,7 @@ public class FreeCam : MonoBehaviour
             inputDir = _orientation.right * x;
         }        
 
-        CamRotation();
+        
     }
     
     void CamRotation()

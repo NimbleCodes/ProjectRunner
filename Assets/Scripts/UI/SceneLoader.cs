@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class SceneLoader : MonoBehaviour
 {
     [SerializeField] Text loadingText;
+    [SerializeField] Text ExitText;
     UnityEngine.AsyncOperation asyncScene = new UnityEngine.AsyncOperation();
 
     DummyWrapper wrapper = new DummyWrapper();
@@ -21,7 +22,10 @@ public class SceneLoader : MonoBehaviour
         StartCoroutine(LoadScene("KSUmap01"));
     }
     private void Update() {
-        if(Input.anyKeyDown && loaded == true){
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            Application.Quit();
+        }
+        else if(Input.anyKeyDown && loaded == true){
             asyncScene.allowSceneActivation = true;
             loaded = false;
         }
@@ -47,6 +51,7 @@ public class SceneLoader : MonoBehaviour
             }
         }
         loadingText.text = "-press anykey to Start-";
+        ExitText.text = "-ESC to Quit Game-";
 
     }
 
@@ -55,7 +60,6 @@ public class SceneLoader : MonoBehaviour
         
         rq.completed += (op) =>
         {
-            Debug.Log("input complete");
             json = ((TextAsset)rq.asset).text;
             _loadEnd = true;
         };
@@ -64,7 +68,6 @@ public class SceneLoader : MonoBehaviour
     async void jsonRead()
     {
         await Task.Run(() => {
-            Debug.Log("start read");
             if(string.IsNullOrEmpty(json) == false){
                 wrapper = JsonUtility.FromJson<DummyWrapper>(json);   
                 loaded = true;

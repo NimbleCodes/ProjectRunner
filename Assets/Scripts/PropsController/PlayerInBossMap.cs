@@ -7,7 +7,7 @@ public class PlayerInBossMap : MonoBehaviour
     GameObject _Inven;
     GameObject _BossTrigger;
     AudioSource _audio; 
-
+    public bool _isTriggered = false;
     private void Start()
     {
         _audio = GameObject.FindGameObjectWithTag("BGM").GetComponent<AudioSource>();
@@ -16,33 +16,17 @@ public class PlayerInBossMap : MonoBehaviour
         _BossTrigger = GetComponent<GameObject>(); 
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void InitBossStage()
     {
-        if (other.tag == "Player")
-        {
+        if(_isTriggered == false){
             _Inven.GetComponent<Inventory>().ResetItem();
             _audio.clip = _BossMap;
             _audio.Play();
 
             for (int i = 0; i < Enemyz.Length; i++)
             {
-                Destroy(Enemyz[i]);
+                Enemyz[i].SetActive(false);
             }
-
-            _BossTrigger.SetActive(false);
         }
-    }
-
-    public void InitBossStage()
-    {
-        _Inven.GetComponent<Inventory>().ResetItem();
-        _audio.clip = _BossMap;
-
-        for (int i = 0; i < Enemyz.Length; i++)
-        {
-            Enemyz[i].SetActive(false);
-        }
-
-        _BossTrigger.SetActive(false);
     }
 }

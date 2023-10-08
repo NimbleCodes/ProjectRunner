@@ -40,7 +40,9 @@ public class MoveNRotate : MonoBehaviour
     }
 
     //State로 Movment Controll
-    private void FixedUpdate() {
+
+    private void Update() 
+    {
         if(state == MovementState.groundrunning || state == MovementState.jumping){
             MovePlayer();
         }else if(state == MovementState.wallrunning){
@@ -48,17 +50,13 @@ public class MoveNRotate : MonoBehaviour
         }
         
         LimitSpeed();
-    }
-
-    private void Update() 
-    {
         if(_isOnGround)
         {
             rb.drag = groundDrag;
         }
         else
         {
-            rb.drag = 0;
+            rb.drag = 1f;
         }
         StateHandler();
         PlayerAnimation();
@@ -75,6 +73,7 @@ public class MoveNRotate : MonoBehaviour
             _playerObj.GetComponent<Animator>().SetFloat("Y",y);
         }
         moveDirection = _orientation.forward * y + _orientation.right * x;
+        //moveDirection = new Vector3(0f ,x , y).normalized;
         rb.AddForce(moveDirection.normalized * moveSpeed * 3f, ForceMode.Force);
         
     }
@@ -83,11 +82,12 @@ public class MoveNRotate : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space) && (_jumpCount < 1 || _isOnGround == true))
         {
-            rb.AddForce(transform.up * 10, ForceMode.Impulse);
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z);
+            rb.AddForce(transform.up * 25, ForceMode.Impulse);
             _isOnGround = false;
             _playerObj.GetComponent<Animator>().SetBool("OnTheGround", false);
             _jumpCount++;
-            state = MovementState.jumping; 
+            state = MovementState.jumping;
         }
 
         
@@ -156,10 +156,10 @@ public class MoveNRotate : MonoBehaviour
             state = MovementState.wallrunning;
         }
         else if((wallRunning == false) && (_isOnGround == false)){
-            state = MovementState.jumping; 
+            state = MovementState.jumping;
         }
         else{
-            state = MovementState.groundrunning; 
+            state = MovementState.groundrunning;
         }
     }
 }

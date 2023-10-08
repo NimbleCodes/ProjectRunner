@@ -4,7 +4,8 @@ public class BossDie : MonoBehaviour
 {
     [SerializeField] ParticleSystem _bossdead;
     [SerializeField] ParticleSystem _bossbomb;
-    [SerializeField] SkinnedMeshRenderer _Renderer; 
+    [SerializeField] SkinnedMeshRenderer _Renderer;
+    [SerializeField] UIController _ui; 
     
     float _bosshealth;
     Animator _ani;
@@ -34,5 +35,9 @@ public class BossDie : MonoBehaviour
         _Renderer.enabled = false;
         _bossbomb.Play();
         Destroy(gameObject, 4f);
+    }
+
+    void GameClear(){
+        _ui.IsGameClear(true);
     }
 }

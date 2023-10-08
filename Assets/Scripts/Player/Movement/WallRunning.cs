@@ -37,9 +37,7 @@ public class WallRunning : MonoBehaviour
     private void Update() {
         CheckWall();
         StateMachine();
-    }
 
-    private void FixedUpdate() {
         if(mn.wallRunning == true) WallRunningMovement();
     }
 
