@@ -22,7 +22,8 @@ public class SceneLoader : MonoBehaviour
         StartCoroutine(LoadScene("KSUmap01"));
     }
     private void Update() {
-        if(Input.GetKeyDown(KeyCode.Escape)){
+        if(Input.GetKeyDown(KeyCode.Escape) && loaded == true){
+            PlayerPrefs.SetInt("isHowToPlayShown", 0);
             Application.Quit();
         }
         else if(Input.anyKeyDown && loaded == true){

@@ -10,6 +10,8 @@ public class UIController : MonoBehaviour
     [SerializeField] GameObject _gameClear;
     [SerializeField] AudioSource _BGM;
     [SerializeField] AudioClip _gameClearSound;
+
+    FreeCam _fc;
     bool settingsOpen = false;
     bool _isGameClear = false;
     public static UIController Instance;
@@ -20,6 +22,10 @@ public class UIController : MonoBehaviour
         _howToPlay.SetActive(false);
         _creadits.SetActive(false);
         _gameClear.SetActive(false);
+
+        _fc = GameObject.Find("CamPoint").GetComponent<FreeCam>();
+        AudioListener.volume = PlayerPrefs.GetFloat("BGMVolume");
+        _fc.ChangeCamSpeed(PlayerPrefs.GetFloat("SensitivityVal"));
 
         if(PlayerPrefs.GetInt("isHowToPlayShown") == 0){
             _howToPlay.SetActive(true);
@@ -93,7 +99,9 @@ public class UIController : MonoBehaviour
             //Time.timeScale =0;
             _gameClear.SetActive(true);
             _BGM.clip = _gameClearSound;
+            _BGM.loop = false;
             _BGM.Play();
+            _isGameClear = false;
         }
     }
     public void IsGameClear(bool isit){

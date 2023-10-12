@@ -19,15 +19,15 @@ public class SettingsPanel : MonoBehaviour
     private void Start() 
     {
         _fc = GameObject.Find("CamPoint").GetComponent<FreeCam>();
-        _bgm.volume = PlayerPrefs.GetFloat("BGMVolume");
+        AudioListener.volume = PlayerPrefs.GetFloat("BGMVolume");
         _soundControll.value = PlayerPrefs.GetFloat("BGMVolume");
         _fc.ChangeCamSpeed(PlayerPrefs.GetFloat("SensitivityVal"));
         
         if(PlayerPrefs.GetInt("isBGMOff") == 1){
-            _bgm.mute = true;
+            AudioListener.pause = true;
             _BGMOff.isOn = true;
         }else{
-            _bgm.mute = false;
+            AudioListener.pause = false;
             _BGMOff.isOn = false;
         }
     }
@@ -40,8 +40,8 @@ public class SettingsPanel : MonoBehaviour
 
     public void OnSoundControllChange(float value)
     {
-        _bgm.volume = value;
-        _currentVolume = _bgm.volume;
+        AudioListener.volume = value;
+        _currentVolume = AudioListener.volume;
         PlayerPrefs.SetFloat("BGMVolume", _currentVolume);
     }
 
@@ -67,14 +67,13 @@ public class SettingsPanel : MonoBehaviour
     {
         if(mute == true)
         {
-            _bgm.mute = mute;
+            AudioListener.pause = true;
             PlayerPrefs.SetInt("isBGMOff", 1);
         }
         else
         {
-            _bgm.mute = mute;
+            AudioListener.pause = false;
             PlayerPrefs.SetInt("isBGMOff",0);
-            _bgm.volume = _currentVolume;
         }
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class HealthManager : MonoBehaviour
 {
     [SerializeField] Image _health;
+    [SerializeField] GameObject _cam;
     GameObject playerRes;
     Animator _playeranim;
     GameObject _Inven;
@@ -81,6 +82,8 @@ public class HealthManager : MonoBehaviour
             _playeranim.Play("Die", 2);
             playerRes.GetComponent<PlayerRes>()._isDead = true;
             _audioSource.clip = null;
+            gameObject.GetComponent<MoveNRotate>().enabled =  false;
+            _cam.GetComponent<FreeCam>().enabled = false;
             _uiControll.OpenGameOver();
         }
 

@@ -170,7 +170,7 @@ public class BossAttack : MonoBehaviour
 
     void ChangeScale()
     {
-        _fintemp.transform.localScale = _fintemp.transform.localScale * 1.5f;
+        _fintemp.transform.localScale = _fintemp.transform.localScale * 2f;
     }
 
     void FinThrowAni()
@@ -179,7 +179,7 @@ public class BossAttack : MonoBehaviour
         _fintemp.transform.SetParent(null);
         _fintemp.GetComponent<Rigidbody>().isKinematic = false;
         Invoke("FinObjecttrig", 0.2f);
-        _fintemp.GetComponent<Rigidbody>().AddForce(target * throwPower, ForceMode.Impulse);
+        _fintemp.GetComponent<Rigidbody>().AddForce(target * 15, ForceMode.Impulse);
         _fintemp.GetComponent<Rigidbody>().AddForce(_fintemp.transform.up * 2f, ForceMode.Impulse);
         isFinphase = false;
         finequipped = false; 
