@@ -33,25 +33,21 @@ public class HealthManager : MonoBehaviour
     {
         _health.fillAmount = 1.0f;
     }
-
     public float GetCurrentHealth()
     {
         return _health.fillAmount;
     }
-
     void AddHealth()
     {
         _health.fillAmount += _damageNheal;
     }
-
     void MinusHealth()
     {
         _health.fillAmount -= _damageNheal;
     }
-
     private void OnCollisionEnter(Collision other) 
     {
-        if(other.collider.tag == "Enemy")
+        if (other.collider.tag == "Enemy")
         {
             Vector3 direction = new Vector3(transform.position.x - other.transform.position.x, 0f, transform.position.z - other.transform.position.z); 
             _rb.AddForce(direction * 30f, ForceMode.Impulse);

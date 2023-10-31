@@ -27,7 +27,8 @@ public class FreeCam : MonoBehaviour
         Vector3 inputDir;
         transform.position = new Vector3(_player.position.x, _player.position.y + 1, _player.position.z);
         //바라볼 방향 계산
-        Vector3 viewDir = _player.position - new Vector3(_Cam.transform.position.x, _player.position.y, _Cam.transform.position.z);
+        Vector3 viewDir = _player.position - 
+        new Vector3(_Cam.transform.position.x, _player.position.y, _Cam.transform.position.z);
         _orientation.forward = viewDir.normalized;
 
         x = Input.GetAxisRaw("Horizontal");
@@ -39,7 +40,8 @@ public class FreeCam : MonoBehaviour
             //바라보는 방향 = 캐릭터 Z방향
             if (inputDir != Vector3.zero) 
             {
-                _playerObj.forward = Vector3.Slerp(_playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
+                _playerObj.forward = Vector3.Slerp(_playerObj.forward, 
+                inputDir.normalized, Time.deltaTime * rotationSpeed);
             }
         }else if(mn.state == MoveNRotate.MovementState.wallrunning){
             inputDir = _orientation.right * x;

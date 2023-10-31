@@ -7,10 +7,8 @@ public class GetItemUI : MonoBehaviour
 
     bool _isItemInRange = false;
 
-    private void Start() 
-    {
+    private void Start() {
         _getItemUI = GameObject.FindGameObjectWithTag("GetItemPanel");
-        //_getItemUI.SetActive(false);
     }
 
     private void Update() 

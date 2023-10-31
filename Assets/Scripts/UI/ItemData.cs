@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class ItemData : MonoBehaviour
 {
-    private static ItemData instance = null;
     System.Random _rand;
     public ItemPool itemPool{get;set;}
+    private static ItemData instance = null;
     public Dictionary<string , GameObject> objPools = new Dictionary<string, GameObject>();
 
     public GameObject testObj;
@@ -23,7 +22,8 @@ public class ItemData : MonoBehaviour
         
     }
 
-    public static ItemData Instance{ //인스턴스 접근 property
+    public static ItemData Instance{ 
+        //인스턴스 접근 property
         get{
             if(instance == null){
                 return null;
@@ -51,7 +51,8 @@ public class ItemData : MonoBehaviour
 }
 
 [Serializable]
-public class ItemObjects{ //Item Data 정보를 저장할 클래스 생성
+public class ItemObjects{ 
+    //Item Data 정보를 저장할 클래스 생성
     public string ItemName;
     public string Description;
     public string UseCount;
